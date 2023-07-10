@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 100.0, 100.0, 629.0, 325.0 ],
+		"rect" : [ 231.0, -904.0, 629.0, 325.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -410,6 +410,14 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "spat5.osc.ignore.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.iter.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "spat5.osc.replace.mxo",
 				"type" : "iLaX"
 			}
@@ -422,7 +430,15 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "spat5.osc.size.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "spat5.osc.unslashify.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.var.mxo",
 				"type" : "iLaX"
 			}
 , 			{
