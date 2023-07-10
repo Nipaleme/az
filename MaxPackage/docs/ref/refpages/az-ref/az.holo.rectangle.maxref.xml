@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!-- created by libisp v5.0.2 - 22-may-2023 19:00:48 -->
+
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+
+
+<c74object name="az.holo.rectangle" module="az">
+  <digest>Arrange speakers on a rectangle path with orientation</digest>
+  <description><o>az.holo.rectangle</o> Arrange speakers on a rectangle path with orientation, can be used to connect directly to HOLOPHONIX Software.<br/><br/></description>
+  <inletlist>
+  </inletlist>
+  <outletlist>
+  </outletlist>
+  <objarglist>
+  </objarglist>
+  <attributelist>
+    <attribute name="initwith" type="string" set="1" get="1" size="1">
+      <description>The <m> initwith </m> attribute can be used to specify the initial state of the object. You should provide a list of comma-separated OSC commands. The list of messages should be quoted (with double quote character &quot;). This is similar to sending the list of commands via <o>loadbang</o> or <o>loadmess</o>.<br/> Have a look at the <i>spat5.tuto-osc-3.maxpat</i> example for further details.<br/> Note that the <m> initwith </m> attribute cannot be set via message, <o>attrui</o> or inspector; it must be typed directly within the object box.</description>
+      <digest>initial state of the object</digest>
+    </attribute>
+  </attributelist>
+  <methodlist>
+    <method name="/with">
+      <arglist>
+        <arg type="number"/>
+      </arglist>
+      <description>set the width of the rectangle path on the x axis.</description>
+      <digest>set rectangle path</digest>
+    </method>
+    <method name="/length">
+      <arglist>
+        <arg type="number"/>
+      </arglist>
+      <description>set the length of the rectangle path on the y axis.</description>
+      <digest>set rectangle path</digest>
+    </method>
+    <method name="/speaker/number">
+      <arglist>
+        <arg type="int"/>
+      </arglist>
+      <description>set the number of speaker to distribute along the rectangle path.</description>
+      <digest>set the number of speaker to distribute along the rectangle path</digest>
+    </method>
+    <method name="/offset">
+      <arglist>
+        <arg type="number"/>
+      </arglist>
+      <description>offset distributed speakers along the path of the rectangle in meters.</description>
+      <digest>offset distributed speakers along the path of the rectangle in meters</digest>
+    </method>
+    <method name="/index">
+      <arglist>
+        <arg type="int"/>
+      </arglist>
+      <description>choose the beginning OSC index of the list of speakers.</description>
+      <digest>choose the beginning OSC index of the list of speakers</digest>
+    </method>
+  </methodlist>
+  <seealsolist>
+    <seealso name="spat5.grids"/>
+    <seealso name="spat5.viewer"/>
+    <seealso name="spat5.transform"/>
+    <seealso name="spat5.scale"/>
+    <seealso name="spat5.translate"/>
+    <seealso name="spat5.rotate"/>
+    <seealso name="spat5.converter"/>
+    <seealso name="spat5.abs2rel"/>
+    <seealso name="spat5.converter~"/>
+    <seealso name="spat5.speaker.config"/>
+    <seealso name="spat5.speaker.layout"/>
+    <seealso name="spat5.overview"/>
+  </seealsolist>
+</c74object>
