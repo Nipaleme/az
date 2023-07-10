@@ -1,0 +1,2 @@
+max definecommand & patcher inserttextobj az.;
+max definecommandinstructions patcher & "az objects";

@@ -1,0 +1,25 @@
+{
+	"name" : "az",
+	"description" : "toolbox suite based on spat5 software suite for real-time sound spatialization, artificial reverberation, OSC control, connectivity with HOLOPHONIX software",
+	"author" : "Adrien ZANNI",
+	"tags" : [ "sound spatialization", "reverberation", "OSC", "HOLOPHONIX" ],
+	"homepatcher" : "",
+	"extends" : "spat5",
+	"max_version_max" : "none",
+	"max_version_min" : "8.0.0",
+	"os" : 	{
+		"macintosh" : 		{
+			"platform" : [ "x64", "arm64" ],
+			"min_version" : "10.11.x"
+		}
+,
+		"windows" : 		{
+			"platform" : [ "x64" ],
+			"min_version" : "10"
+		}
+
+	}
+,
+	"version" : "0.0.1",
+	"website" : ""
+}
