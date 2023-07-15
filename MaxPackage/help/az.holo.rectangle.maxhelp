@@ -346,9 +346,13 @@
 			}
  ],
 		"parameters" : 		{
+			"obj-2::obj-27::obj-2" : [ "live.text[31]", "live.text", 0 ],
+			"obj-2::obj-27::obj-3" : [ "live.text[30]", "live.text", 0 ],
+			"obj-2::obj-51" : [ "live.text[1]", "live.text", 0 ],
+			"obj-2::obj-53" : [ "live.text[2]", "live.text", 0 ],
 			"obj-2::obj-71" : [ "live.text", "live.text", 0 ],
 			"obj-76::obj-102" : [ "live.toggle[436]", "live.toggle", 0 ],
-			"obj-76::obj-3" : [ "live.text[1]", "live.text[9]", 0 ],
+			"obj-76::obj-3" : [ "live.text[3]", "live.text[9]", 0 ],
 			"obj-76::obj-57" : [ "live.text[9]", "live.text[9]", 0 ],
 			"obj-76::obj-58" : [ "live.text[10]", "live.text[9]", 0 ],
 			"obj-76::obj-62" : [ "live.text[12]", "live.text[9]", 0 ],
@@ -358,6 +362,13 @@
 					"index" : 0,
 					"name" : "",
 					"parameters" : [ "-", "-", "-", "-", "-", "-", "-", "-" ]
+				}
+
+			}
+,
+			"parameter_overrides" : 			{
+				"obj-76::obj-3" : 				{
+					"parameter_longname" : "live.text[3]"
 				}
 
 			}
@@ -374,6 +385,13 @@
 			}
 , 			{
 				"name" : "az.holo.rectangle.maxpat",
+				"bootpath" : "~/Documents/Max 8/Packages/az/patchers",
+				"patcherrelativepath" : "../patchers",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "az.osc.store.maxpat",
 				"bootpath" : "~/Documents/Max 8/Packages/az/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
@@ -431,6 +449,10 @@
 			}
 , 			{
 				"name" : "spat5.osc.size.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.unique.mxo",
 				"type" : "iLaX"
 			}
 , 			{
