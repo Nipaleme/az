@@ -1,4 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes'?>
 <root>
-<refpage name='az.holo.rectangle.maxref.xml'/>
+    <refpage name='az.holo.rectangle.maxref.xml' />
+    <refpage name='az.osc.store.maxref.xml' />
 </root>
