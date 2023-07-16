@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+
+
+<c74object name="az.holo.monitoring" module="az">
+  <digest>Binaural (6 DoF) monitoring from HOLOPHONIX outputs</digest>
+  <description><o>az.holo.monitoring</o> is a control interface for <o>az.holo.monitoring~</o> to
+    acheive a binaural (6 DoF) monitoring from HOLOPHONIX outputs. Patcher and method is inspired by <o>
+    spat5.virtualspeakers~</o>.<br /><br /></description>
+
+  <!--INLETS-->
+  <inletlist>
+    <inlet id="0" type="INLET_TYPE">
+      <digest>
+        External OSC Input (0)
+      </digest>
+      <description>
+        External OSC Input (0)
+      </description>
+    </inlet>
+  </inletlist>
+
+  <!--OUTLETS-->
+  <outletlist>
+    <outlet id="0" type="OUTLET_TYPE">
+      <digest>
+        Output OSC
+      </digest>
+      <description>
+        Output OSC
+      </description>
+    </outlet>
+  </outletlist>
+
+  <objarglist>
+  </objarglist>
+
+
+  <!--ATTRIBUTES-->
+  <attributelist>
+    <attribute name="initwith" type="string" set="1" get="1" size="1">
+      <description>The <m> initwith </m> attribute can be used to specify the initial state of the
+        object. You should provide a list of comma-separated OSC commands. The list of messages
+        should be quoted (with double quote character &quot;). This is similar to sending the list
+        of commands via <o>loadbang</o> or <o>loadmess</o>.<br /> Have a look at the <i>
+        spat5.tuto-osc-3.maxpat</i> example for further details.<br /> Note that the <m> initwith </m>
+        attribute cannot be set via message, <o>attrui</o> or inspector; it must be typed directly
+        within the object box.</description>
+      <digest>initial state of the object</digest>
+    </attribute>
+  </attributelist>
+
+
+  <!--MESSAGES-->
+  <methodlist>
+    <method name="bang">
+      <arglist />
+      <digest> Init and update <o>az.holo.monitoring~</o></digest>
+      <description> Init and update <o>az.holo.monitoring~</o>. </description>
+    </method>
+    <method name="/listener/xyz">
+      <arglist>
+        <arg type="number ][ number ][ number" />
+      </arglist>
+      <description>set the position of the listener.</description>
+      <digest>set the position of the listener</digest>
+    </method>
+    <method name="/listener/ypr">
+      <arglist>
+        <arg type="number ][ number ][ number" />
+      </arglist>
+      <description>set the 3 rotation axis of the listener (yaw, pitch, roll).</description>
+      <digest>set the 3 rotation axis of the listener</digest>
+    </method>
+    <method name="/speaker/number">
+      <arglist>
+        <arg type="number" />
+      </arglist>
+      <description>set the number of speaker.</description>
+      <digest>set the number of speaker</digest>
+    </method>
+    <method name="/udpsend">
+      <arglist>
+        <arg type="string ][ int" />
+      </arglist>
+      <description>set IP address (string) and port (int) of the <o>udpsend</o> that will discuss
+        with HOLOPHONIX's OSC Input (default: 4003).</description>
+      <digest>set IP address and port to discuss with HOLOPHONIX's OSC Input</digest>
+    </method>
+    <method name="/udpreceive">
+      <arglist>
+        <arg type="int" />
+      </arglist>
+      <description>set the port (int) of the <o>udpreceive</o> to wich HOLOPHONIX External OSC
+        Output will respond (default: 1234) with HOLOPHONIX's OSC Input.</description>
+      <digest>set the OSC port port to wich HOLOPHONIX will respond</digest>
+    </method>
+    <method name="/tracker/udpreceive">
+      <arglist>
+        <arg type="int" />
+      </arglist>
+      <description>set the port (int) of the <o>udpreceive</o> to wich the headphone tracker will
+        send the rotation tracking datas Expect to receive a message /gamerotationvector from the
+        Open Source Android App "Sensor2OSC" the argument is a quaternion (see <o>spat5.quat.toeuler</o>
+        ).</description>
+      <digest>set the OSC port port to wich headtracker will send datas</digest>
+    </method>
+    <method name="/status/open">
+      <description>open the status window and bring it to front.</description>
+      <digest>open status window</digest>
+    </method>
+    <method name="/status/close">
+      <description>close the status window.</description>
+      <digest>close status window</digest>
+    </method>
+    <method name="/status/openorclose">
+      <description>open the status window if it was closed; close it if it was opened.</description>
+      <digest>open status window</digest>
+    </method>
+    <method name="/help/open">
+      <description>open the help window and bring it to front.</description>
+      <digest>open help window</digest>
+    </method>
+    <method name="/help/close">
+      <description>close the help window.</description>
+      <digest>close help window</digest>
+    </method>
+    <method name="/help/openorclose">
+      <description>open the help window if it was closed; close it if it was opened.</description>
+      <digest>open help window</digest>
+    </method>
+    <method name="/title">
+      <arglist>
+        <arg type="string" />
+      </arglist>
+      <description>set the status and help windows title (in the window titlebar).</description>
+      <digest>set the status and help windows title (in the window titlebar)</digest>
+    </method>
+    <method name="/initwith">
+      <description>Same as the <m> initwith </m> attribute, can be used to specify the initial state
+        of the object. You should provide a list of comma-separated OSC commands. The list of
+        messages should be quoted (with double quote character &quot;). This is similar to sending
+        the list of commands via <o>loadbang</o> or <o>loadmess</o>.<br /> Have a look at the <i>
+        spat5.tuto-osc-3.maxpat</i> example for further details.<br /> Note that the <m> initwith </m>
+        attribute cannot be set via message, <o>attrui</o> or inspector; it must be typed directly
+        within the object box.</description>
+      <digest>initial state of the object</digest>
+    </method>
+  </methodlist>
+
+  <seealsolist>
+    <seealso name="spat5.virtualspeakers~" />
+    <seealso name="spat5.pan~" />
+    <seealso name="spat5.binaural~" />
+    <seealso name="spat5.diagmatrix~" />
+    <seealso name="spat5.delays~" />
+    <seealso name="spat5.align~" />
+    <seealso name="spat5.ctc~" />
+    <seealso name="spat5.sofa.loader" />
+    <seealso name="spat5.sofa.infos" />
+    <seealso name="spat5.hrtf.infos" />
+    <seealso name="spat5.multi.connect" />
+    <seealso name="spat5.overview" />
+  </seealsolist>
+</c74object>

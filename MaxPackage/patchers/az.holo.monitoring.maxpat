@@ -40,6 +40,43 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-26",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "bang" ],
+					"patching_rect" : [ 840.5, 22.0, 22.0, 22.0 ],
+					"text" : "t b"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-25",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 49.0, 157.5, 100.0, 22.0 ],
+					"text" : "t l l"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-8",
+					"linecount" : 2,
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 130.0, 186.0, 126.0, 35.0 ],
+					"text" : "spat5.osc.route /window/openorclose"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"activebgcolor" : [ 0.882353, 0.882353, 0.882353, 1.0 ],
 					"id" : "obj-49",
 					"maxclass" : "live.text",
@@ -248,7 +285,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 29.0, 135.0, 39.0, 35.0 ],
+					"patching_rect" : [ 29.0, 109.0, 39.0, 35.0 ],
 					"text" : "route bang"
 				}
 
@@ -273,7 +310,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-79",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -1204,7 +1241,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 213.0, 227.0, 100.0, 22.0 ],
+					"patching_rect" : [ 213.0, 237.0, 100.0, 22.0 ],
 					"text" : "r #0-toStore"
 				}
 
@@ -1304,11 +1341,11 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-9",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
+					"outlettype" : [ "" ],
 					"patching_rect" : [ 29.0, 56.5, 30.0, 30.0 ]
 				}
 
@@ -2767,7 +2804,7 @@
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "spat5.viewer @initwith \" /speaker/number 0, /window/open, /display/zoom 23, /window/width 1000, /window/height 500, /window/topleft 500 50, /layout leftright,  /window/title Relative_Position\"",
+					"text" : "spat5.viewer @initwith \" /speaker/number 0, /display/zoom 23, /window/width 1000, /window/height 500, /window/topleft 500 50, /layout leftright,  /window/title Relative_Position\"",
 					"varname" : "spat5.viewer[1]"
 				}
 
@@ -4819,7 +4856,6 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-37",
-									"linecount" : 3,
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
@@ -4929,7 +4965,6 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-33",
-									"linecount" : 3,
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
@@ -5960,17 +5995,17 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-15",
-					"linecount" : 9,
+					"linecount" : 8,
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 111.0, 602.0, 185.0, 129.0 ],
+					"patching_rect" : [ 111.0, 602.0, 185.0, 116.0 ],
 					"saved_object_attributes" : 					{
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "spat5.viewer @initwith \" /speaker/number 0, /listener/editable 1,  /window/open, /display/zoom 23, /window/width 500, /window/height 500, /window/topleft 000 50, /layout single, /window/title Absolute_Position\"",
+					"text" : "spat5.viewer @initwith \" /speaker/number 0, /listener/editable 1, /display/zoom 23, /window/width 500, /window/height 500, /window/topleft 000 50, /layout single, /window/title Absolute_Position\"",
 					"varname" : "spat5.viewer"
 				}
 
@@ -6305,7 +6340,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-7", 0 ],
+					"destination" : [ "obj-25", 0 ],
 					"source" : [ "obj-2", 1 ]
 				}
 
@@ -6408,6 +6443,36 @@
 				"patchline" : 				{
 					"destination" : [ "obj-5", 0 ],
 					"source" : [ "obj-24", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-7", 0 ],
+					"source" : [ "obj-25", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-8", 0 ],
+					"source" : [ "obj-25", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-24", 0 ],
+					"order" : 0,
+					"source" : [ "obj-26", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-4", 0 ],
+					"order" : 1,
+					"source" : [ "obj-26", 0 ]
 				}
 
 			}
@@ -6816,6 +6881,15 @@
 			}
 , 			{
 				"patchline" : 				{
+					"color" : [ 0.0, 0.741856515407562, 0.0, 1.0 ],
+					"destination" : [ "obj-26", 0 ],
+					"midpoints" : [ 139.5, 227.0, 825.0, 227.0, 825.0, 18.0, 850.0, 18.0 ],
+					"source" : [ "obj-8", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-7", 0 ],
 					"midpoints" : [ 570.0, 213.0, 56.5, 213.0 ],
 					"source" : [ "obj-86", 0 ]
@@ -6865,6 +6939,132 @@
 
 			}
  ],
+		"parameters" : 		{
+			"obj-122" : [ "live.numbox[32]", "live.numbox", 0 ],
+			"obj-124" : [ "live.numbox[33]", "live.numbox", 0 ],
+			"obj-20" : [ "live.numbox[18]", "live.numbox", 0 ],
+			"obj-24" : [ "live.text[47]", "live.text", 0 ],
+			"obj-38" : [ "live.text[44]", "live.text", 0 ],
+			"obj-4" : [ "live.text[24]", "live.text", 0 ],
+			"obj-48" : [ "live.text[43]", "live.text", 0 ],
+			"obj-49" : [ "live.text[42]", "live.text", 0 ],
+			"obj-51" : [ "live.text[45]", "live.text", 0 ],
+			"obj-53" : [ "live.text[46]", "live.text", 0 ],
+			"obj-72" : [ "live.numbox[19]", "live.numbox", 0 ],
+			"obj-7::obj-2" : [ "live.text[31]", "live.text", 0 ],
+			"obj-7::obj-3" : [ "live.text[30]", "live.text", 0 ],
+			"obj-88::obj-42" : [ "live.numbox[21]", "live.numbox", 0 ],
+			"obj-88::obj-46" : [ "live.numbox[20]", "live.numbox", 0 ],
+			"parameterbanks" : 			{
+				"0" : 				{
+					"index" : 0,
+					"name" : "",
+					"parameters" : [ "-", "-", "-", "-", "-", "-", "-", "-" ]
+				}
+
+			}
+,
+			"inherited_shortname" : 1
+		}
+,
+		"dependency_cache" : [ 			{
+				"name" : "Icon.png",
+				"bootpath" : "~/Documents/Max 8/Packages/az",
+				"patcherrelativepath" : "..",
+				"type" : "PNG",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "az.osc.store.maxpat",
+				"bootpath" : "~/Documents/Max 8/Packages/az/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "spat5.abs2rel.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.distance.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.change.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.collect.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.display.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.fromdict.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.ignore.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.iter.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.route.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.routepass.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.size.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.split.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.unique.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.var.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.view.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.quat.fromeuler.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.quat.toeuler.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.sofa.loader.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.viewer.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "thru.maxpat",
+				"bootpath" : "C74:/patchers/m4l/Pluggo for Live resources/patches",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+ ],
+		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "AudioStatus_Menu",
 				"default" : 				{
