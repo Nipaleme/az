@@ -1462,7 +1462,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "jit_matrix" ],
 									"patching_rect" : [ 368.0, 394.0, 100.0, 100.200400801603195 ],
-									"pic" : "/Users/adrien/Documents/Max 8/Packages/az/Icon.png"
+									"pic" : "az-Icon.png"
 								}
 
 							}
@@ -1981,6 +1981,13 @@
 				"name" : "Icon.png",
 				"bootpath" : "~/Documents/Max 8/Packages/az",
 				"patcherrelativepath" : "..",
+				"type" : "PNG",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "az-Icon.png",
+				"bootpath" : "~/Documents/Max 8/Packages/az/media/images",
+				"patcherrelativepath" : "../media/images",
 				"type" : "PNG",
 				"implicit" : 1
 			}

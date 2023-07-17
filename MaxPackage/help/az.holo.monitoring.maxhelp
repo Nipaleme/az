@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 156.0, -715.0, 843.0, 715.0 ],
+		"rect" : [ 61.0, 234.0, 843.0, 715.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -141,7 +141,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 156.0, -689.0, 843.0, 689.0 ],
+						"rect" : [ 61.0, 260.0, 843.0, 689.0 ],
 						"bglocked" : 1,
 						"openinpresentation" : 0,
 						"default_fontsize" : 11.0,
@@ -558,7 +558,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "jit_matrix" ],
 									"patching_rect" : [ 680.0, 576.0, 100.0, 100.200400801603195 ],
-									"pic" : "/Users/adrien/Documents/Max 8/Packages/az/Icon.png"
+									"pic" : "az-Icon.png"
 								}
 
 							}
@@ -1029,6 +1029,13 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "az-Icon.png",
+				"bootpath" : "~/Documents/Max 8/Packages/az/media/images",
+				"patcherrelativepath" : "../media/images",
+				"type" : "PNG",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "az.holo.monitoring.maxpat",
 				"bootpath" : "~/Documents/Max 8/Packages/az/patchers",
 				"patcherrelativepath" : "../patchers",
@@ -1136,6 +1143,10 @@
 			}
 , 			{
 				"name" : "spat5.osc.size.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.speedlim.mxo",
 				"type" : "iLaX"
 			}
 , 			{

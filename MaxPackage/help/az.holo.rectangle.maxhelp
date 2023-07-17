@@ -48,7 +48,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "jit_matrix" ],
 					"patching_rect" : [ 511.0, 204.0, 100.0, 100.200400801603195 ],
-					"pic" : "/Users/adrien/Documents/Max 8/Packages/az/Icon.png"
+					"pic" : "az-Icon.png"
 				}
 
 			}
@@ -367,6 +367,14 @@
 			}
 ,
 			"parameter_overrides" : 			{
+				"obj-2::obj-27::obj-2" : 				{
+					"parameter_longname" : "live.text[31]"
+				}
+,
+				"obj-2::obj-27::obj-3" : 				{
+					"parameter_longname" : "live.text[30]"
+				}
+,
 				"obj-76::obj-3" : 				{
 					"parameter_longname" : "live.text[3]"
 				}
@@ -377,9 +385,9 @@
 		}
 ,
 		"dependency_cache" : [ 			{
-				"name" : "Icon.png",
-				"bootpath" : "~/Documents/Max 8/Packages/az",
-				"patcherrelativepath" : "..",
+				"name" : "az-Icon.png",
+				"bootpath" : "~/Documents/Max 8/Packages/az/media/images",
+				"patcherrelativepath" : "../media/images",
 				"type" : "PNG",
 				"implicit" : 1
 			}
@@ -414,6 +422,10 @@
 				"patcherrelativepath" : "../../spat5/patchers",
 				"type" : "JSON",
 				"implicit" : 1
+			}
+, 			{
+				"name" : "spat5.osc.change.mxo",
+				"type" : "iLaX"
 			}
 , 			{
 				"name" : "spat5.osc.collect.mxo",
