@@ -3,9 +3,11 @@
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
 
 
-<c74object name="az.osc.store" module="az">
-  <digest>Create an OSC Store to manage patcher states</digest>
-  <description><o>az.osc.store</o> Create an OSC Store to manage patcher states.<br /><br /></description>
+<c74object name="az.holo.monitoring" module="az">
+  <digest>Binaural (6 DoF) monitoring from HOLOPHONIX outputs</digest>
+  <description><o>az.holo.monitoring</o> is a control interface for <o>az.holo.monitoring~</o> to
+    acheive a binaural (6 DoF) monitoring from HOLOPHONIX outputs. Patcher and method is inspired by <o>
+    spat5.virtualspeakers~</o>.<br /><br /></description>
 
   <!--INLETS-->
   <inletlist>
@@ -15,14 +17,6 @@
       </digest>
       <description>
         External OSC Input (0)
-      </description>
-    </inlet>
-    <inlet id="1" type="INLET_TYPE">
-      <digest>
-        Internal OSC Input (1)
-      </digest>
-      <description>
-        Internal OSC Input (1)
       </description>
     </inlet>
   </inletlist>
@@ -35,12 +29,6 @@
       </digest>
       <description>
         Output OSC
-      </description>
-    </outlet>
-    <outlet id="1" type="OUTLET_TYPE">
-      <digest> Connect to a <o>thispatcher</o>
-      </digest>
-      <description> Connect to a <o>thispatcher</o>
       </description>
     </outlet>
   </outletlist>
@@ -61,27 +49,6 @@
         within the object box.</description>
       <digest>initial state of the object</digest>
     </attribute>
-    <attribute name="triggers" get="1" set="1" type="int" size="256">
-      <digest>
-        Trigger inputs
-      </digest>
-      <description>
-        Define a list of inputs that will automatically trigger output (i.e. adding an input to this
-        list will make the inlet &quot;hot&quot;). Setting the attribute value to -1 will cause the
-        object to trigger output for any inlet (all inlets will be &quot;hot&quot;).
-      </description>
-      <attributelist>
-        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
-        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Triggers" />
-      </attributelist>
-    </attribute>
-    <attribute name="changesonly" type="int" set="1" get="1" size="1">
-      <description>The <m> onlychanges </m> attribute can be used to specify the OCS outpout mode.
-        If <m>onlychanges</m> attribute is set to 1 then only the difference from the previous state
-        will be send. By default value is set to 0, it means all the store state is send when there
-        is a change. Attribute is the same as to add <o>spat5.osc.change</o> after the outpout.</description>
-      <digest>Activate only send the difference from previous state to output</digest>
-    </attribute>
   </attributelist>
 
 
@@ -89,8 +56,55 @@
   <methodlist>
     <method name="bang">
       <arglist />
-      <digest> Init and create OSC <o>number</o> box </digest>
-      <description> Init and create OSC <o>number</o> box. </description>
+      <digest> Init and update <o>az.holo.monitoring~</o></digest>
+      <description> Init and update <o>az.holo.monitoring~</o>. </description>
+    </method>
+    <method name="/listener/xyz">
+      <arglist>
+        <arg type="number ][ number ][ number" />
+      </arglist>
+      <description>set the position of the listener.</description>
+      <digest>set the position of the listener</digest>
+    </method>
+    <method name="/listener/ypr">
+      <arglist>
+        <arg type="number ][ number ][ number" />
+      </arglist>
+      <description>set the 3 rotation axis of the listener (yaw, pitch, roll).</description>
+      <digest>set the 3 rotation axis of the listener</digest>
+    </method>
+    <method name="/speaker/number">
+      <arglist>
+        <arg type="number" />
+      </arglist>
+      <description>set the number of speaker.</description>
+      <digest>set the number of speaker</digest>
+    </method>
+    <method name="/udpsend">
+      <arglist>
+        <arg type="string ][ int" />
+      </arglist>
+      <description>set IP address (string) and port (int) of the <o>udpsend</o> that will discuss
+        with HOLOPHONIX's OSC Input (default: 4003).</description>
+      <digest>set IP address and port to discuss with HOLOPHONIX's OSC Input</digest>
+    </method>
+    <method name="/udpreceive">
+      <arglist>
+        <arg type="int" />
+      </arglist>
+      <description>set the port (int) of the <o>udpreceive</o> to wich HOLOPHONIX External OSC
+        Output will respond (default: 1234) with HOLOPHONIX's OSC Input.</description>
+      <digest>set the OSC port port to wich HOLOPHONIX will respond</digest>
+    </method>
+    <method name="/tracker/udpreceive">
+      <arglist>
+        <arg type="int" />
+      </arglist>
+      <description>set the port (int) of the <o>udpreceive</o> to wich the headphone tracker will
+        send the rotation tracking datas Expect to receive a message /gamerotationvector from the
+        Open Source Android App "Sensor2OSC" the argument is a quaternion (see <o>spat5.quat.toeuler</o>
+        ).</description>
+      <digest>set the OSC port port to wich headtracker will send datas</digest>
     </method>
     <method name="/status/open">
       <description>open the status window and bring it to front.</description>
@@ -136,20 +150,17 @@
   </methodlist>
 
   <seealsolist>
-    <seealso name="spat5.osc.view" />
-    <seealso name="spat5.osc.fromdict" />
-    <seealso name="dict" />
-    <seealso name="dict.view" />
-    <seealso name="spat5.osc.collect" />
-    <seealso name="spat5.osc.var" />
-    <seealso name="spat5.osc.split" />
-    <seealso name="spat5.osc.route" />
-    <seealso name="spat5.osc.routepass" />
-    <seealso name="spat5.osc.prepend" />
-    <seealso name="spat5.osc.append" />
-    <seealso name="spat5.osc.unslashify" />
-    <seealso name="spat5.osc.flip" />
-    <seealso name="route" />
-    <seealso name="routepass" />
+    <seealso name="spat5.virtualspeakers~" />
+    <seealso name="spat5.pan~" />
+    <seealso name="spat5.binaural~" />
+    <seealso name="spat5.diagmatrix~" />
+    <seealso name="spat5.delays~" />
+    <seealso name="spat5.align~" />
+    <seealso name="spat5.ctc~" />
+    <seealso name="spat5.sofa.loader" />
+    <seealso name="spat5.sofa.infos" />
+    <seealso name="spat5.hrtf.infos" />
+    <seealso name="spat5.multi.connect" />
+    <seealso name="spat5.overview" />
   </seealsolist>
 </c74object>
