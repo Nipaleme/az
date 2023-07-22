@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 0.0, 67.0, 1132.0, 551.0 ],
+		"rect" : [ 0.0, 66.0, 1132.0, 551.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -58,7 +58,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1132.0, 525.0 ],
+						"rect" : [ 0.0, 92.0, 1132.0, 525.0 ],
 						"bglocked" : 1,
 						"openinpresentation" : 0,
 						"default_fontsize" : 11.0,
@@ -124,20 +124,6 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 84.5, 168.5, 118.0, 47.0 ],
 									"text" : "bang to create number box linked to store",
-									"textjustification" : 1
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"bubble" : 1,
-									"id" : "obj-7",
-									"linecount" : 3,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 303.0, 368.5, 218.0, 47.0 ],
-									"text" : "Connect a \"thispatcher\" to second outlet if you want to connects number box with script ",
 									"textjustification" : 1
 								}
 
@@ -241,27 +227,14 @@
 							}
 , 							{
 								"box" : 								{
-									"id" : "obj-2",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 228.0, 383.0, 67.0, 21.0 ],
-									"save" : [ "#N", "thispatcher", ";", "#Q", "end", ";" ],
-									"text" : "thispatcher"
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-1",
 									"linecount" : 2,
 									"maxclass" : "newobj",
 									"numinlets" : 2,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "" ],
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
 									"patching_rect" : [ 40.0, 297.0, 207.0, 33.0 ],
-									"text" : "az.osc.store @initwith \"/width 10, /title test window\" @triggers -1"
+									"text" : "az.osc.store @initwith \"/width 5\" @triggers -1"
 								}
 
 							}
@@ -288,13 +261,13 @@
 									"annotation" : "/width",
 									"format" : 6,
 									"hint" : "/width",
-									"id" : "obj-12",
+									"id" : "obj-21",
 									"maxclass" : "flonum",
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 228.0, 199.5, 85.0, 21.0 ],
+									"patching_rect" : [ 228.0, 212.5, 55.0, 21.0 ],
 									"style" : "redness",
 									"varname" : "/width"
 								}
@@ -310,20 +283,6 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-2", 0 ],
-									"source" : [ "obj-1", 1 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-14", 0 ],
-									"source" : [ "obj-12", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-1", 1 ],
 									"source" : [ "obj-14", 0 ]
 								}
@@ -333,6 +292,13 @@
 								"patchline" : 								{
 									"destination" : [ "obj-5", 0 ],
 									"source" : [ "obj-15", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-14", 0 ],
+									"source" : [ "obj-21", 0 ]
 								}
 
 							}
@@ -526,7 +492,7 @@
 						"editing_bgcolor" : [ 0.9, 0.9, 0.9, 1.0 ]
 					}
 ,
-					"patching_rect" : [ 70.0, 35.0, 71.0, 21.0 ],
+					"patching_rect" : [ 130.0, 70.0, 71.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -634,6 +600,7 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-16",
+									"linecount" : 2,
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
@@ -730,8 +697,8 @@
 													"id" : "obj-13",
 													"maxclass" : "newobj",
 													"numinlets" : 2,
-													"numoutlets" : 2,
-													"outlettype" : [ "", "" ],
+													"numoutlets" : 1,
+													"outlettype" : [ "" ],
 													"patching_rect" : [ 46.0, 189.0, 73.0, 22.0 ],
 													"text" : "az.osc.store"
 												}
@@ -808,7 +775,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 660.0, 297.0, 297.0, 21.0 ],
+									"patching_rect" : [ 660.0, 297.0, 297.0, 33.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -816,7 +783,7 @@
 										"tags" : ""
 									}
 ,
-									"text" : "p A_Parent_Patcher @initwith \"/width 10, /title test window\""
+									"text" : "p A_Parent_Patcher @initwith \"/width 10, /title New Window Title 3\""
 								}
 
 							}
@@ -889,12 +856,13 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-4",
+									"linecount" : 2,
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 380.0, 240.0, 187.0, 21.0 ],
-									"text" : "/initwith \"/width 10, /title test window\""
+									"patching_rect" : [ 380.0, 240.0, 187.0, 33.0 ],
+									"text" : "/initwith \"/width 10, /title New Window Title 2\""
 								}
 
 							}
@@ -903,8 +871,8 @@
 									"id" : "obj-2",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "" ],
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
 									"patching_rect" : [ 350.0, 297.0, 207.0, 21.0 ],
 									"text" : "az.osc.store"
 								}
@@ -963,10 +931,10 @@
 									"linecount" : 2,
 									"maxclass" : "newobj",
 									"numinlets" : 2,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "" ],
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
 									"patching_rect" : [ 40.0, 297.0, 173.0, 33.0 ],
-									"text" : "az.osc.store @initwith \"/width 10, /title test window\""
+									"text" : "az.osc.store @initwith \"/width 10, /title New Window Title 1\""
 								}
 
 							}
@@ -1207,7 +1175,7 @@
 						"editing_bgcolor" : [ 0.9, 0.9, 0.9, 1.0 ]
 					}
 ,
-					"patching_rect" : [ 160.0, 57.0, 51.0, 21.0 ],
+					"patching_rect" : [ 70.0, 47.0, 62.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1230,7 +1198,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 260.0, 120.0, 85.0, 21.0 ],
+					"patching_rect" : [ 250.0, 140.0, 85.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"filename" : "spat5.style.js",
 						"parameter_enable" : 0
@@ -1292,7 +1260,7 @@
 						"lines" : [  ]
 					}
 ,
-					"patching_rect" : [ 220.0, 80.0, 50.0, 21.0 ],
+					"patching_rect" : [ 210.0, 100.0, 50.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1323,7 +1291,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 93.0, 1132.0, 525.0 ],
+						"rect" : [ 0.0, 26.0, 1132.0, 525.0 ],
 						"bglocked" : 1,
 						"openinpresentation" : 0,
 						"default_fontsize" : 11.0,
@@ -1353,6 +1321,20 @@
 						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"bubble" : 1,
+									"id" : "obj-13",
+									"linecount" : 3,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 218.0, 334.0, 203.0, 47.0 ],
+									"text" : "Set \"changesonly\" attribute to 1 to only output difference from previous state",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"format" : 6,
 									"id" : "obj-8",
@@ -1474,7 +1456,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 218.0, 304.5, 199.0, 35.0 ],
+									"patching_rect" : [ 218.0, 298.5, 199.0, 35.0 ],
 									"text" : "Use \"initwith\" attribute to initialize store addresses and values.",
 									"textjustification" : 1
 								}
@@ -1516,13 +1498,13 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-1",
-									"linecount" : 2,
+									"linecount" : 3,
 									"maxclass" : "newobj",
 									"numinlets" : 2,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 68.0, 304.5, 128.0, 33.0 ],
-									"text" : "az.osc.store @initwith \"/width 10, /length 5\""
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 68.0, 310.0, 128.0, 45.0 ],
+									"text" : "az.osc.store @initwith \"/width 10, /length 5\" @changesonly 0"
 								}
 
 							}
@@ -1810,7 +1792,7 @@
 			"obj-3::obj-16::obj-13::obj-2" : [ "live.text[31]", "live.text", 0 ],
 			"obj-3::obj-16::obj-13::obj-3" : [ "live.text[30]", "live.text", 0 ],
 			"obj-3::obj-1::obj-2" : [ "live.text[44]", "live.text", 0 ],
-			"obj-3::obj-1::obj-3" : [ "live.text[34]", "live.text", 0 ],
+			"obj-3::obj-1::obj-3" : [ "live.text[45]", "live.text", 0 ],
 			"obj-3::obj-2::obj-2" : [ "live.text[43]", "live.text", 0 ],
 			"obj-3::obj-2::obj-3" : [ "live.text[33]", "live.text", 0 ],
 			"obj-3::obj-6::obj-102" : [ "live.toggle[2]", "live.toggle", 0 ],
@@ -1831,8 +1813,8 @@
 			"obj-3::obj-7::obj-58" : [ "live.text[28]", "live.text[9]", 0 ],
 			"obj-3::obj-7::obj-62" : [ "live.text[27]", "live.text[9]", 0 ],
 			"obj-3::obj-7::obj-72" : [ "live.text[26]", "live.text[8]", 0 ],
-			"obj-4::obj-1::obj-2" : [ "live.text[32]", "live.text", 0 ],
-			"obj-4::obj-1::obj-3" : [ "live.text[42]", "live.text", 0 ],
+			"obj-4::obj-1::obj-2" : [ "live.text[42]", "live.text", 0 ],
+			"obj-4::obj-1::obj-3" : [ "live.text[34]", "live.text", 0 ],
 			"obj-4::obj-76::obj-102" : [ "live.toggle[4]", "live.toggle", 0 ],
 			"obj-4::obj-76::obj-3" : [ "live.text[1]", "live.text[9]", 0 ],
 			"obj-4::obj-76::obj-57" : [ "live.text[39]", "live.text[9]", 0 ],
@@ -1861,7 +1843,7 @@
 				}
 ,
 				"obj-3::obj-1::obj-3" : 				{
-					"parameter_longname" : "live.text[34]"
+					"parameter_longname" : "live.text[45]"
 				}
 ,
 				"obj-3::obj-2::obj-2" : 				{
@@ -1945,11 +1927,11 @@
 				}
 ,
 				"obj-4::obj-1::obj-2" : 				{
-					"parameter_longname" : "live.text[32]"
+					"parameter_longname" : "live.text[42]"
 				}
 ,
 				"obj-4::obj-1::obj-3" : 				{
-					"parameter_longname" : "live.text[42]"
+					"parameter_longname" : "live.text[34]"
 				}
 ,
 				"obj-4::obj-76::obj-102" : 				{
@@ -1996,6 +1978,20 @@
 				"bootpath" : "~/Documents/Max 8/Packages/az/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "getparentnamed.js",
+				"bootpath" : "~/Documents/Max 8/Packages/az/javascript",
+				"patcherrelativepath" : "../javascript",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "scriptnewdefualtparent.js",
+				"bootpath" : "~/Documents/Max 8/Packages/az/javascript",
+				"patcherrelativepath" : "../javascript",
+				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
@@ -2050,10 +2046,6 @@
 			}
 , 			{
 				"name" : "spat5.osc.unique.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "spat5.osc.var.mxo",
 				"type" : "iLaX"
 			}
 , 			{
