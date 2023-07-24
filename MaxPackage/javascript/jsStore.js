@@ -7,7 +7,7 @@ var store = {};
 if (jsarguments.length>1)
 	myval = jsarguments[1];
 
-function	getNested (obj, args) 
+function getNested (obj, args) 
 {
 	var prev = obj;
 	for(var i = 0; i < args.length; i += 1 ) {
@@ -18,7 +18,7 @@ function	getNested (obj, args)
 	return prev;
 }
 
-function	setNested (obj, args, value) 
+function setNested (obj, args, value) 
 {
 	var prev = obj;
 	for(var i = 0; i < args.length; i += 1 ) {
