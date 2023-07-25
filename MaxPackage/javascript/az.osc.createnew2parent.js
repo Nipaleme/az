@@ -7,13 +7,14 @@ var arrayListener = new Array();
 var dictRef = null;
 var thus = this.patcher;
 var needCreate = false;
+var uuid = "";
 
 function valuechanged(data) {
 	if (data.attrname) {
 	  post("attrname: " + data.attrname + "\n");
 	}
 	if (dictRef === null) {
-		dictRef = new Dict('dictpack');
+		dictRef = new Dict(uuid+"-dictpack");
 	}
 	dictRef.replace(String(data.maxobject.getattr('varname')), data.value);
 	outlet(0, 'bang');
@@ -135,6 +136,10 @@ function anything()
 	if (address === '/create') {
 		needCreate = true;
 		bang();
+		return;
+	}
+	if (address === '/uuid') {
+		uuid = args[0];
 		return;
 	}
 	
