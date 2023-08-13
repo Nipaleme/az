@@ -58,7 +58,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 92.0, 1105.0, 695.0 ],
+						"rect" : [ 0.0, 26.0, 1105.0, 695.0 ],
 						"bglocked" : 1,
 						"openinpresentation" : 0,
 						"default_fontsize" : 11.0,
@@ -146,7 +146,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 783.0, 87.75, 244.0, 99.0 ],
-									"presentation_linecount" : 5,
 									"text" : "to replace the default object by a custom one : \n\n1) delete existing object you want to replace.\n2) create new object with the OSC address as scriptingName (ex: /hrtf)\n3) bang az.osc.store"
 								}
 
@@ -1364,7 +1363,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1105.0, 695.0 ],
+						"rect" : [ 0.0, 92.0, 1105.0, 695.0 ],
 						"bglocked" : 1,
 						"openinpresentation" : 0,
 						"default_fontsize" : 11.0,
@@ -1402,7 +1401,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 340.0, 186.5, 268.0, 60.0 ],
-									"presentation_linecount" : 10,
 									"text" : "the scope of the link object is designed to be limited to the parent patcher to avoid undesired side-effects on other abstractions of the same patch for example",
 									"textjustification" : 1
 								}
@@ -1795,56 +1793,6 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 10.0, 10.0, 500.0, 100.0 ],
 									"varname" : "digest_jsui"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"annotation" : "/speaker/number",
-									"format" : 6,
-									"hint" : "/speaker/number",
-									"id" : "obj-52",
-									"maxclass" : "flonum",
-									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "bang" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 80.0, 200.0, 50.0, 21.0 ],
-									"style" : "redness",
-									"varname" : "/speaker/number"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"annotation" : "/speakers/aed",
-									"hint" : "/speakers/aed",
-									"id" : "obj-54",
-									"linecount" : 2,
-									"maxclass" : "message",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 160.0, 200.0, 50.0, 33.0 ],
-									"style" : "redness",
-									"text" : "1 2 3 4 5 6",
-									"varname" : "/speakers/aed"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"annotation" : "/hrtf",
-									"hint" : "/hrtf",
-									"id" : "obj-56",
-									"maxclass" : "message",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 240.0, 200.0, 50.0, 21.0 ],
-									"style" : "redness",
-									"text" : "kemar",
-									"varname" : "/hrtf"
 								}
 
 							}
