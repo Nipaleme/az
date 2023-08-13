@@ -58,7 +58,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1105.0, 695.0 ],
+						"rect" : [ 0.0, 92.0, 1105.0, 695.0 ],
 						"bglocked" : 1,
 						"openinpresentation" : 0,
 						"default_fontsize" : 11.0,
@@ -89,6 +89,70 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-26",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 839.75, 270.0, 127.0, 21.0 ],
+									"text" : "udpsend 127.0.0.1 4003"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-24",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 950.75, 230.0, 50.0, 21.0 ],
+									"text" : "port $1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-22",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 839.75, 230.0, 50.0, 21.0 ],
+									"text" : "host $1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"attr" : "varname",
+									"id" : "obj-4",
+									"maxclass" : "attrui",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 451.0, 150.0, 190.0, 21.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 2,
+									"fontsize" : 11.0,
+									"id" : "obj-2",
+									"linecount" : 6,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 783.0, 87.75, 244.0, 99.0 ],
+									"presentation_linecount" : 5,
+									"text" : "to replace the default object by a custom one : \n\n1) delete existing object you want to replace.\n2) create new object with the OSC address as scriptingName (ex: /hrtf)\n3) bang az.osc.store"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"autofit" : 1,
 									"forceaspect" : 1,
 									"id" : "obj-9",
@@ -110,7 +174,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 550.0, 80.0, 380.0, 99.0 ],
+									"patching_rect" : [ 356.0, 49.0, 380.0, 99.0 ],
 									"text" : "Any object that can be linked to a pattr can be used for a \"linked object\". \n\nsome objects like \"message\" or \"unpack\" are only \"one way\" they can receive value but cannot detect when the object is manualy updated. \n\nIf you want to be able to edit a string the textedit will be more appropriate"
 								}
 
@@ -122,68 +186,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 660.0, 250.0, 100.0, 21.0 ],
+									"patching_rect" : [ 451.0, 240.0, 100.0, 21.0 ],
 									"text" : "route text"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-45",
-									"maxclass" : "number",
-									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "bang" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 385.0, 250.0, 50.0, 21.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-44",
-									"maxclass" : "number",
-									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "bang" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 340.0, 250.0, 50.0, 21.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-43",
-									"maxclass" : "number",
-									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "bang" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 295.0, 250.0, 50.0, 21.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-42",
-									"maxclass" : "number",
-									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "bang" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 250.0, 250.0, 50.0, 21.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-41",
-									"maxclass" : "number",
-									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "bang" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 205.0, 250.0, 50.0, 21.0 ]
 								}
 
 							}
@@ -206,7 +210,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 660.0, 300.0, 180.0, 21.0 ],
+									"patching_rect" : [ 451.0, 280.0, 180.0, 21.0 ],
 									"text" : "custom_editable_text"
 								}
 
@@ -218,7 +222,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 470.0, 260.0, 140.0, 21.0 ],
+									"patching_rect" : [ 278.0, 260.0, 140.0, 21.0 ],
 									"text" : "kemar"
 								}
 
@@ -368,20 +372,20 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "int", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 40.0, 521.0, 230.0, 99.0 ]
+									"patching_rect" : [ 40.0, 540.0, 230.0, 99.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
 									"id" : "obj-1",
-									"linecount" : 3,
+									"linecount" : 4,
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 40.0, 468.0, 208.0, 45.0 ],
-									"text" : "az.osc.store @initwith \"/speaker/number 2, /speakers/aed 1 2 3 4 5 6,/hrtf kemar, /editabletext custom_editable_text\""
+									"patching_rect" : [ 40.0, 468.0, 208.0, 58.0 ],
+									"text" : "az.osc.store @initwith \"/speaker/number 2, /speakers/aed 1 2 3 4 5 6,/hrtf kemar, /editabletext custom_editable_text, /udpsend 127.0.0.1 4003\""
 								}
 
 							}
@@ -425,13 +429,13 @@
 									"annotation" : "/speakers/aed",
 									"hint" : "/speakers/aed",
 									"id" : "obj-50",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 6,
-									"outlettype" : [ "float", "float", "float", "float", "float", "float" ],
-									"patching_rect" : [ 160.0, 200.0, 244.0, 21.0 ],
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 160.0, 200.0, 100.0, 21.0 ],
 									"style" : "redness",
-									"text" : "unpack f f f f f f",
+									"text" : "1 2 3 4 5 6",
 									"varname" : "/speakers/aed"
 								}
 
@@ -446,7 +450,7 @@
 									"numoutlets" : 4,
 									"outlettype" : [ "", "int", "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 660.0, 190.0, 180.0, 40.0 ],
+									"patching_rect" : [ 451.0, 190.0, 180.0, 40.0 ],
 									"style" : "redness",
 									"text" : "custom_editable_text",
 									"varname" : "/editabletext"
@@ -462,10 +466,26 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 470.0, 200.0, 140.0, 21.0 ],
+									"patching_rect" : [ 278.0, 200.0, 140.0, 21.0 ],
 									"style" : "redness",
 									"text" : "kemar",
 									"varname" : "/hrtf"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"annotation" : "/udpsend",
+									"hint" : "/udpsend",
+									"id" : "obj-12",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "int" ],
+									"patching_rect" : [ 839.75, 190.0, 130.5, 21.0 ],
+									"style" : "redness",
+									"text" : "unpack s i",
+									"varname" : "/udpsend"
 								}
 
 							}
@@ -474,6 +494,20 @@
 								"patchline" : 								{
 									"destination" : [ "obj-10", 0 ],
 									"source" : [ "obj-1", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-22", 0 ],
+									"source" : [ "obj-12", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-24", 0 ],
+									"source" : [ "obj-12", 1 ]
 								}
 
 							}
@@ -488,6 +522,20 @@
 								"patchline" : 								{
 									"destination" : [ "obj-46", 0 ],
 									"source" : [ "obj-21", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-26", 0 ],
+									"source" : [ "obj-22", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-26", 0 ],
+									"source" : [ "obj-24", 0 ]
 								}
 
 							}
@@ -540,6 +588,13 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-21", 0 ],
+									"source" : [ "obj-4", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-37", 0 ],
 									"source" : [ "obj-40", 0 ]
 								}
@@ -571,41 +626,6 @@
 								"patchline" : 								{
 									"destination" : [ "obj-39", 0 ],
 									"source" : [ "obj-50", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-41", 0 ],
-									"source" : [ "obj-50", 1 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-42", 0 ],
-									"source" : [ "obj-50", 2 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-43", 0 ],
-									"source" : [ "obj-50", 3 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-44", 0 ],
-									"source" : [ "obj-50", 4 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-45", 0 ],
-									"source" : [ "obj-50", 5 ]
 								}
 
 							}
@@ -818,7 +838,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 92.0, 1105.0, 695.0 ],
+						"rect" : [ 0.0, 26.0, 1105.0, 695.0 ],
 						"bglocked" : 1,
 						"openinpresentation" : 0,
 						"default_fontsize" : 11.0,
@@ -1374,6 +1394,21 @@
 						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"bubble" : 1,
+									"id" : "obj-2",
+									"linecount" : 4,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 340.0, 186.5, 268.0, 60.0 ],
+									"presentation_linecount" : 10,
+									"text" : "the scope of the link object is designed to be limited to the parent patcher to avoid undesired side-effects on other abstractions of the same patch for example",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"autofit" : 1,
 									"forceaspect" : 1,
@@ -3415,8 +3450,8 @@
 			"obj-5::obj-76::obj-58" : [ "live.text[15]", "live.text[9]", 0 ],
 			"obj-5::obj-76::obj-62" : [ "live.text[48]", "live.text[9]", 0 ],
 			"obj-5::obj-76::obj-72" : [ "live.text[17]", "live.text[8]", 0 ],
-			"obj-6::obj-1::obj-2" : [ "live.text[53]", "live.text", 0 ],
-			"obj-6::obj-1::obj-3" : [ "live.text[54]", "live.text", 0 ],
+			"obj-6::obj-1::obj-2" : [ "live.text[65]", "live.text", 0 ],
+			"obj-6::obj-1::obj-3" : [ "live.text[56]", "live.text", 0 ],
 			"obj-6::obj-76::obj-102" : [ "live.toggle[6]", "live.toggle", 0 ],
 			"obj-6::obj-76::obj-3" : [ "live.text[61]", "live.text[9]", 0 ],
 			"obj-6::obj-76::obj-57" : [ "live.text[60]", "live.text[9]", 0 ],
@@ -3589,11 +3624,11 @@
 				}
 ,
 				"obj-6::obj-1::obj-2" : 				{
-					"parameter_longname" : "live.text[53]"
+					"parameter_longname" : "live.text[65]"
 				}
 ,
 				"obj-6::obj-1::obj-3" : 				{
-					"parameter_longname" : "live.text[54]"
+					"parameter_longname" : "live.text[56]"
 				}
 ,
 				"obj-6::obj-76::obj-102" : 				{
