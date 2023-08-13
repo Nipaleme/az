@@ -1,6 +1,6 @@
 {
 	"name" : "az",
-	"description" : "toolbox suite based on spat5 software suite for real-time sound spatialization, artificial reverberation, OSC control, connectivity with HOLOPHONIX software",
+	"description" : "toolbox suite based on spat5 software suite for real-time sound spatialization, artificial reverberation, OSC control, connectivity with HOLOPHONIX software.\n This package is a collection of tools around spatialization created by the author during his thesis around various concerts / events / festivals / installations.",
 	"author" : "Adrien ZANNI",
 	"tags" : [ "sound spatialization", "reverberation", "OSC", "HOLOPHONIX" ],
 	"homepatcher" : "az.overview.maxpat",
