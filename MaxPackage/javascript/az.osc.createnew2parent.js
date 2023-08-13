@@ -9,14 +9,31 @@ var thus = this.patcher;
 var needCreate = false;
 var uuid = "";
 
+function log() {
+	if (Number(debugVal) === 1) {
+		post(arrayfromargs(messagename, arguments));
+	}
+}
 function valuechanged(data) {
+	log('value changed \n');
 	if (data.attrname) {
-	  post("attrname: " + data.attrname + "\n");
+		log("attrname: " + data.attrname + "\n");
 	}
 	if (dictRef === null) {
 		dictRef = new Dict(uuid+"-dictpack");
 	}
-	dictRef.replace(String(data.maxobject.getattr('varname')), data.value);
+	if (data.maxobject === null) return;
+	const currValue = dictRef.get(String(data.maxobject.getattr('varname')));
+	if (currValue === data.value) return;
+	log('prev value : ', currValue, "\n");
+	if (data.maxobject.maxclass === 'textedit') {
+		log('textedit \n');
+		const array= data.value.split(' ');
+		dictRef.replace(String(data.maxobject.getattr('varname')), array.join('_'));
+	} else {
+		dictRef.replace(String(data.maxobject.getattr('varname')), data.value);
+	}
+	log(String(data.maxobject.getattr('varname')), data.value, "\n");
 	outlet(0, 'bang');
 	// outlet(0, data.maxobject.getattr('varname'), data.value,"\n");
 }
@@ -32,11 +49,6 @@ function debug(bool) {
 	}
 }
 
-function log() {
-	if (Number(debugVal) === 1) {
-		post(arrayfromargs(messagename, arguments));
-	}
-}
 
 function errorLog() {
 	if (Number(debugVal) === 1) {
@@ -96,7 +108,7 @@ function bang() {
 			const argsReq = initValues[address];
 			if (currArgValue != argsReq) {
 				log('send', address, argsReq, 'previous: ', currArgValue, "\n");
-				if (maxobj.maxclass === 'textedit' || maxobj.maxclass === 'message') {
+				if (maxobj.maxclass === 'textedit' || maxobj.maxclass === 'message' || maxobj.maxclass === 'comment') {
 					maxobj.message("set",argsReq);
 					maxobj.message("bang");
 				} else if (maxobj.maxclass === 'number' && typeof argsReq[0] === 'number') {

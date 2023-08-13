@@ -127,7 +127,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 55.5, 100.0, 190.0, 22.0 ],
+									"patching_rect" : [ 55.5, 95.0, 190.0, 22.0 ],
 									"text" : "spat5.osc.routepass /source/*/aed"
 								}
 
@@ -139,7 +139,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 55.5, 136.0, 100.0, 22.0 ],
+									"patching_rect" : [ 55.5, 136.0, 126.0, 22.0 ],
 									"text" : "t l l"
 								}
 
@@ -152,7 +152,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 87.0, 553.0, 100.0, 35.0 ],
+									"patching_rect" : [ 91.5, 553.0, 100.0, 35.0 ],
 									"text" : "prepend /speakers/aed"
 								}
 
@@ -164,7 +164,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 50.0, 385.0, 100.0, 22.0 ],
+									"patching_rect" : [ 55.5, 384.0, 100.0, 22.0 ],
 									"text" : "spat5.osc.iter"
 								}
 
@@ -188,7 +188,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 50.0, 433.0, 55.0, 22.0 ],
+									"patching_rect" : [ 55.5, 433.0, 55.0, 22.0 ],
 									"text" : "zl slice 1"
 								}
 
@@ -224,7 +224,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 87.0, 508.0, 104.5, 22.0 ],
+									"patching_rect" : [ 91.5, 508.0, 100.0, 22.0 ],
 									"text" : "zl group"
 								}
 
@@ -286,7 +286,7 @@
 									"maxclass" : "outlet",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 87.0, 648.0, 30.0, 30.0 ]
+									"patching_rect" : [ 91.5, 648.0, 30.0, 30.0 ]
 								}
 
 							}
@@ -964,7 +964,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-1",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -976,7 +976,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-7",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -2759,8 +2759,8 @@
 					"linecount" : 7,
 					"maxclass" : "newobj",
 					"numinlets" : 2,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
 					"patching_rect" : [ 65.0, 205.0, 175.0, 102.0 ],
 					"text" : "az.osc.store @initwith \"/gains, /delays, /hrtf kemar, /itd/latencymode nolatency, /interpolation/time 5., /speaker/number 0, /speakers/aed, /dsp/usurp 1\" @triggers 0 @onlychanges 1"
 				}
@@ -3162,7 +3162,134 @@
 				}
 
 			}
- ]
+ ],
+		"parameters" : 		{
+			"obj-143" : [ "mc.live.gain~", "channels", 0 ],
+			"obj-148" : [ "mc.live.gain~[1]", "binaural", 0 ],
+			"obj-2::obj-2" : [ "live.text[42]", "live.text", 0 ],
+			"obj-2::obj-3" : [ "live.text[34]", "live.text", 0 ],
+			"obj-51" : [ "live.text[6]", "live.text", 0 ],
+			"obj-53" : [ "live.text[5]", "live.text", 0 ],
+			"parameterbanks" : 			{
+				"0" : 				{
+					"index" : 0,
+					"name" : "",
+					"parameters" : [ "-", "-", "-", "-", "-", "-", "-", "-" ]
+				}
+
+			}
+,
+			"inherited_shortname" : 1
+		}
+,
+		"dependency_cache" : [ 			{
+				"name" : "Icon.png",
+				"bootpath" : "~/Documents/Max 8/Packages/az",
+				"patcherrelativepath" : "..",
+				"type" : "PNG",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "az.osc.createnew2parent.js",
+				"bootpath" : "~/Documents/Max 8/Packages/az/javascript",
+				"patcherrelativepath" : "../javascript",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "az.osc.sendtoparent.js",
+				"bootpath" : "~/Documents/Max 8/Packages/az/javascript",
+				"patcherrelativepath" : "../javascript",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "az.osc.store.maxpat",
+				"bootpath" : "~/Documents/Max 8/Packages/az/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "spat5.binaural~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.delay~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.diagmatrix~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.change.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.collect.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.display.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.fromdict.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.ignore.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.iter.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.replace.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.route.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.routepass.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.size.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.speedlim.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.split.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.unique.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.view.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.sofa.loader.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "thru.maxpat",
+				"bootpath" : "C74:/patchers/m4l/Pluggo for Live resources/patches",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+ ],
+		"autosave" : 0
 	}
 
 }
