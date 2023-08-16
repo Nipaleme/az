@@ -9,7 +9,7 @@
 	"max_version_min" : "8.0.0",
 	"os" : 	{
 		"macintosh" : 		{
-			"platform" : [ "x64", "arm64" ],
+			"platform" : [ "x64", "aarch64" ],
 			"min_version" : "10.11.x"
 		}
 ,
@@ -21,5 +21,5 @@
 	}
 ,
 	"version" : "0.0.1",
-	"website" : ""
+	"website" : "https://github.com/Nipaleme"
 }

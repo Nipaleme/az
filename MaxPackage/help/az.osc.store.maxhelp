@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 0.0, 66.0, 1105.0, 721.0 ],
+		"rect" : [ 174.0, 377.0, 1105.0, 721.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -428,11 +428,12 @@
 									"annotation" : "/speakers/aed",
 									"hint" : "/speakers/aed",
 									"id" : "obj-50",
+									"linecount" : 2,
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 160.0, 200.0, 100.0, 21.0 ],
+									"patching_rect" : [ 160.0, 200.0, 50.0, 33.0 ],
 									"style" : "redness",
 									"text" : "1 2 3 4 5 6",
 									"varname" : "/speakers/aed"
@@ -1363,7 +1364,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 92.0, 1105.0, 695.0 ],
+						"rect" : [ 0.0, 26.0, 1105.0, 695.0 ],
 						"bglocked" : 1,
 						"openinpresentation" : 0,
 						"default_fontsize" : 11.0,
@@ -2263,7 +2264,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 46.0, 175.0, 73.0, 49.0 ],
+													"patching_rect" : [ 46.0, 175.0, 77.0, 49.0 ],
 													"text" : "az.osc.store @initwith \"/width 2\""
 												}
 
@@ -2855,7 +2856,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1105.0, 695.0 ],
+						"rect" : [ 174.0, 403.0, 1105.0, 695.0 ],
 						"bglocked" : 1,
 						"openinpresentation" : 0,
 						"default_fontsize" : 11.0,
