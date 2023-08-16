@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 174.0, 377.0, 1105.0, 721.0 ],
+		"rect" : [ 100.0, 100.0, 1105.0, 721.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -89,6 +89,19 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-7",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 163.75, 250.0, 80.5, 21.0 ],
+									"presentation_linecount" : 2,
+									"text" : "-30 0 1 30 0 1"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-26",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
@@ -131,7 +144,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 451.0, 150.0, 190.0, 21.0 ]
+									"patching_rect" : [ 485.0, 151.0, 190.0, 21.0 ]
 								}
 
 							}
@@ -173,7 +186,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 356.0, 49.0, 380.0, 99.0 ],
+									"patching_rect" : [ 390.0, 50.0, 380.0, 99.0 ],
 									"text" : "Any object that can be linked to a pattr can be used for a \"linked object\". \n\nsome objects like \"message\" or \"unpack\" are only \"one way\" they can receive value but cannot detect when the object is manualy updated. \n\nIf you want to be able to edit a string the textedit will be more appropriate"
 								}
 
@@ -185,20 +198,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 451.0, 240.0, 100.0, 21.0 ],
+									"patching_rect" : [ 485.0, 241.0, 100.0, 21.0 ],
 									"text" : "route text"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-39",
-									"maxclass" : "number",
-									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "bang" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 160.0, 250.0, 50.0, 21.0 ]
 								}
 
 							}
@@ -209,7 +210,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 451.0, 280.0, 180.0, 21.0 ],
+									"patching_rect" : [ 485.0, 281.0, 180.0, 21.0 ],
 									"text" : "custom_editable_text"
 								}
 
@@ -221,7 +222,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 278.0, 260.0, 140.0, 21.0 ],
+									"patching_rect" : [ 278.0, 250.0, 140.0, 21.0 ],
 									"text" : "kemar"
 								}
 
@@ -245,7 +246,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 49.0, 240.0, 50.0, 21.0 ],
+									"patching_rect" : [ 80.0, 250.0, 50.0, 21.0 ],
 									"text" : "2."
 								}
 
@@ -428,14 +429,13 @@
 									"annotation" : "/speakers/aed",
 									"hint" : "/speakers/aed",
 									"id" : "obj-50",
-									"linecount" : 2,
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 160.0, 200.0, 50.0, 33.0 ],
+									"patching_rect" : [ 163.75, 200.0, 80.5, 21.0 ],
 									"style" : "redness",
-									"text" : "1 2 3 4 5 6",
+									"text" : "-30 0 1 30 0 1",
 									"varname" : "/speakers/aed"
 								}
 
@@ -450,7 +450,7 @@
 									"numoutlets" : 4,
 									"outlettype" : [ "", "int", "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 451.0, 190.0, 180.0, 40.0 ],
+									"patching_rect" : [ 485.0, 191.0, 180.0, 40.0 ],
 									"style" : "redness",
 									"text" : "custom_editable_text",
 									"varname" : "/editabletext"
@@ -624,7 +624,7 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-39", 0 ],
+									"destination" : [ "obj-7", 1 ],
 									"source" : [ "obj-50", 0 ]
 								}
 
@@ -2856,7 +2856,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 174.0, 403.0, 1105.0, 695.0 ],
+						"rect" : [ 100.0, 126.0, 1105.0, 695.0 ],
 						"bglocked" : 1,
 						"openinpresentation" : 0,
 						"default_fontsize" : 11.0,
