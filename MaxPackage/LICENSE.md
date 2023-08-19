@@ -7,16 +7,20 @@ All other trademarks belong to their owners. Max/MSP is the property of IRCAM an
 The use of Spat software and its documentation is restricted to members of the [Ircam software users group](www.forumnet.ircam.fr).
 
 ---
+
 # Licenses
+
 The az package relies on the following software libraries: Spat, Max.
 
 Please find below the copyright notices of these libraries.
 
 ## Spat~
-**Spatialisateur** is an [IRCAM](www.ircam.fr) registered trademarks. 
+
+**Spatialisateur** is an [IRCAM](www.ircam.fr) registered trademarks.
 The design of Spat and the reverberation module are protected under different French and international patents ([FR] 92 02528; [US] 5,491,754, [FR] 95 10111; [US] 5,812,674). (Go See Spat License for more informations)
 
 ## Cycling’74
+
 Part of the Spat∼ package is built with the Max environment.
 Max is the property of IRCAM and [Cycling’74] (http://cycling74.com/).
 
