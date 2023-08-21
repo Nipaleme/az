@@ -135,12 +135,14 @@ function anything()
 	const args = arrayAll.slice(1);
 	
 	if (address === 'front') {
-		this.patcher.parentpatcher.front();
+		if (this.patcher.parentpatcher.wind.visible === false) {
+			this.patcher.parentpatcher.front();
+		}
 		this.patcher.parentpatcher.wind.bringtofront();
 		return;
 	}
 	if (address === 'back') {
-		this.patcher.parentpatcher.wind.visible = false;
+		this.patcher.parentpatcher.wind.sendtoback();
 		return;
 	}
 	// OSC
