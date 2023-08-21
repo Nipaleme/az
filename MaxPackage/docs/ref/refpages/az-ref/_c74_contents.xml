@@ -4,4 +4,5 @@
     <refpage name='az.holo.monitoring.maxref.xml' />
     <refpage name='az.holo.monitoring~.maxref.xml' />
     <refpage name='az.osc.store.maxref.xml' />
+    <refpage name='az.osc.store.vanilla.maxref.xml' />
 </root>

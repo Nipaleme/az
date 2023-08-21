@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+
+
+<c74object name="az.osc.store.vanilla" module="az">
+  <digest>Create an OSC Store to manage patcher states</digest>
+  <description>Vanilla version of the <o>az.osc.store</o> Create an OSC Store to manage patcher states.<br /><br /></description>
+
+  <!--INLETS-->
+  <inletlist>
+    <inlet id="0" type="INLET_TYPE">
+      <digest>
+        External OSC Input (0)
+      </digest>
+      <description>
+        External OSC Input (0)
+      </description>
+    </inlet>
+    <inlet id="1" type="INLET_TYPE">
+      <digest>
+        Internal OSC Input (1)
+      </digest>
+      <description>
+        Internal OSC Input (1)
+      </description>
+    </inlet>
+  </inletlist>
+
+  <!--OUTLETS-->
+  <outletlist>
+    <outlet id="0" type="OUTLET_TYPE">
+      <digest>
+        Output OSC
+      </digest>
+      <description>
+        Output OSC
+      </description>
+    </outlet>
+    <outlet id="1" type="OUTLET_TYPE">
+      <digest> Connect to a <o>thispatcher</o>
+      </digest>
+      <description> Connect to a <o>thispatcher</o>
+      </description>
+    </outlet>
+  </outletlist>
+
+  <objarglist>
+  </objarglist>
+
+
+  <!--ATTRIBUTES-->
+  <attributelist>
+    <attribute name="initwith" type="string" set="1" get="1" size="1">
+      <description>The <m> initwith </m> attribute can be used to specify the initial state of the
+        object. You should provide a list of comma-separated OSC commands. The list of messages
+        should be quoted (with double quote character &quot;). This is similar to sending the list
+        of commands via <o>loadbang</o> or <o>loadmess</o>.<br /> Have a look at the <i>
+        spat5.tuto-osc-3.maxpat</i> example for further details.<br /> Note that the <m> initwith </m>
+        attribute cannot be set via message, <o>attrui</o> or inspector; it must be typed directly
+        within the object box.</description>
+      <digest>initial state of the object</digest>
+    </attribute>
+    <attribute name="triggers" get="1" set="1" type="int" size="256">
+      <digest>
+        Trigger inputs
+      </digest>
+      <description>
+        Define a list of inputs that will automatically trigger output (i.e. adding an input to this
+        list will make the inlet &quot;hot&quot;). Setting the attribute value to -1 will cause the
+        object to trigger output for any inlet (all inlets will be &quot;hot&quot;).
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Triggers" />
+      </attributelist>
+    </attribute>
+    <attribute name="changesonly" type="int" set="1" get="1" size="1">
+      <description>The <m> onlychanges </m> attribute can be used to specify the OCS outpout mode.
+        If <m>onlychanges</m> attribute is set to 1 then only the difference from the previous state
+        will be send. By default value is set to 1.</description>
+      <digest>Activate only send the difference from previous state to output</digest>
+    </attribute>
+  </attributelist>
+
+
+  <!--MESSAGES-->
+  <methodlist>
+    <method name="bang">
+      <arglist />
+      <digest> Init and create OSC <o>number</o> box </digest>
+      <description> Init and create OSC <o>number</o> box. </description>
+    </method>
+    <method name="/status/open">
+      <description>open the status window and bring it to front.</description>
+      <digest>open status window</digest>
+    </method>
+    <method name="/status/close">
+      <description>close the status window.</description>
+      <digest>close status window</digest>
+    </method>
+    <method name="/status/openorclose">
+      <description>open the status window if it was closed; close it if it was opened.</description>
+      <digest>open status window</digest>
+    </method>
+    <method name="/help/open">
+      <description>open the help window and bring it to front.</description>
+      <digest>open help window</digest>
+    </method>
+    <method name="/help/close">
+      <description>close the help window.</description>
+      <digest>close help window</digest>
+    </method>
+    <method name="/help/openorclose">
+      <description>open the help window if it was closed; close it if it was opened.</description>
+      <digest>open help window</digest>
+    </method>
+    <method name="/title">
+      <arglist>
+        <arg type="string" />
+      </arglist>
+      <description>set the status and help windows title (in the window titlebar).</description>
+      <digest>set the status and help windows title (in the window titlebar)</digest>
+    </method>
+    <method name="/initwith">
+      <description>Same as the <m> initwith </m> attribute, can be used to specify the initial state
+        of the object. You should provide a list of comma-separated OSC commands. The list of
+        messages should be quoted (with double quote character &quot;). This is similar to sending
+        the list of commands via <o>loadbang</o> or <o>loadmess</o>.<br /> Have a look at the <i>
+        spat5.tuto-osc-3.maxpat</i> example for further details.<br /> Note that the <m> initwith </m>
+        attribute cannot be set via message, <o>attrui</o> or inspector; it must be typed directly
+        within the object box.</description>
+      <digest>initial state of the object</digest>
+    </method>
+  </methodlist>
+
+  <seealsolist>
+    <seealso name="spat5.osc.view" />
+    <seealso name="spat5.osc.fromdict" />
+    <seealso name="dict" />
+    <seealso name="dict.view" />
+    <seealso name="spat5.osc.collect" />
+    <seealso name="spat5.osc.var" />
+    <seealso name="spat5.osc.split" />
+    <seealso name="spat5.osc.route" />
+    <seealso name="spat5.osc.routepass" />
+    <seealso name="spat5.osc.prepend" />
+    <seealso name="spat5.osc.append" />
+    <seealso name="spat5.osc.unslashify" />
+    <seealso name="spat5.osc.flip" />
+    <seealso name="route" />
+    <seealso name="routepass" />
+  </seealsolist>
+</c74object>
