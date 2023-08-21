@@ -133,7 +133,17 @@ function anything()
 	const arrayAll = arrayfromargs(messagename, arguments);
 	const address = arrayAll[0];
 	const args = arrayAll.slice(1);
-
+	
+	if (address === 'front') {
+		this.patcher.parentpatcher.front();
+		this.patcher.parentpatcher.wind.bringtofront();
+		return;
+	}
+	if (address === 'back') {
+		this.patcher.parentpatcher.wind.visible = false;
+		return;
+	}
+	// OSC
 	if (address[0] !== '/') {
 		error('address', address, 'is not a valid OSC address, need to begin with /', "\n");
 		return;
@@ -154,6 +164,7 @@ function anything()
 		uuid = args[0];
 		return;
 	}
+	
 	
 	if (args.length === 1 && typeof args[0] === 'number') {
 		a.push(numberScript(address));

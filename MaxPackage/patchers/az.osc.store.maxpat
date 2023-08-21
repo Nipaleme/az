@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 0.0, 66.0, 1046.0, 1051.0 ],
+		"rect" : [ 0.0, 573.0, 687.0, 544.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,18 @@
 		"subpatcher_template" : "az-template",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-47",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 537.0, 292.0, 109.0, 22.0 ],
+					"text" : "r #0-thisPatcher"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"fontface" : 2,
 					"fontsize" : 10.0,
@@ -446,6 +458,7 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-9",
+									"linecount" : 3,
 									"maxclass" : "newobj",
 									"numinlets" : 0,
 									"numoutlets" : 1,
@@ -607,7 +620,7 @@
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_enum" : [ "val1", "val2" ],
-							"parameter_longname" : "live.text[34]",
+							"parameter_longname" : "live.text[40]",
 							"parameter_mmax" : 1,
 							"parameter_shortname" : "live.text",
 							"parameter_type" : 2
@@ -635,7 +648,7 @@
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_enum" : [ "val1", "val2" ],
-							"parameter_longname" : "live.text[42]",
+							"parameter_longname" : "live.text[41]",
 							"parameter_mmax" : 1,
 							"parameter_shortname" : "live.text",
 							"parameter_type" : 2
@@ -3461,7 +3474,7 @@
 					"annotation" : "",
 					"comment" : "Internal OSC Input",
 					"id" : "obj-70",
-					"index" : 0,
+					"index" : 2,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -3474,7 +3487,7 @@
 				"box" : 				{
 					"comment" : "OSC Output",
 					"id" : "obj-69",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -3500,7 +3513,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 125.0, 933.0, 357.0 ],
+						"rect" : [ 795.0, 114.0, 933.0, 357.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4157,7 +4170,7 @@
 										}
 ,
 										"classnamespace" : "box",
-										"rect" : [ 59.0, 119.0, 260.0, 286.0 ],
+										"rect" : [ 1127.0, 540.0, 260.0, 286.0 ],
 										"bglocked" : 0,
 										"openinpresentation" : 0,
 										"default_fontsize" : 12.0,
@@ -4218,7 +4231,7 @@
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 62.5, 176.0, 45.0, 22.0 ],
-													"text" : "wclose"
+													"text" : "back"
 												}
 
 											}
@@ -6235,6 +6248,102 @@
 								}
 
 							}
+, 							{
+								"box" : 								{
+									"id" : "obj-42",
+									"linecount" : 2,
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "" ],
+									"patching_rect" : [ 223.0, 510.0, 50.0, 22.0 ],
+									"text" : "zl.change",
+									"varname" : "zlchange1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-43",
+									"linecount" : 2,
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "" ],
+									"patching_rect" : [ 308.0, 510.0, 50.0, 22.0 ],
+									"text" : "zl.change",
+									"varname" : "zlchange2"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-44",
+									"linecount" : 2,
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "" ],
+									"patching_rect" : [ 393.0, 510.0, 50.0, 22.0 ],
+									"text" : "zl.change",
+									"varname" : "zlchange3"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-45",
+									"linecount" : 2,
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "" ],
+									"patching_rect" : [ 478.0, 510.0, 50.0, 22.0 ],
+									"text" : "zl.change",
+									"varname" : "zlchange4"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-46",
+									"linecount" : 2,
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "" ],
+									"patching_rect" : [ 563.0, 510.0, 50.0, 22.0 ],
+									"text" : "zl.change",
+									"varname" : "zlchange5"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-47",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 6,
+									"outlettype" : [ "", "", "", "", "", "" ],
+									"patching_rect" : [ 223.0, 480.0, 510.0, 22.0 ],
+									"text" : "spat5.osc.route /width /length /speaker/number /offset /index",
+									"varname" : "osc_route_out"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-48",
+									"maxclass" : "newobj",
+									"numinlets" : 5,
+									"numoutlets" : 1,
+									"outlettype" : [ "dictionary" ],
+									"patching_rect" : [ 223.0, 550.0, 510.0, 22.0 ],
+									"text" : "dict.pack /width: /length: /speaker/number: /offset: /index: @triggers -1 @name 1363-dictpack",
+									"varname" : "dict_pack"
+								}
+
+							}
  ],
 						"lines" : [ 							{
 								"patchline" : 								{
@@ -6436,6 +6545,13 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-47", 0 ],
+									"source" : [ "obj-3", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-9", 0 ],
 									"source" : [ "obj-3", 1 ]
 								}
@@ -6494,8 +6610,92 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-47", 0 ],
+									"source" : [ "obj-4", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-4", 0 ],
 									"source" : [ "obj-40", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-48", 0 ],
+									"source" : [ "obj-42", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-48", 1 ],
+									"source" : [ "obj-43", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-48", 2 ],
+									"source" : [ "obj-44", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-48", 3 ],
+									"source" : [ "obj-45", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-48", 4 ],
+									"source" : [ "obj-46", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-42", 0 ],
+									"source" : [ "obj-47", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-43", 0 ],
+									"source" : [ "obj-47", 1 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-44", 0 ],
+									"source" : [ "obj-47", 2 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-45", 0 ],
+									"source" : [ "obj-47", 3 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-46", 0 ],
+									"source" : [ "obj-47", 4 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-13", 0 ],
+									"source" : [ "obj-48", 0 ]
 								}
 
 							}
@@ -6603,11 +6803,11 @@
 					"annotation" : "",
 					"comment" : "External OSC Input",
 					"id" : "obj-1",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"outlettype" : [ "bang" ],
 					"patching_rect" : [ 54.0, 86.0, 30.0, 30.0 ]
 				}
 
@@ -6689,6 +6889,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-12", 0 ],
+					"source" : [ "obj-47", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-16", 0 ],
 					"midpoints" : [ 104.0, 117.0, 63.5, 117.0 ],
 					"source" : [ "obj-5", 0 ]
@@ -6733,87 +6940,6 @@
 
 			}
  ],
-		"parameters" : 		{
-			"obj-2" : [ "live.text[42]", "live.text", 0 ],
-			"obj-3" : [ "live.text[34]", "live.text", 0 ],
-			"parameterbanks" : 			{
-				"0" : 				{
-					"index" : 0,
-					"name" : "",
-					"parameters" : [ "-", "-", "-", "-", "-", "-", "-", "-" ]
-				}
-
-			}
-,
-			"inherited_shortname" : 1
-		}
-,
-		"dependency_cache" : [ 			{
-				"name" : "az.osc.createnew2parent.js",
-				"bootpath" : "~/Documents/Max 8/Packages/az/javascript",
-				"patcherrelativepath" : "../javascript",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "az.osc.sendtoparent.js",
-				"bootpath" : "~/Documents/Max 8/Packages/az/javascript",
-				"patcherrelativepath" : "../javascript",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "spat5.osc.change.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "spat5.osc.collect.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "spat5.osc.display.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "spat5.osc.fromdict.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "spat5.osc.ignore.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "spat5.osc.iter.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "spat5.osc.route.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "spat5.osc.routepass.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "spat5.osc.size.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "spat5.osc.unique.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "spat5.osc.view.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "thru.maxpat",
-				"bootpath" : "C74:/patchers/m4l/Pluggo for Live resources/patches",
-				"type" : "JSON",
-				"implicit" : 1
-			}
- ],
-		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "rnbodefault",
 				"default" : 				{
