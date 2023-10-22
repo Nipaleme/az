@@ -40,19 +40,6 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-10",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 116.0, 232.0, 100.0, 22.0 ],
-					"save" : [ "#N", "thispatcher", ";", "#Q", "end", ";" ],
-					"text" : "thispatcher"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"bubble" : 1,
 					"id" : "obj-18",
 					"linecount" : 3,
@@ -144,8 +131,8 @@
 					"id" : "obj-2",
 					"maxclass" : "newobj",
 					"numinlets" : 2,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
 					"patching_rect" : [ 35.0, 191.0, 100.0, 22.0 ],
 					"text" : "az.osc.store"
 				}
@@ -182,13 +169,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-2", 0 ],
 					"source" : [ "obj-1", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-10", 0 ],
-					"source" : [ "obj-2", 1 ]
 				}
 
 			}
@@ -247,6 +227,17 @@
 
 			}
 ,
+			"parameter_overrides" : 			{
+				"obj-2::obj-2" : 				{
+					"parameter_longname" : "live.text[31]"
+				}
+,
+				"obj-2::obj-3" : 				{
+					"parameter_longname" : "live.text[30]"
+				}
+
+			}
+,
 			"inherited_shortname" : 1
 		}
 ,
@@ -258,11 +249,29 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "az.osc.createnew2parent.js",
+				"bootpath" : "~/Documents/Max 8/Packages/az/javascript",
+				"patcherrelativepath" : "../javascript",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "az.osc.sendtoparent.js",
+				"bootpath" : "~/Documents/Max 8/Packages/az/javascript",
+				"patcherrelativepath" : "../javascript",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "az.osc.store.maxpat",
 				"bootpath" : "~/Documents/Max 8/Packages/az/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
 				"implicit" : 1
+			}
+, 			{
+				"name" : "spat5.osc.change.mxo",
+				"type" : "iLaX"
 			}
 , 			{
 				"name" : "spat5.osc.collect.mxo",
@@ -285,10 +294,6 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "spat5.osc.route.mxo",
-				"type" : "iLaX"
-			}
-, 			{
 				"name" : "spat5.osc.routepass.mxo",
 				"type" : "iLaX"
 			}
@@ -301,7 +306,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "spat5.osc.var.mxo",
+				"name" : "spat5.osc.view.mxo",
 				"type" : "iLaX"
 			}
 , 			{
