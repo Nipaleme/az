@@ -481,12 +481,14 @@
 								"box" : 								{
 									"fontsize" : 14.0,
 									"id" : "obj-44",
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 210.0, 668.0, 232.0, 22.0 ],
+									"patching_rect" : [ 210.0, 668.0, 232.0, 38.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 20.0, 160.0, 390.0, 22.0 ]
+									"presentation_rect" : [ 20.0, 160.0, 390.0, 22.0 ],
+									"text" : "Create an OSC Store to manage patcher states"
 								}
 
 							}
@@ -617,7 +619,7 @@
 									"bgfillcolor_proportion" : 0.39,
 									"bgfillcolor_type" : "color",
 									"id" : "obj-13",
-									"items" : [ "az.holo.monitoring", ",", "az.holo.monitoring~", ",", "az.holo.rectangle", ",", "az.osc.store", ",", "az.osc.store.vanilla", ",", "Upper-equal-area-033-presentation" ],
+									"items" : [ "az.holo.monitoring", ",", "az.holo.monitoring~", ",", "az.holo.rectangle", ",", "az.osc.csv2coll", ",", "az.osc.csv2osc", ",", "az.osc.store", ",", "az.osc.store.vanilla", ",", "Upper-equal-area-033-presentation" ],
 									"maxclass" : "umenu",
 									"numinlets" : 1,
 									"numoutlets" : 3,
@@ -1470,6 +1472,52 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"args" : [ "az.osc.csv2osc", "maxhelp" ],
+									"bgmode" : 0,
+									"border" : 0,
+									"clickthrough" : 0,
+									"enablehscroll" : 0,
+									"enablevscroll" : 0,
+									"id" : "obj-5",
+									"lockeddragscroll" : 0,
+									"lockedsize" : 0,
+									"maxclass" : "bpatcher",
+									"name" : "spat5.openpatcher.maxpat",
+									"numinlets" : 0,
+									"numoutlets" : 0,
+									"offset" : [ 0.0, 0.0 ],
+									"patching_rect" : [ 17.25, 130.0, 170.0, 20.0 ],
+									"presentation" : 1,
+									"presentation_rect" : [ 16.25, 130.0, 170.0, 20.0 ],
+									"viewvisibility" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"args" : [ "az.osc.csv2coll", "maxhelp" ],
+									"bgmode" : 0,
+									"border" : 0,
+									"clickthrough" : 0,
+									"enablehscroll" : 0,
+									"enablevscroll" : 0,
+									"id" : "obj-4",
+									"lockeddragscroll" : 0,
+									"lockedsize" : 0,
+									"maxclass" : "bpatcher",
+									"name" : "spat5.openpatcher.maxpat",
+									"numinlets" : 0,
+									"numoutlets" : 0,
+									"offset" : [ 0.0, 0.0 ],
+									"patching_rect" : [ 35.0, 155.0, 170.0, 20.0 ],
+									"presentation" : 1,
+									"presentation_rect" : [ 16.25, 93.333333333333343, 170.0, 20.0 ],
+									"viewvisibility" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"args" : [ "az.osc.store.vanilla", "maxhelp" ],
 									"bgmode" : 0,
 									"border" : 0,
@@ -1486,7 +1534,7 @@
 									"offset" : [ 0.0, 0.0 ],
 									"patching_rect" : [ 35.0, 155.0, 170.0, 20.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 16.25, 56.0, 170.0, 20.0 ],
+									"presentation_rect" : [ 16.25, 56.666666666666671, 170.0, 20.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -1739,6 +1787,8 @@
 		"parameters" : 		{
 			"obj-1::obj-39::obj-11" : [ "live.text[260]", "live.text", 0 ],
 			"obj-1::obj-3::obj-11" : [ "live.text[1]", "live.text", 0 ],
+			"obj-1::obj-4::obj-11" : [ "live.text[2]", "live.text", 0 ],
+			"obj-1::obj-5::obj-11" : [ "live.text[8]", "live.text", 0 ],
 			"obj-3::obj-1::obj-11" : [ "live.text[6]", "live.text", 0 ],
 			"obj-3::obj-39::obj-11" : [ "live.text[5]", "live.text", 0 ],
 			"obj-3::obj-3::obj-11" : [ "live.text[7]", "live.text", 0 ],
@@ -1750,6 +1800,14 @@
 			"parameter_overrides" : 			{
 				"obj-1::obj-3::obj-11" : 				{
 					"parameter_longname" : "live.text[1]"
+				}
+,
+				"obj-1::obj-4::obj-11" : 				{
+					"parameter_longname" : "live.text[2]"
+				}
+,
+				"obj-1::obj-5::obj-11" : 				{
+					"parameter_longname" : "live.text[8]"
 				}
 ,
 				"obj-3::obj-1::obj-11" : 				{
