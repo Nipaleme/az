@@ -43,12 +43,12 @@ function anything()
 	} else if (a[0] === 'rows') {
 		var index = -1;
 		for(var k=0, l=columnsUUID.length ; k<l ; k += 1) {
-			if(columnsUUID[k] === 'oscPrefix') {
+			if(columnsUUID[k] === 'OSC Address') {
 				index = k;
 			}
 		}
 		if (index === -1) {
-			error('no oscPrefix column found in .csv \n');
+			error('no OSC Address column found in .csv \n');
 			return;
 		}
 		const newArgs = a[1].split(';');
@@ -57,10 +57,27 @@ function anything()
 			return;
 		}
 		const oscPrefix = newArgs[index];
+		if (oscPrefix === '' || oscPrefix[0] !== '/') {
+			error('missing a valid oscPrefix for ' + newArgs + "\n");
+			return;
+		}
 		for(var i=0, j=newArgs.length ; i<j ; i += 1) {
 			const meta = columnsUUID[i].toLowerCase()
 			if (i !== index && newArgs[i] !== "") {
-				outlet(0,oscPrefix+"/"+meta,String(newArgs[i]));
+				if (meta === 'name') {
+					outlet(0,oscPrefix+"/"+meta,String(newArgs[i].replace(' ', '')));
+				} else if (meta === 'color') {
+					const array = newArgs[i].split(',');
+					if (array.length !== 4) {
+						error("color argument expected 4 values but received "+array.length + " : " + newArgs[i] + " \n");
+						return;
+					}
+					outlet(0,oscPrefix+"/"+meta,array[0], array[1], array[2], array[3]);
+				} else if (meta === 'io') {
+					
+				} else {
+					outlet(0,oscPrefix+"/"+meta,String(newArgs[i]).replace(',', '.'));
+				}
 			}
 		}
 	} else {
