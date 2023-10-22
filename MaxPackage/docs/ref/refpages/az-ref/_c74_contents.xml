@@ -5,4 +5,6 @@
     <refpage name='az.holo.monitoring~.maxref.xml' />
     <refpage name='az.osc.store.maxref.xml' />
     <refpage name='az.osc.store.vanilla.maxref.xml' />
+    <refpage name='az.osc.csv2coll.maxref.xml' />
+    <refpage name='az.osc.csv2osc.maxref.xml' />
 </root>

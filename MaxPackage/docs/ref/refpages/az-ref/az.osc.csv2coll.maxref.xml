@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+
+
+<c74object name="az.osc.csv2coll" module="az">
+  <digest>Convert Sheet file to Coll</digest>
+  <description><o>az.osc.csv2coll</o> parse a .csv file to max <o>coll</o> with possibility to separate by comma or tab.<br /><br /></description>
+
+  <inletlist>
+  </inletlist>
+
+  <outletlist>
+  </outletlist>
+
+  <objarglist>
+  </objarglist>
+
+  <attributelist>
+    <attribute name="initwith" type="string" set="1" get="1" size="1">
+      <description>The <m> initwith </m> attribute can be used to specify the initial state of the
+        object. You should provide a list of comma-separated OSC commands. The list of messages
+        should be quoted (with double quote character &quot;). This is similar to sending the list
+        of commands via <o>loadbang</o> or <o>loadmess</o>.<br /> Have a look at the <i>
+        spat5.tuto-osc-3.maxpat</i> example for further details.<br /> Note that the <m> initwith </m>
+        attribute cannot be set via message, <o>attrui</o> or inspector; it must be typed directly
+        within the object box.</description>
+      <digest>initial state of the object</digest>
+    </attribute>
+  </attributelist>
+
+  <methodlist>
+    <method name="read">
+      <arglist>
+        <arg type="string" />
+      </arglist>
+      <description>prompt a dialog to choose the .csv file.</description>
+      <digest>choose the .csv file</digest>
+    </method>
+    <method name="/separator">
+      <arglist>
+        <arg type="string" />
+      </arglist>
+      <description>choose wich separator to use for parsing, possible values are "tab" or "comma".</description>
+      <digest>choose wich separator to use for parsing</digest>
+    </method>
+    <method name="/file">
+      <arglist>
+        <arg type="string" />
+      </arglist>
+      <description>select the .csv file.</description>
+      <digest>select the .csv file</digest>
+    </method>
+    <method name="/coll">
+      <arglist>
+        <arg type="string" />
+      </arglist>
+      <description>choose name of connected <o>coll</o> to synchronise to.</description>
+      <digest>choose name of connected <o>coll</o> </digest>
+    </method>
+  </methodlist>
+
+  <seealsolist>
+    <seealso name="az.osc.csv2osc" />
+    <seealso name="az.osc.store" />
+  </seealsolist>
+</c74object>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+
+
+<c74object name="az.osc.csv2osc" module="az">
+  <digest>Convert Sheet file to osc messages</digest>
+  <description><o>az.osc.csv2osc</o> parse a .csv file to a list of OSC messages using <o>az.osc.csv2coll</o> that grant possibility to separate by comma or tab.<br /><br /></description>
+
+  <inletlist>
+  </inletlist>
+
+  <outletlist>
+  </outletlist>
+
+  <objarglist>
+  </objarglist>
+
+  <attributelist>
+    <attribute name="initwith" type="string" set="1" get="1" size="1">
+      <description>The <m> initwith </m> attribute can be used to specify the initial state of the
+        object. You should provide a list of comma-separated OSC commands. The list of messages
+        should be quoted (with double quote character &quot;). This is similar to sending the list
+        of commands via <o>loadbang</o> or <o>loadmess</o>.<br /> Have a look at the <i>
+        spat5.tuto-osc-3.maxpat</i> example for further details.<br /> Note that the <m> initwith </m>
+        attribute cannot be set via message, <o>attrui</o> or inspector; it must be typed directly
+        within the object box.</description>
+      <digest>initial state of the object</digest>
+    </attribute>
+  </attributelist>
+
+  <methodlist>
+    <method name="read">
+      <arglist>
+        <arg type="string" />
+      </arglist>
+      <description>choose the .csv file to parse.</description>
+      <digest>choose the .csv file to parse</digest>
+    </method>
+  </methodlist>
+
+  <seealsolist>
+    <seealso name="az.osc.csv2coll" />
+    <seealso name="az.osc.store" />
+  </seealsolist>
+</c74object>
