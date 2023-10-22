@@ -4,7 +4,7 @@
 
 
 <c74object name="az.osc.csv2osc" module="az">
-  <digest>Convert Sheet file to osc messages</digest>
+  <digest>Convert .csv file to osc messages</digest>
   <description><o>az.osc.csv2osc</o> parse a .csv file to a list of OSC messages using <o>az.osc.csv2coll</o> that grant possibility to separate by comma or tab.<br /><br /></description>
 
   <inletlist>
@@ -34,7 +34,7 @@
       <arglist>
         <arg type="string" />
       </arglist>
-      <description>choose the .csv file to parse.</description>
+      <description>prompt a dialog to choose the .csv file to parse.</description>
       <digest>choose the .csv file to parse</digest>
     </method>
   </methodlist>

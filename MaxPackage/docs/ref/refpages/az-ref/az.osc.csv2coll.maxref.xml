@@ -4,7 +4,7 @@
 
 
 <c74object name="az.osc.csv2coll" module="az">
-  <digest>Convert Sheet file to Coll</digest>
+  <digest>Convert .csv file to coll</digest>
   <description><o>az.osc.csv2coll</o> parse a .csv file to max <o>coll</o> with possibility to separate by comma or tab.<br /><br /></description>
 
   <inletlist>
