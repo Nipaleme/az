@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 5,
-			"revision" : 5,
+			"revision" : 6,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,18 @@
 		"subpatcher_template" : "",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-20",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "clear" ],
+					"patching_rect" : [ 265.0, 298.0, 47.0, 22.0 ],
+					"text" : "t l clear"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-10",
 					"maxclass" : "newobj",
@@ -172,7 +184,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 5,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -209,13 +221,13 @@
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-30",
-									"linecount" : 14,
+									"linecount" : 13,
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 50.0, 100.0, 62.5, 196.0 ],
-									"text" : "\"Macintosh HD:/Users/adrien/Downloads/Base enceintes 2023- equi-angulaire - SPEAKER Overview.csv\"",
+									"text" : "\"Macintosh HD:/Users/adrien/Documents/Max 8/Packages/az/media/Sheets/SPEAKER Overview.csv\"",
 									"varname" : "/file"
 								}
 
@@ -657,6 +669,23 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-25", 0 ],
+					"midpoints" : [ 302.5, 582.0, 65.5, 582.0 ],
+					"source" : [ "obj-20", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.0, 0.741436839103699, 0.0, 1.0 ],
+					"destination" : [ "obj-3", 0 ],
+					"midpoints" : [ 274.5, 459.0, 65.5, 459.0 ],
+					"source" : [ "obj-20", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-25", 0 ],
 					"midpoints" : [ 340.0, 582.0, 65.5, 582.0 ],
 					"source" : [ "obj-24", 0 ]
 				}
@@ -718,8 +747,7 @@
 , 			{
 				"patchline" : 				{
 					"color" : [ 0.0, 0.741436839103699, 0.0, 1.0 ],
-					"destination" : [ "obj-3", 0 ],
-					"midpoints" : [ 273.5, 459.0, 65.5, 459.0 ],
+					"destination" : [ "obj-20", 0 ],
 					"source" : [ "obj-5", 0 ]
 				}
 
