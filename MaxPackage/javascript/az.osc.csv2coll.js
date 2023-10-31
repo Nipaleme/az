@@ -32,4 +32,5 @@ function read(filepath) {
       outlet(0, outArray);
     }
   }
+  file.close();
 }
