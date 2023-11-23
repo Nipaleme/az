@@ -1,6 +1,5 @@
 const path = require("path");
 const Max = require("max-api");
-const fs = require("fs");
 const THREE = require("three");
 
 // This will be printed directly to the Max console
@@ -26,6 +25,20 @@ const createMicArray = (number) => {
     .map((_, index) => new THREE.Vector3(leftMin + index * interval, 0, 0));
 };
 
+const createSourceArray = (number) => {
+  if (number < 1) {
+    Max.warn("number of speaker must be superior or equal to 1, will use 1");
+    return [new THREE.Vector3(0, 1, 0)];
+  }
+  if (number === 1) return [new THREE.Vector3(0, 1, 0)];
+
+  const interval = 1;
+  const leftMin = -(number - 1) / 2;
+  return new Array(number)
+    .fill(0)
+    .map((_, index) => new THREE.Vector3(leftMin + index * interval, 1, 0));
+};
+
 const createDirectivityArray = (number) =>
   new Array(number < 1 ? 1 : number).fill(directivity);
 
@@ -42,25 +55,23 @@ const createDirectionArray = (number) => {
     ];
   const leftMin = angle / 2;
   const interval = angle / (number - 1);
-  return (
-    new Array(number)
-      .fill(0)
-      .map((_, index) =>
-        new THREE.Vector3(0, 1, 0).applyAxisAngle(
-          new THREE.Vector3(0, 0, 1),
-          ((leftMin - index * interval) * Math.PI) / 180
-        )
+  return new Array(number)
+    .fill(0)
+    .map((_, index) =>
+      new THREE.Vector3(0, 1, 0).applyAxisAngle(
+        new THREE.Vector3(0, 0, 1),
+        ((leftMin - index * interval) * Math.PI) / 180
       )
-  );
+    );
 };
 
-const micPosArray = createMicArray(2);
+let micPosArray = createMicArray(2);
 
-const directivityArray = createDirectivityArray(2);
+let directivityArray = createDirectivityArray(2);
 
-const directionArray = createDirectionArray(2);
+let directionArray = createDirectionArray(2);
 
-const sourcePosArray = [new THREE.Vector3(0, 1, 0)];
+let sourcePosArray = createSourceArray(3);
 
 const normalizeGains = (gains) => {
   const linearSUM = gains.reduce((prev, curr) => prev + curr, 0);
@@ -163,6 +174,7 @@ const handlers = {
   },
   [Max.MESSAGE_TYPES.ALL]: (handled, ...message) => {
     const [address, ...args] = message;
+    if (address === "bang") return;
     const splittedAddress = address.split("/").slice(1);
     const oscPrefix = `/${splittedAddress[0]}/${splittedAddress[1]}`;
 
@@ -265,8 +277,29 @@ const handlers = {
         normalizeDelay = value;
       }
       bang();
+    } else if (
+      splittedAddress[0] === "source" &&
+      splittedAddress[1] === "number" &&
+      args.length === 1 &&
+      typeof args[0] === "number"
+    ) {
+      sourcePosArray = createSourceArray(args[0]);
+      Max.outlet(address, args[0]);
+      bang();
+    } else if (
+      splittedAddress[0] === "microphone" &&
+      splittedAddress[1] === "number" &&
+      args.length === 1 &&
+      typeof args[0] === "number"
+    ) {
+      micPosArray = createMicArray(args[0]);
+      directivityArray = createDirectivityArray(args[0]);
+      directionArray = createDirectionArray(args[0]);
+      Max.outlet(address, args[0]);
+
+      bang();
     } else {
-      Max.post(`unrecognized osc command : ${address}`);
+      Max.post(`unrecognized osc command : ${address}`, args);
     }
   },
 };
