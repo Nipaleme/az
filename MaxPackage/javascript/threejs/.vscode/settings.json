@@ -1,0 +1,9 @@
+{
+    "files.eol": "\n",
+    "eslint.lintTask.enable": true,
+    "eslint.codeAction.showDocumentation": { "enable": true },
+    "editor.codeActionsOnSave": {
+        "editor.action.formatDocument": true
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
