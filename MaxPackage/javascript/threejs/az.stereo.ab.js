@@ -14,7 +14,10 @@ let normalizeDelay = false;
 
 const createMicArray = (number) => {
   if (number < 1) {
-    Max.warn("number of speaker must be superior or equal to 1, will use 1");
+    Max.post(
+      "number of speaker must be superior or equal to 1, will use 1",
+      "WARN"
+    );
     return [new THREE.Vector3(0, 0, 0)];
   }
   if (number === 1) return [new THREE.Vector3(0, 0, 0)];
@@ -27,7 +30,10 @@ const createMicArray = (number) => {
 
 const createSourceArray = (number) => {
   if (number < 1) {
-    Max.warn("number of speaker must be superior or equal to 1, will use 1");
+    Max.post(
+      "number of speaker must be superior or equal to 1, will use 1",
+      "WARN"
+    );
     return [new THREE.Vector3(0, 1, 0)];
   }
   if (number === 1) return [new THREE.Vector3(0, 1, 0)];
@@ -44,7 +50,10 @@ const createDirectivityArray = (number) =>
 
 const createDirectionArray = (number) => {
   if (number < 1) {
-    Max.warn("number of speaker must be superior or equal to 1, will use 1");
+    Max.post(
+      "number of speaker must be superior or equal to 1, will use 1",
+      "WARN"
+    );
     return [
       new THREE.Vector3(0, 1, 0).applyAxisAngle(new THREE.Vector3(0, 0, 1), 0),
     ];
@@ -149,6 +158,27 @@ const bang = () => {
     Max.outlet(gains);
     Max.outlet(delays);
   });
+};
+
+const dump = () => {
+  Max.outlet(["/dump", "/source/number", sourcePosArray.length]);
+  Max.outlet(["/dump", "/microphone/number", micPosArray.length]);
+  sourcePosArray.forEach((pos, index) => {
+    Max.outlet(["/dump", `/source/${index + 1}/xyz`, pos.x, pos.y, pos.z]);
+  });
+  micPosArray.forEach((pos, index) => {
+    Max.outlet(["/dump", `/microphone/${index + 1}/xyz`, pos.x, pos.y, pos.z]);
+  });
+  directionArray.forEach((pos, index) => {
+    Max.outlet([
+      "/dump",
+      `/microphone/${index + 1}/direction/xyz`,
+      pos.x,
+      pos.y,
+      pos.z,
+    ]);
+  });
+  Max.outlet(["/dump", "/microphone/*/orientation/visible", 1]);
 };
 
 const parseBoolean = (value, address) => {
@@ -281,16 +311,19 @@ const handlers = {
       splittedAddress[0] === "source" &&
       splittedAddress[1] === "number" &&
       args.length === 1 &&
-      typeof args[0] === "number"
+      typeof args[0] === "number" &&
+      args[0] !== sourcePosArray.length
     ) {
       sourcePosArray = createSourceArray(args[0]);
       Max.outlet(address, args[0]);
       bang();
+      dump();
     } else if (
       splittedAddress[0] === "microphone" &&
       splittedAddress[1] === "number" &&
       args.length === 1 &&
-      typeof args[0] === "number"
+      typeof args[0] === "number" &&
+      args[0] !== micPosArray.length
     ) {
       micPosArray = createMicArray(args[0]);
       directivityArray = createDirectivityArray(args[0]);
@@ -298,6 +331,7 @@ const handlers = {
       Max.outlet(address, args[0]);
 
       bang();
+      dump();
     } else {
       Max.post(`unrecognized osc command : ${address}`, args);
     }
