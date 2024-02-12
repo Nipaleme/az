@@ -3,7 +3,7 @@
     "eslint.lintTask.enable": true,
     "eslint.codeAction.showDocumentation": { "enable": true },
     "editor.codeActionsOnSave": {
-        "editor.action.formatDocument": true
+        "editor.action.formatDocument": "explicit"
     },
     "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
