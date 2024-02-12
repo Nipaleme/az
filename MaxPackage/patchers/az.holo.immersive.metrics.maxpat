@@ -3888,7 +3888,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 2033.0, 1299.0, 164.0, 49.0 ],
-					"text" : "/window/bounds 1100 810 800 350, /window/title HOLO, /window/open"
+					"text" : "/window/bounds 925 410 800 350, /window/title HOLO, /window/open"
 				}
 
 			}
@@ -4016,18 +4016,6 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 72.0, 241.5, 150.0, 20.0 ],
 					"text" : "USED POSITIONS"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-28",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 260.0, 896.0, 100.0, 22.0 ],
-					"text" : "loadbang"
 				}
 
 			}
@@ -19703,8 +19691,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1206.0, 2559.0, 164.0, 49.0 ],
-					"text" : "/window/bounds 1100 410 800 350, /window/title ALL, /window/open"
+					"patching_rect" : [ 1206.0, 2559.0, 167.0, 49.0 ],
+					"text" : "/window/bounds 1100 10 800 350, /window/title ALL, /window/openorclose"
 				}
 
 			}
@@ -20839,7 +20827,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 260.0, 940.0, 318.0, 35.0 ],
-					"text" : "/window/bounds 1100 40 800 350, /window/title SPHERE, /window/open"
+					"text" : "/window/bounds 1100 40 800 350, /window/title SPHERE, /window/openorclose"
 				}
 
 			}
@@ -20890,7 +20878,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 511.0, 2024.0, 167.0, 49.0 ],
-					"text" : "/window/bounds 1100 410 800 350, /window/title USED, /window/openorclose"
+					"text" : "/window/bounds 1100 0 800 350, /window/title USED, /window/openorclose"
 				}
 
 			}
@@ -21288,18 +21276,18 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-343",
+					"id" : "obj-176",
 					"linecount" : 3,
 					"maxclass" : "newobj",
 					"numinlets" : 4,
-					"numoutlets" : 27,
-					"outlettype" : [ "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "" ],
+					"numoutlets" : 17,
+					"outlettype" : [ "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "" ],
 					"patching_rect" : [ 2920.0, 1989.0, 100.0, 49.0 ],
 					"saved_object_attributes" : 					{
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "spat5.hoa.decoder~ @outputs 26 @order 1",
+					"text" : "spat5.hoa.decoder~ @outputs 16 @order 1",
 					"varname" : "hoa-decoder"
 				}
 
@@ -22042,7 +22030,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-343", 0 ],
+					"destination" : [ "obj-176", 0 ],
 					"source" : [ "obj-199", 0 ]
 				}
 
@@ -22646,13 +22634,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-279", 0 ],
 					"source" : [ "obj-278", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-57", 0 ],
-					"source" : [ "obj-28", 0 ]
 				}
 
 			}
