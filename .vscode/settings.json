@@ -1,13 +1,13 @@
 {
-    "files.eol": "\n",
-    "editor.formatOnSave": true,
-    "eslint.lintTask.enable": true,
-    "eslint.codeAction.showDocumentation": { "enable": true },
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
-    },
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "[xml]": {
-        "editor.defaultFormatter": "redhat.vscode-xml"
-    }
+  "files.eol": "\n",
+  "editor.formatOnSave": true,
+  "eslint.lintTask.enable": true,
+  "eslint.codeAction.showDocumentation": { "enable": true },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
+  }
 }
