@@ -5,7 +5,6 @@ import * as kdTree from "kd-tree-javascript";
 type Point = {
   x: number;
   y: number;
-  z: number;
 };
 
 type Corner = {
@@ -13,61 +12,61 @@ type Corner = {
   dist: number;
 };
 
-const points: Point[] = [
-  { x: 2.3, y: 46, z: 0 },
-  { x: 6.8, y: 40.8, z: 0 },
-  { x: 6.8, y: 36.8, z: 0 },
-  { x: 6.3, y: 32, z: 0 },
-  { x: 10.7, y: 26.9, z: 0 },
-  { x: 10.7, y: 22.8, z: 0 },
-  { x: 10.7, y: 18.8, z: 0 },
-  { x: 6.3, y: 13.7, z: 0 },
-  { x: 13.7, y: 6.25, z: 0 },
-  { x: 18.8, y: 10.7, z: 0 },
-  { x: 22.8, y: 10.7, z: 0 },
-  { x: 26.8, y: 10.7, z: 0 },
-  { x: 33.7, y: 4, z: 0 },
-  { x: 33.7, y: 0, z: 0 },
-  { x: 33.7, y: -4, z: 0 },
-  { x: 26.8, y: -10.7, z: 0 },
-  { x: 22.8, y: -10.7, z: 0 },
-  { x: 18.8, y: -10.7, z: 0 },
-  { x: 13.7, y: -6.25, z: 0 },
-  { x: 6.3, y: -13.7, z: 0 },
-  { x: 10.7, y: -18.8, z: 0 },
-  { x: 10.7, y: -22.8, z: 0 },
-  { x: 10.7, y: -26.9, z: 0 },
-  { x: 6.3, y: -32, z: 0 },
-  { x: 6.8, y: -36.8, z: 0 },
-  { x: 6.8, y: -41, z: 0 },
-  { x: 2.3, y: -43.2, z: 0 },
-  { x: -2.3, y: -43.2, z: 0 },
-  { x: -6.8, y: -41, z: 0 },
-  { x: -6.8, y: -36.8, z: 0 },
-  { x: -6.3, y: -32, z: 0 },
-  { x: -10.7, y: -26.9, z: 0 },
-  { x: -10.7, y: -22.8, z: 0 },
-  { x: -10.7, y: -18.8, z: 0 },
-  { x: -6.3, y: -13.7, z: 0 },
-  { x: -13.7, y: -6.25, z: 0 },
-  { x: -18.8, y: -10.7, z: 0 },
-  { x: -22.8, y: -10.7, z: 0 },
-  { x: -26.8, y: -10.7, z: 0 },
-  { x: -33.7, y: -4, z: 0 },
-  { x: -33.7, y: -0, z: 0 },
-  { x: -33.7, y: 4, z: 0 },
-  { x: -26.8, y: 10.7, z: 0 },
-  { x: -22.8, y: 10.7, z: 0 },
-  { x: -18.8, y: 10.7, z: 0 },
-  { x: -13.7, y: 6.25, z: 0 },
-  { x: -6.3, y: 13.7, z: 0 },
-  { x: -10.7, y: 18.8, z: 0 },
-  { x: -10.7, y: 22.8, z: 0 },
-  { x: -10.7, y: 26.9, z: 0 },
-  { x: -6.3, y: 32, z: 0 },
-  { x: -6.8, y: 36.8, z: 0 },
-  { x: -6.8, y: 40.8, z: 0 },
-  { x: -2.3, y: 46, z: 0 },
+const points = [
+  { x: 2.3, y: 46 },
+  { x: 6.8, y: 40.8 },
+  { x: 6.8, y: 36.8 },
+  { x: 6.3, y: 32 },
+  { x: 10.7, y: 26.9 },
+  { x: 10.7, y: 22.8 },
+  { x: 10.7, y: 18.8 },
+  { x: 6.3, y: 13.7 },
+  { x: 13.7, y: 6.25 },
+  { x: 18.8, y: 10.7 },
+  { x: 22.8, y: 10.7 },
+  { x: 26.8, y: 10.7 },
+  { x: 33.7, y: 4 },
+  { x: 33.7, y: 0 },
+  { x: 33.7, y: -4 },
+  { x: 26.8, y: -10.7 },
+  { x: 22.8, y: -10.7 },
+  { x: 18.8, y: -10.7 },
+  { x: 13.7, y: -6.25 },
+  { x: 6.3, y: -13.7 },
+  { x: 10.7, y: -18.8 },
+  { x: 10.7, y: -22.8 },
+  { x: 10.7, y: -26.9 },
+  { x: 6.3, y: -32 },
+  { x: 6.8, y: -36.8 },
+  { x: 6.8, y: -41 },
+  { x: 2.3, y: -43.2 },
+  { x: -2.3, y: -43.2 },
+  { x: -6.8, y: -41 },
+  { x: -6.8, y: -36.8 },
+  { x: -6.3, y: -32 },
+  { x: -10.7, y: -26.9 },
+  { x: -10.7, y: -22.8 },
+  { x: -10.7, y: -18.8 },
+  { x: -6.3, y: -13.7 },
+  { x: -13.7, y: -6.25 },
+  { x: -18.8, y: -10.7 },
+  { x: -22.8, y: -10.7 },
+  { x: -26.8, y: -10.7 },
+  { x: -33.7, y: -4 },
+  { x: -33.7, y: -0 },
+  { x: -33.7, y: 4 },
+  { x: -26.8, y: 10.7 },
+  { x: -22.8, y: 10.7 },
+  { x: -18.8, y: 10.7 },
+  { x: -13.7, y: 6.25 },
+  { x: -6.3, y: 13.7 },
+  { x: -10.7, y: 18.8 },
+  { x: -10.7, y: 22.8 },
+  { x: -10.7, y: 26.9 },
+  { x: -6.3, y: 32 },
+  { x: -6.8, y: 36.8 },
+  { x: -6.8, y: 40.8 },
+  { x: -2.3, y: 46 },
   // { x: 4.01, y: 9.92, z: 37 },
   // { x: 9.85, y: 4.18, z: 37 },
   // { x: 9.88, y: -4.11, z: 37 },
@@ -81,8 +80,7 @@ const points: Point[] = [
 function distanceFun(point1: Point, point2: Point) {
   const dx = point1.x - point2.x;
   const dy = point1.y - point2.y;
-  const dz = point1.z - point2.z;
-  return Math.sqrt(dx * dx + dy * dy + dz * dz);
+  return Math.sqrt(dx * dx + dy * dy);
 }
 
 function isPointOnSegment(
@@ -96,14 +94,6 @@ function isPointOnSegment(
     Math.abs(
       (point.x - point1.x) * (point2.y - point1.y) -
         (point.y - point1.y) * (point2.x - point1.x)
-    ) < tolerance &&
-    Math.abs(
-      (point.x - point1.x) * (point2.z - point1.z) -
-        (point.z - point1.z) * (point2.x - point1.x)
-    ) < tolerance &&
-    Math.abs(
-      (point.y - point1.y) * (point2.z - point1.z) -
-        (point.z - point1.z) * (point2.y - point1.y)
     ) < tolerance;
 
   if (!collinear) {
@@ -115,16 +105,9 @@ function isPointOnSegment(
   const maxX = Math.max(point1.x, point2.x) + tolerance;
   const minY = Math.min(point1.y, point2.y) - tolerance;
   const maxY = Math.max(point1.y, point2.y) + tolerance;
-  const minZ = Math.min(point1.z, point2.z) - tolerance;
-  const maxZ = Math.max(point1.z, point2.z) + tolerance;
 
   return (
-    point.x >= minX &&
-    point.x <= maxX &&
-    point.y >= minY &&
-    point.y <= maxY &&
-    point.z >= minZ &&
-    point.z <= maxZ
+    point.x >= minX && point.x <= maxX && point.y >= minY && point.y <= maxY
   );
 }
 
@@ -133,32 +116,26 @@ function distance2Line(vectorPoint: Point, cornerA: Corner, cornerB: Corner) {
   const lineDirection = {
     x: cornerB.point.x - cornerA.point.x,
     y: cornerB.point.y - cornerA.point.y,
-    z: cornerB.point.z - cornerA.point.z,
   };
 
   // Calculate the vector from linePoint1 to the point
   const pointToLinePoint1 = {
     x: vectorPoint.x - cornerA.point.x,
     y: vectorPoint.y - cornerA.point.y,
-    z: vectorPoint.z - cornerA.point.z,
   };
 
   // Calculate the projection scalar
   const dotProduct =
     pointToLinePoint1.x * lineDirection.x +
-    pointToLinePoint1.y * lineDirection.y +
-    pointToLinePoint1.z * lineDirection.z;
+    pointToLinePoint1.y * lineDirection.y;
   const lineDirectionLengthSquared =
-    lineDirection.x * lineDirection.x +
-    lineDirection.y * lineDirection.y +
-    lineDirection.z * lineDirection.z;
+    lineDirection.x * lineDirection.x + lineDirection.y * lineDirection.y;
   const projectionScalar = dotProduct / lineDirectionLengthSquared;
 
   // Calculate the projection vector
   const projectionVector = {
     x: cornerA.point.x + lineDirection.x * projectionScalar,
     y: cornerA.point.y + lineDirection.y * projectionScalar,
-    z: cornerA.point.z + lineDirection.z * projectionScalar,
   };
 
   const isOnSegment = isPointOnSegment(
@@ -182,8 +159,7 @@ function distance2Line(vectorPoint: Point, cornerA: Corner, cornerB: Corner) {
   // Calculate the distance between the point and the projection
   const distance = Math.sqrt(
     (vectorPoint.x - projectionVector.x) ** 2 +
-      (vectorPoint.y - projectionVector.y) ** 2 +
-      (vectorPoint.z - projectionVector.z) ** 2
+      (vectorPoint.y - projectionVector.y) ** 2
   );
 
   return distance;
@@ -192,7 +168,7 @@ function distance2Line(vectorPoint: Point, cornerA: Corner, cornerB: Corner) {
 const listenPort = 1234;
 const HoloPort = 4003;
 
-const tree = new kdTree.kdTree([...points], distanceFun, ["x", "y", "z"]);
+const tree = new kdTree.kdTree([...points], distanceFun, ["x", "y"]);
 const k = 2;
 
 const dist2Path = async () => {
@@ -206,8 +182,8 @@ const dist2Path = async () => {
         const target = { x: args[0], y: args[1], z: args[2] } as Point;
         const nearestPoints: [Point, number][] = tree.nearest(target, k);
         const nearestWithIndex = nearestPoints.map(([point, dist]) => {
-          const index = points.findIndex(({ x, y, z }) => {
-            return x === point.x && y === point.y && z === point.z;
+          const index = points.findIndex(({ x, y }) => {
+            return x === point.x && y === point.y;
           });
           return { point, dist, index };
         });
