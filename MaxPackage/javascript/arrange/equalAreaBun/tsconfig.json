@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "lib": ["ESNext"],
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "bundler",
+    "moduleDetection": "force",
+    // "allowImportingTsExtensions": true,
+    // "noEmit": true,
+    "composite": true,
+    "strict": true,
+    "downlevelIteration": true,
+    "skipLibCheck": true,
+    "jsx": "preserve",
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "types": [
+      "bun-types", "node", 
+    ],
+
+    "declaration": true,
+    "outDir": "./apiextractor",
+    "noEmit": false,
+    
+    // "esModuleInterop": true,
+    // "resolveJsonModule": true,
+    // "isolatedModules": true,
+    // "outDir": "./dist"
+  },
+  // "typedocOptions": {
+  //   "entryPoints": ["./src"],
+  //   "sort": ["source-order"],
+  //   "media": "media",
+  //   "categorizeByGroup": false,
+  //   "searchCategoryBoosts": {
+  //       "Component": 2,
+  //       "Model": 1.2
+  //   },
+  //   "searchGroupBoosts": {
+  //       "Classes": 1.5
+  //   },
+  // },
+  "include": ["src/**/*"]
+}

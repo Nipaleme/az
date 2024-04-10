@@ -1,0 +1,20 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
+    "mainEntryPointFilePath": "apiextractor/src/index.d.ts",
+    "docModel": {
+      "enabled": true,
+      "apiJsonFilePath": "apiextractor/temp/<unscopedPackageName>.api.json"
+    },
+    "dtsRollup": {
+      "enabled": true,
+      "untrimmedFilePath": "apiextractor/dist/<unscopedPackageName>.d.ts"
+    },
+    "apiReport": {
+      "enabled": true,
+      "reportTempFolder": "apiextractor/temp/<unscopedPackageName>.api.md"
+    },
+    "tsdocMetadata": {
+      "enabled": true,
+      "tsdocMetadataFilePath": "apiextractor/temp/tsdoc-metadata.json"
+    }
+  }

@@ -1,0 +1,33 @@
+{
+  "name": "equalareabun",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "typeDoc": "typedoc --plugin typedoc-plugin-missing-exports --entryPointStrategy expand ./src ",
+    "typeDoc-JSON": "node ./node_modules/.bin/typedoc --json dist/docs.json --entryPointStrategy expand ./src",
+    "tsc-check-types": "tsc --noEmit",
+    "build": "tsc",
+    "extract-api": "api-extractor run --local --verbose",
+    "generate-docs": "api-documenter markdown -i apiextractor/temp -o apidocs"
+  },
+  "devDependencies": {
+    "@microsoft/api-documenter": "^7.23.31",
+    "@microsoft/api-extractor": "^7.41.0",
+    "@stdlib/types": "^0.3.1",
+    "@types/mathjs": "^9.4.2",
+    "@types/numeric": "^1.2.6",
+    "bun-types": "latest",
+    "handlebars": "^4.7.8",
+    "typedoc": "^0.25.9",
+    "typedoc-plugin-missing-exports": "^2.2.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@stdlib/math": "^0.2.1",
+    "mathjs": "^12.3.2",
+    "numeric": "^1.2.6"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
