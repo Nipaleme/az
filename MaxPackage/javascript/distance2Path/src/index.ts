@@ -77,6 +77,49 @@ const points = [
   // { x: -4.01, y: 9.92, z: 37 },
 ];
 
+const AvignonPoints = [
+  { x: -14.297914, y: 17.1 },
+  { x: -13.578505, y: 16.888254 },
+  { x: -12.87, y: 16.67 },
+  { x: -12.152647, y: 16.447361 },
+  { x: -11.436519, y: 16.224319 },
+  { x: -10.719787, y: 16.025124 },
+  { x: -9.989264, y: 15.832025 },
+  { x: -9.26182, y: 15.667122 },
+  { x: -8.529149, y: 15.520879 },
+  { x: -7.794607, y: 15.377311 },
+  { x: -7.060101, y: 15.244506 },
+  { x: -6.321141, y: 15.111173 },
+  { x: -5.585004, y: 14.993589 },
+  { x: -4.843909, y: 14.8815 },
+  { x: -4.102017, y: 14.781376 },
+  { x: -3.359251, y: 14.690825 },
+  { x: -2.615191, y: 14.607751 },
+  { x: -1.869117, y: 14.55044 },
+  { x: -1.121326, y: 14.506727 },
+  { x: -0.374248, y: 14.485166 },
+  { x: 0.374248, y: 14.485166 },
+  { x: 1.121326, y: 14.506727 },
+  { x: 1.869117, y: 14.55044 },
+  { x: 2.615191, y: 14.607751 },
+  { x: 3.359251, y: 14.690825 },
+  { x: 4.102017, y: 14.781376 },
+  { x: 4.843909, y: 14.8815 },
+  { x: 5.585004, y: 14.993589 },
+  { x: 6.321141, y: 15.111173 },
+  { x: 7.060101, y: 15.244506 },
+  { x: 7.794607, y: 15.377311 },
+  { x: 8.529149, y: 15.520879 },
+  { x: 9.26182, y: 15.667122 },
+  { x: 9.989264, y: 15.832025 },
+  { x: 10.719787, y: 16.025124 },
+  { x: 11.436519, y: 16.224319 },
+  { x: 12.152647, y: 16.447361 },
+  { x: 12.87, y: 16.67 },
+  { x: 13.578505, y: 16.888254 },
+  { x: 14.297914, y: 17.1 },
+];
+
 function findNearestIndex(thisPoint: Point, listToSearch: Point[]) {
   let nearestDistSquared = Infinity;
   let nearestIndex: number = 0;
@@ -188,7 +231,12 @@ function isPointOnSegment(
   );
 }
 
-function distance2Line(vectorPoint: Point, cornerA: Corner, cornerB: Corner) {
+function distance2Line(
+  vectorPoint: Point,
+  cornerA: Corner,
+  cornerB: Corner,
+  onlyProjectionDist = false as boolean
+) {
   // Calculate the direction vector of the line
   const lineDirection = {
     x: cornerB.point.x - cornerA.point.x,
@@ -215,16 +263,18 @@ function distance2Line(vectorPoint: Point, cornerA: Corner, cornerB: Corner) {
     y: cornerA.point.y + lineDirection.y * projectionScalar,
   };
 
-  const isOnSegment = isPointOnSegment(
-    projectionVector as Point,
-    cornerA.point,
-    cornerB.point
-  );
+  if (onlyProjectionDist === false) {
+    const isOnSegment = isPointOnSegment(
+      projectionVector as Point,
+      cornerA.point,
+      cornerB.point
+    );
 
-  if (isOnSegment === false) {
-    const distA = distanceFun(cornerA.point, vectorPoint);
-    const distB = distanceFun(cornerB.point, vectorPoint);
-    return Math.min(distA, distB);
+    if (isOnSegment === false) {
+      const distA = distanceFun(cornerA.point, vectorPoint);
+      const distB = distanceFun(cornerB.point, vectorPoint);
+      return Math.min(distA, distB);
+    }
   }
 
   // Calculate the distance between the point and the projection
@@ -268,6 +318,90 @@ function pointIsInPoly(point: Point, polygon: Point[]) {
   }
 
   return isInside;
+}
+
+function orientation(p: Point, q: Point, r: Point) {
+  // See https://www.geeksforgeeks.org/orientation-3-ordered-points/
+  // for details of below formula.
+  let val = (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
+
+  if (val == 0) return 0; // collinear
+
+  return val > 0 ? 1 : 2; // clock or counterclock wise
+}
+
+//https://www.geeksforgeeks.org/check-if-two-given-line-segments-intersect/
+function onSegment(p: Point, q: Point, r: Point) {
+  if (
+    q.x <= Math.max(p.x, r.x) &&
+    q.x >= Math.min(p.x, r.x) &&
+    q.y <= Math.max(p.y, r.y) &&
+    q.y >= Math.min(p.y, r.y)
+  )
+    return true;
+
+  return false;
+}
+
+function doIntersect(p1: Point, q1: Point, p2: Point, q2: Point) {
+  // Find the four orientations needed for general and
+  // special cases
+  let o1 = orientation(p1, q1, p2);
+  let o2 = orientation(p1, q1, q2);
+  let o3 = orientation(p2, q2, p1);
+  let o4 = orientation(p2, q2, q1);
+
+  // General case
+  if (o1 != o2 && o3 != o4) return true;
+
+  // Special Cases
+  // p1, q1 and p2 are collinear and p2 lies on segment p1q1
+  if (o1 == 0 && onSegment(p1, p2, q1)) return true;
+
+  // p1, q1 and q2 are collinear and q2 lies on segment p1q1
+  if (o2 == 0 && onSegment(p1, q2, q1)) return true;
+
+  // p2, q2 and p1 are collinear and p1 lies on segment p2q2
+  if (o3 == 0 && onSegment(p2, p1, q2)) return true;
+
+  // p2, q2 and q1 are collinear and q1 lies on segment p2q2
+  if (o4 == 0 && onSegment(p2, q1, q2)) return true;
+
+  return false; // Doesn't fall in any of the above cases
+}
+
+export function isPointCrossLine(target: Point, points: Point[]) {
+  // for open loops
+  return points.findIndex((point, index) => {
+    if (index === points.length - 1) return false;
+    const nextIndex = index + (1 % points.length);
+    if (index === 0) {
+      const exctendedLeftPoint = {
+        x: points[1].x + (points[0].x - points[1].x) * 1000,
+        y: points[1].y + (points[0].y - points[1].y) * 1000,
+      };
+      return doIntersect(
+        { x: 0, y: 0 },
+        target,
+        points[1],
+        exctendedLeftPoint
+      );
+    } else if (index === points.length - 2) {
+
+      const exctendedRightPoint = {
+        x:  points[points.length - 2].x + (points[points.length - 1].x -  points[points.length - 2].x) * 1000,
+        y:  points[points.length - 2].y + (points[points.length - 1].y -  points[points.length - 2].y) * 1000,
+      };
+      return doIntersect(
+        { x: 0, y: 0 },
+        target,
+        points[points.length - 2],
+        exctendedRightPoint
+      );
+    } else {
+      return doIntersect({ x: 0, y: 0 }, target, point, points[nextIndex]);
+    }
+  });
 }
 
 function findMiddlePoint(p1: Point, p2: Point, p3: Point): Point {
@@ -406,7 +540,7 @@ export function analyzeMaxValue(distances: number[]) {
   };
 }
 
-function getSortedPoints(points: Point[]) {
+export function getSortedPoints(points: Point[]) {
   const tree = new kdTree([...points], distanceFunSquared, ["x", "y"]);
   const simplifiedPoints = filterColinearPoints([...points], tree);
   const sortedPoints = orderPointsByNearestNeighbor(simplifiedPoints);
@@ -425,12 +559,14 @@ const k = 2;
 
 // const tree = new kdTree([...points], distanceFunSquared, ["x", "y"]);
 // const simplifiedPoints = filterColinearPoints([...points], tree);
-const { rotatedPoints, isOutlier } = getSortedPoints(points);
+const { rotatedPoints, isOutlier } = getSortedPoints(AvignonPoints);
 
 const simplifiedTree = new kdTree([...rotatedPoints], distanceFunSquared, [
   "x",
   "y",
 ]);
+
+const loop = !isOutlier;
 
 const dist2Path = async () => {
   try {
@@ -446,8 +582,15 @@ const dist2Path = async () => {
 
         const index = address[1];
 
-        const isInside = pointIsInPoly(target, rotatedPoints);
-        if (isInside === true) {
+        let sendDefaultValue = false;
+        if (loop === true) {
+          const isInside = pointIsInPoly(target, rotatedPoints);
+          sendDefaultValue = isInside;
+        } else {
+          const indexPointCrossLine = isPointCrossLine(target, rotatedPoints);
+          sendDefaultValue = indexPointCrossLine === -1;
+        }
+        if (sendDefaultValue === true) {
           sendUdpSocket.send({
             address: ["track", String(index), "direct", "gain"],
             args: [0],
@@ -479,9 +622,17 @@ const dist2Path = async () => {
         nearestWithIndex.forEach((corner) => {
           if (corner.index === -1) return;
           const nextIndex =
-            corner.index === rotatedPoints.length - 1 ? 0 : corner.index + 1;
+            corner.index === rotatedPoints.length - 1
+              ? loop === false
+                ? -1
+                : 0
+              : corner.index + 1;
           const previousIndex =
-            corner.index === 0 ? rotatedPoints.length - 1 : corner.index - 1;
+            corner.index === 0
+              ? loop === false
+                ? -1
+                : rotatedPoints.length - 1
+              : corner.index - 1;
           const prevCorner: Corner = {
             point: rotatedPoints[previousIndex],
             dist: undefined,
@@ -495,18 +646,28 @@ const dist2Path = async () => {
             dist: undefined,
           };
           if (
+            previousIndex !== -1 &&
             !result.hasOwnProperty(`${previousIndex + 1}-${corner.index + 1}`)
           ) {
             const distWithPrevious = distance2Line(
               target,
               prevCorner,
-              currCorner
+              currCorner,
+              loop === false && previousIndex === 0 // if open loop, then extend the first segment to a line
             );
             result[`${previousIndex + 1}-${corner.index + 1}`] =
               distWithPrevious;
           }
-          if (!result.hasOwnProperty(`${corner.index + 1}-${nextIndex + 1}`)) {
-            const distWithNext = distance2Line(target, currCorner, nextCorner);
+          if (
+            nextIndex !== -1 &&
+            !result.hasOwnProperty(`${corner.index + 1}-${nextIndex + 1}`)
+          ) {
+            const distWithNext = distance2Line(
+              target,
+              currCorner,
+              nextCorner,
+              loop === false && nextIndex === rotatedPoints.length - 1 // if open loop, then extend the last segment to a line
+            );
             result[`${corner.index + 1}-${nextIndex + 1}`] = distWithNext;
           }
         });
