@@ -95,10 +95,44 @@ function findNearestIndex(thisPoint: Point, listToSearch: Point[]) {
   return nearestIndex;
 }
 
+function findPointWithFarthestPoints(points: Point[]) {
+  let maxDistanceSquared = 0;
+  let pointWithFarthestPointsIndex = 0;
+
+  for (let i = 0; i < points.length; i++) {
+    let maxDistSquaredFromPointI = 0;
+
+    for (let j = 0; j < points.length; j++) {
+      if (i === j) continue;
+
+      const distSquared =
+        Math.pow(points[i].x - points[j].x, 2) +
+        Math.pow(points[i].y - points[j].y, 2);
+
+      maxDistSquaredFromPointI = Math.max(
+        maxDistSquaredFromPointI,
+        distSquared
+      );
+    }
+
+    if (maxDistSquaredFromPointI > maxDistanceSquared) {
+      maxDistanceSquared = maxDistSquaredFromPointI;
+      pointWithFarthestPointsIndex = i;
+    }
+  }
+
+  return pointWithFarthestPointsIndex;
+}
+
 // Function to order points based on nearest neighbor algorithm inspired by https://stackoverflow.com/questions/25287834/how-to-sort-a-collection-of-points-so-that-they-set-up-one-after-another#answer-25289128
 export function orderPointsByNearestNeighbor(points: Point[]) {
-  const orderedList = [points.shift()] as Point[]; // Start with the first point
+  const point1Index = findPointWithFarthestPoints(points);
+
+  const orderedList = [points[point1Index]] as Point[]; // Start with the first point
   const remainingPoints = points.slice(); // Copy the array of points
+
+  // Remove the chosen point from the remaining points
+  remainingPoints.splice(point1Index, 1);
 
   while (remainingPoints.length > 0) {
     // Find the index of the closest point
@@ -118,6 +152,12 @@ export function distanceFun(point1: Point, point2: Point) {
   const dx = point1.x - point2.x;
   const dy = point1.y - point2.y;
   return Math.sqrt(dx * dx + dy * dy);
+}
+
+export function distanceFunSquared(point1: Point, point2: Point) {
+  const dx = point1.x - point2.x;
+  const dy = point1.y - point2.y;
+  return dx * dx + dy * dy;
 }
 
 function isPointOnSegment(
@@ -182,14 +222,8 @@ function distance2Line(vectorPoint: Point, cornerA: Corner, cornerB: Corner) {
   );
 
   if (isOnSegment === false) {
-    const distA =
-      cornerA.dist !== undefined
-        ? cornerA.dist
-        : distanceFun(cornerA.point, vectorPoint);
-    const distB =
-      cornerB.dist !== undefined
-        ? cornerB.dist
-        : distanceFun(cornerB.point, vectorPoint);
+    const distA = distanceFun(cornerA.point, vectorPoint);
+    const distB = distanceFun(cornerB.point, vectorPoint);
     return Math.min(distA, distB);
   }
 
@@ -292,14 +326,6 @@ export function filterColinearPoints(points: Point[], tree) {
   return filteredPoints;
 }
 
-const listenPort = 1234;
-const HoloPort = 4003;
-
-const tree = new kdTree([...points], distanceFun, ["x", "y"]);
-const k = 2;
-const simplifiedPoints = filterColinearPoints([...points], tree);
-const sortedPoints = orderPointsByNearestNeighbor(simplifiedPoints);
-
 function giveVertexArray(points: Point[]) {
   let vertex = [`/vertex/number ${points.length}`];
   points.forEach(({ x, y }, index) => {
@@ -308,15 +334,108 @@ function giveVertexArray(points: Point[]) {
   return vertex;
 }
 
-const simplifiedTree = new kdTree([...sortedPoints], distanceFun, [
+export function getSegmentsLength(points: Point[]) {
+  return points.map((point, index) => {
+    const newIndex = (index + 1) % points.length;
+    return distanceFunSquared(point, points[newIndex]);
+  });
+}
+
+export function rotatePoints(points: Point[], lengths: number[]) {
+  // Trouver l'index de la plus grande distance
+  let maxDistanceIndex = 0;
+  for (let i = 1; i < lengths.length; i++) {
+    if (lengths[i] > lengths[maxDistanceIndex]) {
+      maxDistanceIndex = i;
+    }
+  }
+
+  // Calculer le décalage : try to place max length in last Index
+  const shift = points.length - 1 - maxDistanceIndex;
+
+  // Effectuer la rotation des points
+  const rotatedPoints = [] as Point[];
+  for (let i = 0; i < points.length; i++) {
+    const newIndex = (i + shift) % points.length;
+    rotatedPoints.push(points[newIndex]);
+  }
+
+  return rotatedPoints;
+}
+
+export function analyzeMaxValue(distances: number[]) {
+  // Trier le tableau de distances
+  distances.sort((a, b) => a - b);
+
+  // Calculer les quartiles
+  const n = distances.length;
+  const q1Index = Math.floor((n + 1) / 4);
+  const q2Index = Math.floor((n + 2) / 2);
+  const q3Index = Math.floor((3 * (n + 1)) / 4);
+
+  const q1 =
+    n % 4 === 0
+      ? (distances[q1Index - 1] + distances[q1Index]) / 2
+      : distances[q1Index - 1];
+  // const q2 =
+  //   n % 2 === 0
+  //     ? (distances[q2Index - 1] + distances[q2Index]) / 2
+  //     : distances[q2Index - 1];
+  const q3 =
+    n % 4 === 0
+      ? (distances[q3Index - 1] + distances[q3Index]) / 2
+      : distances[q3Index - 1];
+
+  // Calculer l'écart interquartile (IQR)
+  const iqr = q3 - q1;
+
+  // Déterminer la borne supérieure pour les valeurs aberrantes
+  const upperBound = q3 + 1.5 * iqr;
+
+  // Vérifier si la valeur maximale est une valeur aberrante
+  const maxValue = distances[n - 1];
+  const isOutlier = maxValue > upperBound;
+
+  // Calculer le pourcentage que représente la valeur maximale par rapport au reste du tableau
+  const totalSum = distances.reduce((acc, val) => acc + val, 0);
+  const maxValuePercentage = (maxValue / totalSum) * 100;
+
+  return {
+    isOutlier,
+    maxValuePercentage,
+  };
+}
+
+function getSortedPoints(points: Point[]) {
+  const tree = new kdTree([...points], distanceFunSquared, ["x", "y"]);
+  const simplifiedPoints = filterColinearPoints([...points], tree);
+  const sortedPoints = orderPointsByNearestNeighbor(simplifiedPoints);
+  const segmentsLengths = getSegmentsLength(sortedPoints);
+
+  const { isOutlier, maxValuePercentage } = analyzeMaxValue(segmentsLengths);
+
+  const rotatedPoints = rotatePoints(sortedPoints, segmentsLengths);
+
+  return { rotatedPoints: rotatedPoints, isOutlier: isOutlier };
+}
+
+const listenPort = 1234;
+const HoloPort = 4003;
+const k = 2;
+
+// const tree = new kdTree([...points], distanceFunSquared, ["x", "y"]);
+// const simplifiedPoints = filterColinearPoints([...points], tree);
+const { rotatedPoints, isOutlier } = getSortedPoints(points);
+
+const simplifiedTree = new kdTree([...rotatedPoints], distanceFunSquared, [
   "x",
   "y",
 ]);
 
 const dist2Path = async () => {
   try {
-    console.log('test')
-    console.log(giveVertexArray(sortedPoints));
+    console.log("test");
+    console.log(giveVertexArray(rotatedPoints));
     const receiveUdpSocket = oscReceiverFactory();
     const sendUdpSocket = oscSenderFactory();
 
@@ -327,7 +446,7 @@ const dist2Path = async () => {
 
         const index = address[1];
 
-        const isInside = pointIsInPoly(target, sortedPoints);
+        const isInside = pointIsInPoly(target, rotatedPoints);
         if (isInside === true) {
           sendUdpSocket.send({
             address: ["track", String(index), "direct", "gain"],
@@ -349,7 +468,7 @@ const dist2Path = async () => {
           k
         );
         const nearestWithIndex = nearestPoints.map(([point, dist]) => {
-          const index = sortedPoints.findIndex(({ x, y }) => {
+          const index = rotatedPoints.findIndex(({ x, y }) => {
             return x === point.x && y === point.y;
           });
           return { point, dist, index };
@@ -360,19 +479,19 @@ const dist2Path = async () => {
         nearestWithIndex.forEach((corner) => {
           if (corner.index === -1) return;
           const nextIndex =
-            corner.index === sortedPoints.length - 1 ? 0 : corner.index + 1;
+            corner.index === rotatedPoints.length - 1 ? 0 : corner.index + 1;
           const previousIndex =
-            corner.index === 0 ? sortedPoints.length - 1 : corner.index - 1;
+            corner.index === 0 ? rotatedPoints.length - 1 : corner.index - 1;
           const prevCorner: Corner = {
-            point: sortedPoints[previousIndex],
+            point: rotatedPoints[previousIndex],
             dist: undefined,
           };
           const currCorner: Corner = {
-            point: sortedPoints[corner.index],
+            point: rotatedPoints[corner.index],
             dist: corner.dist,
           };
           const nextCorner: Corner = {
-            point: sortedPoints[nextIndex],
+            point: rotatedPoints[nextIndex],
             dist: undefined,
           };
           if (

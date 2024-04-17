@@ -331,3 +331,25 @@ export function sortByDistance(points: Point[]) {
 
  return sortedPoints;
 }
+
+export function findClosestPoints(points: Point[]) {
+  let minDistanceSquared = Infinity;
+  let point1Index = 0;
+  let point2Index = 1;
+
+  for (let i = 0; i < points.length; i++) {
+    for (let j = i + 1; j < points.length; j++) {
+      const distSquared =
+        Math.pow(points[i].x - points[j].x, 2) +
+        Math.pow(points[i].y - points[j].y, 2);
+
+      if (distSquared < minDistanceSquared) {
+        minDistanceSquared = distSquared;
+        point1Index = i;
+        point2Index = j;
+      }
+    }
+  }
+
+  return [point1Index, point2Index];
+}
