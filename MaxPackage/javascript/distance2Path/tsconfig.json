@@ -1,5 +1,37 @@
+// {
+//   "compilerOptions": {
+//     "removeComments": false,
+//     "incremental": true,
+//     "outDir": "dist",
+//     "rootDir": ".",
+//     "noImplicitAny": false,
+//     // "sourceMap": true,
+//     "noEmit": true,
+//     "target": "es2018",
+//     "module": "ES6",
+//     "moduleResolution": "node",
+//     "allowJs": false,
+//     "esModuleInterop": true,
+//     "resolveJsonModule": true,
+//     "importHelpers": true,
+//     "skipLibCheck": true,
+//     "allowSyntheticDefaultImports": true,
+//     "lib": ["dom", "ES2021"],
+//     "types": ["node", "bun-types"],
+//     "strict": true
+//   },
+//   // "exclude": ["node_modules"],
+//   // "include": [
+//   //   "src/**/*.ts",
+//   // ]
+// }
+
 {
-    "compilerOptions": {
-      "outDir": "dist",
-    }
-  }
+  "compilerOptions": {
+    "outDir": "dist",
+    "types": ["node"],
+        "esModuleInterop": true,
+  },
+  "exclude": ["node_modules"],
+  "include": ["src/**/*.ts"]
+}

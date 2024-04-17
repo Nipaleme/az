@@ -1,15 +1,15 @@
+import { kdTree } from "kd-tree-javascript";
 import oscReceiverFactory, { THoloPacket } from "./osc/oscReceiver";
 import oscSenderFactory from "./osc/oscSender";
-import * as kdTree from "kd-tree-javascript";
 
-type Point = {
+export type Point = {
   x: number;
   y: number;
 };
 
 type Corner = {
   point: Point;
-  dist: number;
+  dist: number | undefined;
 };
 
 const points = [
@@ -77,7 +77,44 @@ const points = [
   // { x: -4.01, y: 9.92, z: 37 },
 ];
 
-function distanceFun(point1: Point, point2: Point) {
+function findNearestIndex(thisPoint: Point, listToSearch: Point[]) {
+  let nearestDistSquared = Infinity;
+  let nearestIndex: number = 0;
+
+  for (let i = 0; i < listToSearch.length; i++) {
+    const point2 = listToSearch[i];
+    const distsq =
+      Math.pow(thisPoint.x - point2.x, 2) + Math.pow(thisPoint.y - point2.y, 2);
+
+    if (distsq < nearestDistSquared) {
+      nearestDistSquared = distsq;
+      nearestIndex = i;
+    }
+  }
+
+  return nearestIndex;
+}
+
+// Function to order points based on nearest neighbor algorithm inspired by https://stackoverflow.com/questions/25287834/how-to-sort-a-collection-of-points-so-that-they-set-up-one-after-another#answer-25289128
+export function orderPointsByNearestNeighbor(points: Point[]) {
+  const orderedList = [points.shift()] as Point[]; // Start with the first point
+  const remainingPoints = points.slice(); // Copy the array of points
+
+  while (remainingPoints.length > 0) {
+    // Find the index of the closest point
+    const nearestIndex = findNearestIndex(
+      orderedList[orderedList.length - 1],
+      remainingPoints
+    );
+
+    // Remove from the unorderedList and add to the ordered one
+    orderedList.push(remainingPoints.splice(nearestIndex, 1)[0]);
+  }
+
+  return orderedList;
+}
+
+export function distanceFun(point1: Point, point2: Point) {
   const dx = point1.x - point2.x;
   const dy = point1.y - point2.y;
   return Math.sqrt(dx * dx + dy * dy);
@@ -165,14 +202,121 @@ function distance2Line(vectorPoint: Point, cornerA: Corner, cornerB: Corner) {
   return distance;
 }
 
+function pointIsInPoly(point: Point, polygon: Point[]) {
+  let isInside = false;
+
+  let minX = Number.POSITIVE_INFINITY;
+  let maxX = Number.NEGATIVE_INFINITY;
+  let minY = Number.POSITIVE_INFINITY;
+  let maxY = Number.NEGATIVE_INFINITY;
+
+  for (const poly of polygon) {
+    minX = Math.min(minX, poly.x);
+    maxX = Math.max(maxX, poly.x);
+    minY = Math.min(minY, poly.y);
+    maxY = Math.max(maxY, poly.y);
+  }
+
+  if (point.x < minX || point.x > maxX || point.y < minY || point.y > maxY) {
+    return false;
+  }
+
+  for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+    const pi = polygon[i];
+    const pj = polygon[j];
+
+    if (
+      pi.y > point.y !== pj.y > point.y &&
+      point.x < ((pj.x - pi.x) * (point.y - pi.y)) / (pj.y - pi.y) + pi.x
+    ) {
+      isInside = !isInside;
+    }
+  }
+
+  return isInside;
+}
+
+function findMiddlePoint(p1: Point, p2: Point, p3: Point): Point {
+  // Sort the points by their x-coordinates
+  const sortedPointsX = [p1, p2, p3].sort((a, b) => a.x - b.x);
+
+  // If x-coordinates are equal, sort by y-coordinates
+  if (sortedPointsX[0].x === sortedPointsX[2].x) {
+    return [p1, p2, p3].sort((a, b) => a.y - b.y)[1];
+  }
+
+  // The middle point will be the one with the median x-coordinate
+  return sortedPointsX[1];
+}
+
+export function filterColinearPoints(points: Point[], tree) {
+  // Ensure at least 3 points are present to form a line
+  if (points.length < 3) {
+    return points;
+  }
+
+  // Helper function to calculate cross product of vectors (p1p2, p1p3)
+  function crossProduct(p1: Point, p2: Point, p3: Point) {
+    return (p2.x - p1.x) * (p3.y - p1.y) - (p3.x - p1.x) * (p2.y - p1.y);
+  }
+
+  // Iterate through points to filter colinear ones
+  const filteredPoints = [] as Point[];
+  for (let i = 0, j = points.length; i < j; i += 1) {
+    const p1 = points[i];
+    const nearestPoints: [Point, number][] = tree
+      .nearest(p1, 3)
+      .filter(([{ x, y }, dist]) => !(x === p1.x && y === p1.y));
+    const p2 = nearestPoints[0][0];
+    const p3 = nearestPoints[1][0];
+
+    // Calculate cross product
+    const cross = crossProduct(p2, p1, p3);
+
+    // If cross product is not close to 0 (indicating non-collinearity), add the point to filtered list
+    if (Math.abs(cross) > 1e-5) {
+      filteredPoints.push(p1);
+    } else {
+      const middlePoint = findMiddlePoint(p1, p2, p3);
+      if (!(middlePoint.x === p1.x && middlePoint.y === p1.y)) {
+        filteredPoints.push(p1);
+      } else {
+        // filteredPoints.push(p2, p3);
+      }
+    }
+  }
+
+  // Add the last point since it is not included in the loop
+  // filteredPoints.push(points[points.length - 1]);
+
+  return filteredPoints;
+}
+
 const listenPort = 1234;
 const HoloPort = 4003;
 
-const tree = new kdTree.kdTree([...points], distanceFun, ["x", "y"]);
+const tree = new kdTree([...points], distanceFun, ["x", "y"]);
 const k = 2;
+const simplifiedPoints = filterColinearPoints([...points], tree);
+const sortedPoints = orderPointsByNearestNeighbor(simplifiedPoints);
+
+function giveVertexArray(points: Point[]) {
+  let vertex = [`/vertex/number ${points.length}`];
+  points.forEach(({ x, y }, index) => {
+    vertex.push(`/vertex/${index + 1}/xy ${x} ${y}`);
+  });
+  return vertex;
+}
+
+const simplifiedTree = new kdTree([...sortedPoints], distanceFun, [
+  "x",
+  "y",
+]);
 
 const dist2Path = async () => {
   try {
+    console.log('test')
+    console.log(giveVertexArray(sortedPoints));
     const receiveUdpSocket = oscReceiverFactory();
     const sendUdpSocket = oscSenderFactory();
 
@@ -180,9 +324,32 @@ const dist2Path = async () => {
       const { address, args } = message;
       if (address[address.length - 1] === "xyz" && args.length === 3) {
         const target = { x: args[0], y: args[1], z: args[2] } as Point;
-        const nearestPoints: [Point, number][] = tree.nearest(target, k);
+
+        const index = address[1];
+
+        const isInside = pointIsInPoly(target, sortedPoints);
+        if (isInside === true) {
+          sendUdpSocket.send({
+            address: ["track", String(index), "direct", "gain"],
+            args: [0],
+          });
+          sendUdpSocket.send({
+            address: ["track", String(index), "early", "gain"],
+            args: [-8.5],
+          });
+          sendUdpSocket.send({
+            address: ["track", String(index), "reverb", "send"],
+            args: [-18],
+          });
+          return;
+        }
+
+        const nearestPoints: [Point, number][] = simplifiedTree.nearest(
+          target,
+          k
+        );
         const nearestWithIndex = nearestPoints.map(([point, dist]) => {
-          const index = points.findIndex(({ x, y }) => {
+          const index = sortedPoints.findIndex(({ x, y }) => {
             return x === point.x && y === point.y;
           });
           return { point, dist, index };
@@ -193,19 +360,19 @@ const dist2Path = async () => {
         nearestWithIndex.forEach((corner) => {
           if (corner.index === -1) return;
           const nextIndex =
-            corner.index === points.length - 1 ? 0 : corner.index + 1;
+            corner.index === sortedPoints.length - 1 ? 0 : corner.index + 1;
           const previousIndex =
-            corner.index === 0 ? points.length - 1 : corner.index - 1;
+            corner.index === 0 ? sortedPoints.length - 1 : corner.index - 1;
           const prevCorner: Corner = {
-            point: points[previousIndex],
+            point: sortedPoints[previousIndex],
             dist: undefined,
           };
           const currCorner: Corner = {
-            point: points[corner.index],
+            point: sortedPoints[corner.index],
             dist: corner.dist,
           };
           const nextCorner: Corner = {
-            point: points[nextIndex],
+            point: sortedPoints[nextIndex],
             dist: undefined,
           };
           if (
@@ -231,17 +398,17 @@ const dist2Path = async () => {
         // console.log(result, finalDist);
         const directG = -8.69 * Math.log(finalDist) - 0.5;
         sendUdpSocket.send({
-          address: ["track", "1", "direct", "gain"],
+          address: ["track", String(index), "direct", "gain"],
           args: [Math.min(directG, 0)],
         });
         const earlyG = -8.51 * Math.log(finalDist) - 8.51;
         sendUdpSocket.send({
-          address: ["track", "1", "early", "gain"],
+          address: ["track", String(index), "early", "gain"],
           args: [Math.min(earlyG, -8.5)],
         });
         const reverbS = -0.13 * finalDist - 18;
         sendUdpSocket.send({
-          address: ["track", "1", "reverb", "send"],
+          address: ["track", String(index), "reverb", "send"],
           args: [Math.min(reverbS, -18)],
         });
       } else if (address[address.length - 1] === "aed") {
