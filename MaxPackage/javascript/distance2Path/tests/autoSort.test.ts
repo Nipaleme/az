@@ -160,7 +160,6 @@ function giveVertexArray(points: Point[]) {
   return vertex;
 }
 
-
 const pantheonTree = new kdTree.kdTree(
   [...pantheonPoints],
   distanceFunSquared,
@@ -261,7 +260,7 @@ test("shuffle and sort LineCurve array see if same modulo index", () => {
 
     const vertex = giveVertexArray(rotatedPoints);
 
-    console.log(vertex);
+    // console.log(vertex);
 
     expect(rotatedPoints.length).toBe(simplifiedSourcePoints.length);
 
@@ -318,7 +317,7 @@ test("shuffle and sort AvignonPoints array see if same modulo index", () => {
 
     const vertex = giveVertexArray(rotatedPoints);
 
-    console.log(vertex);
+    // console.log(vertex);
 
     expect(rotatedPoints.length).toBe(simplifiedSourcePoints.length);
 
@@ -344,4 +343,58 @@ test("shuffle and sort AvignonPoints array see if same modulo index", () => {
   }
   const end = performance.now();
   console.log(end - deb);
+
+  console.log("----");
+console.log(
+  giveVertexArray([
+    { x: -6.8, y: -41 },
+    { x: -6.8, y: -36.8 },
+    { x: -6.3, y: -32 },
+    { x: -10.7, y: -26.9 },
+    { x: -10.7, y: -22.8 },
+    { x: -10.7, y: -18.8 },
+    { x: -18.8, y: -10.7 },
+    { x: -22.8, y: -10.7 },
+    { x: -26.8, y: -10.7 },
+    { x: -33.7, y: -4 },
+    { x: -33.7, y: -0 },
+    { x: -33.7, y: 4 },
+    { x: -26.8, y: 10.7 },
+    { x: -22.8, y: 10.7 },
+    { x: -18.8, y: 10.7 },
+    { x: -10.7, y: 18.8 },
+    { x: -10.7, y: 22.8 },
+    { x: -10.7, y: 26.9 },
+    { x: -6.3, y: 32 },
+    { x: -6.8, y: 36.8 },
+    { x: -6.8, y: 40.8 },
+    { x: -2.3, y: 46 },
+    { x: 2.3, y: 46 },
+    { x: 6.8, y: 40.8 },
+    { x: 6.8, y: 36.8 },
+    { x: 6.3, y: 32 },
+    { x: 10.7, y: 26.9 },
+    { x: 10.7, y: 22.8 },
+    { x: 10.7, y: 18.8 },
+    { x: 18.8, y: 10.7 },
+    { x: 22.8, y: 10.7 },
+    { x: 26.8, y: 10.7 },
+    { x: 33.7, y: 4 },
+    { x: 33.7, y: 0 },
+    { x: 33.7, y: -4 },
+    { x: 26.8, y: -10.7 },
+    { x: 22.8, y: -10.7 },
+    { x: 18.8, y: -10.7 },
+    { x: 10.7, y: -18.8 },
+    { x: 10.7, y: -22.8 },
+    { x: 10.7, y: -26.9 },
+    { x: 6.3, y: -32 },
+    { x: 6.8, y: -36.8 },
+    { x: 6.8, y: -41 },
+    { x: 2.3, y: -43.2 },
+    { x: -2.3, y: -43.2 },
+    { x: -6.8, y: -41 },
+  ])
+);
 });
+

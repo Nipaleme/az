@@ -286,7 +286,7 @@ function distance2Line(
   return distance;
 }
 
-function pointIsInPoly(point: Point, polygon: Point[]) {
+function pointIsInPoly(point: Point, polygon: Point[]) { // https://stackoverflow.com/questions/217578/how-can-i-determine-whether-a-2d-point-is-within-a-polygon
   let isInside = false;
 
   let minX = Number.POSITIVE_INFINITY;
@@ -559,7 +559,7 @@ const k = 2;
 
 // const tree = new kdTree([...points], distanceFunSquared, ["x", "y"]);
 // const simplifiedPoints = filterColinearPoints([...points], tree);
-const { rotatedPoints, isOutlier } = getSortedPoints(AvignonPoints);
+const { rotatedPoints, isOutlier } = getSortedPoints(points);
 
 const simplifiedTree = new kdTree([...rotatedPoints], distanceFunSquared, [
   "x",
