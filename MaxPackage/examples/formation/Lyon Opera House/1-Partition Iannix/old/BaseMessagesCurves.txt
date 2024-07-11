@@ -1,0 +1,5 @@
+/curve/indices 100 101 102
+/curve/1/name "Guitar"
+/curve/1/color 0. 0. 1. 1.
+/curve/1/type "smooth" "linear"
+/curve/1/points x y z x y z x y z...
