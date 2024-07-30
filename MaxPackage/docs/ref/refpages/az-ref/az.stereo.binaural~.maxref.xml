@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+
+
+<c74object name="az.stereo.binaural~" module="az">
+  <digest>Binaural (3 DoF) monitoring for stereo input with magLs method</digest>
+  <description><o>az.stereo.binaural~</o> acheive a binaural (3 DoF) for stereo input with magLs method.<br /><br /></description>
+
+  <!--INLETS-->
+  <inletlist>
+    <inlet id="0" type="INLET_TYPE">
+      <digest>
+        Audio Input (0)
+      </digest>
+      <description>
+        Audio Input (0)
+      </description>
+    </inlet>
+    <inlet id="1" type="INLET_TYPE">
+        <digest>
+        OSC Input (1)
+        </digest>
+        <description>
+            OSC Input (1)
+        </description>
+      </inlet>
+  </inletlist>
+
+  <!--OUTLETS-->
+  <outletlist>
+    <outlet id="0" type="OUTLET_TYPE">
+      <digest>
+        Audio Output (0)
+      </digest>
+      <description>
+        Audio Output (0)
+      </description>
+    </outlet>
+    <outlet id="1" type="OUTLET_TYPE">
+        <digest>
+        OSC Output (1)
+        </digest>
+        <description>
+            OSC Output (1)
+        </description>
+      </outlet>
+  </outletlist>
+
+  <objarglist>
+  </objarglist>
+
+
+  <!--ATTRIBUTES-->
+  <attributelist>
+    <attribute name="initwith" type="string" set="1" get="1" size="1">
+      <description>The <m> initwith </m> attribute can be used to specify the initial state of the
+        object. You should provide a list of comma-separated OSC commands. The list of messages
+        should be quoted (with double quote character &quot;). This is similar to sending the list
+        of commands via <o>loadbang</o> or <o>loadmess</o>.<br /> Have a look at the <i>
+        spat5.tuto-osc-3.maxpat</i> example for further details.<br /> Note that the <m> initwith </m>
+        attribute cannot be set via message, <o>attrui</o> or inspector; it must be typed directly
+        within the object box.</description>
+      <digest>initial state of the object</digest>
+    </attribute>
+  </attributelist>
+
+
+  <!--MESSAGES-->
+  <methodlist>
+    <method name="/order">
+      <arglist>
+        <arg type="number" />
+      </arglist>
+      <description>set the ambisonic order for hoa to binaural rendering.</description>
+      <digest>set the ambisonic order for hoa to binaural rendering</digest>
+    </method>
+    <method name="/norm">
+      <arglist>
+        <arg type="string" />
+      </arglist>
+      <description>set ambisonic normalisation, default is SN3D.</description>
+      <digest>set the ambisonic normalisation, default is SN3D</digest>
+    </method>
+    <method name="/hrtf">
+      <arglist>
+        <arg type="string" />
+      </arglist>
+      <description>set the HRTF file to load (sofa).</description>
+      <digest>set the HRTF file to load (sofa)</digest>
+    </method>
+    <method name="/cutoff">
+      <arglist>
+        <arg type="number" />
+      </arglist>
+      <description>set the cutoff frequency for magLs rendering, default is 1500 Hz (see <o>spat5.hoa.binaural</o>).</description>
+      <digest>set the cutoff frequency for magLs rendering, default is 1500 Hz</digest>
+    </method>
+    <method name="/fftsize">
+      <arglist>
+        <arg type="int" />
+      </arglist>
+      <description>set the size of the FFT for magLs rendering, default is 1024 (see <o>spat5.hoa.binaural</o>).</description>
+      <digest>set the size of the FFT for magLs rendering, default is 1024</digest>
+    </method>
+    <method name="/length">
+      <arglist>
+        <arg type="int" />
+      </arglist>
+      <description>set the length of the SH-domain filters, default is 1024 (see <o>spat5.hoa.binaural</o>).</description>
+      <digest>set the length of the SH-domain filters, default is 1024</digest>
+    </method>
+    <method name="/status/open">
+      <description>open the status window and bring it to front.</description>
+      <digest>open status window</digest>
+    </method>
+    <method name="/status/close">
+      <description>close the status window.</description>
+      <digest>close status window</digest>
+    </method>
+    <method name="/status/openorclose">
+      <description>open the status window if it was closed; close it if it was opened.</description>
+      <digest>open status window</digest>
+    </method>
+    <method name="/help/open">
+      <description>open the help window and bring it to front.</description>
+      <digest>open help window</digest>
+    </method>
+    <method name="/help/close">
+      <description>close the help window.</description>
+      <digest>close help window</digest>
+    </method>
+    <method name="/help/openorclose">
+      <description>open the help window if it was closed; close it if it was opened.</description>
+      <digest>open help window</digest>
+    </method>
+    <method name="/title">
+      <arglist>
+        <arg type="string" />
+      </arglist>
+      <description>set the status and help windows title (in the window titlebar).</description>
+      <digest>set the status and help windows title (in the window titlebar)</digest>
+    </method>
+    <method name="/initwith">
+      <description>Same as the <m> initwith </m> attribute, can be used to specify the initial state
+        of the object. You should provide a list of comma-separated OSC commands. The list of
+        messages should be quoted (with double quote character &quot;). This is similar to sending
+        the list of commands via <o>loadbang</o> or <o>loadmess</o>.<br /> Have a look at the <i>
+        spat5.tuto-osc-3.maxpat</i> example for further details.<br /> Note that the <m> initwith </m>
+        attribute cannot be set via message, <o>attrui</o> or inspector; it must be typed directly
+        within the object box.</description>
+      <digest>initial state of the object</digest>
+    </method>
+  </methodlist>
+
+  <seealsolist>
+    <seealso name="spat5.virtualspeakers~" />
+    <seealso name="spat5.binaural~" />
+    <seealso name="spat5.hoa.binaural~" />
+    <seealso name="spat5.pan~" />
+    <seealso name="spat5.sofa.loader" />
+    <seealso name="spat5.sofa.infos" />
+    <seealso name="spat5.hrtf.infos" />
+  </seealsolist>
+</c74object>
