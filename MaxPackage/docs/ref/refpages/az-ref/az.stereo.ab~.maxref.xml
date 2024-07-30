@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+
+
+<c74object name="az.stereo.ab~" module="az">
+  <digest>Virtual multi-microphonic simulator</digest>
+  <description><o>az.stereo.ab~</o> acheive a virtual multi-microphonic simulation as a panning algorithm.<br /><br /></description>
+
+  <!--INLETS-->
+  <inletlist>
+    <inlet id="0" type="INLET_TYPE">
+      <digest>
+        Audio Input (0)
+      </digest>
+      <description>
+        Audio Input (0)
+      </description>
+    </inlet>
+    <inlet id="1" type="INLET_TYPE">
+        <digest>
+        OSC Input (1)
+        </digest>
+        <description>
+            OSC Input (1)
+        </description>
+      </inlet>
+  </inletlist>
+
+  <!--OUTLETS-->
+  <outletlist>
+    <outlet id="0" type="OUTLET_TYPE">
+      <digest>
+        Audio Output (0)
+      </digest>
+      <description>
+        Audio Output (0)
+      </description>
+    </outlet>
+  </outletlist>
+
+  <objarglist>
+  </objarglist>
+
+
+  <!--ATTRIBUTES-->
+  <attributelist>
+    <attribute name="initwith" type="string" set="1" get="1" size="1">
+      <description>The <m> initwith </m> attribute can be used to specify the initial state of the
+        object. You should provide a list of comma-separated OSC commands. The list of messages
+        should be quoted (with double quote character &quot;). This is similar to sending the list
+        of commands via <o>loadbang</o> or <o>loadmess</o>.<br /> Have a look at the <i>
+        spat5.tuto-osc-3.maxpat</i> example for further details.<br /> Note that the <m> initwith </m>
+        attribute cannot be set via message, <o>attrui</o> or inspector; it must be typed directly
+        within the object box.</description>
+      <digest>initial state of the object</digest>
+    </attribute>
+  </attributelist>
+
+
+  <!--MESSAGES-->
+  <methodlist>
+    <method name="/microphone/number">
+      <arglist>
+        <arg type="int" />
+      </arglist>
+      <description>set the number of microphones.</description>
+      <digest>set the number of microphones</digest>
+    </method>
+    <method name="/source/number">
+      <arglist>
+        <arg type="int" />
+      </arglist>
+      <description>set the number of virtual sources.</description>
+      <digest>set the number of virtual sources</digest>
+    </method>
+    <method name="/microphone/[index]/xyz">
+      <arglist>
+        <arg type="number ][ number ][ number" />
+      </arglist>
+      <description>set xyz position of microphone [index], does not yet support complex indexes like '*', '[a-b]', '{a,b,c}'.</description>
+      <digest>set xyz position of microphone [index]</digest>
+    </method>
+    <method name="/microphone/[index]/orientation">
+        <arglist>
+          <arg type="number ][ number ][ number" />
+        </arglist>
+        <description>set xyz normalized orientation vector for microphone [index], does not yet support complex indexes like '*', '[a-b]', '{a,b,c}'.</description>
+        <digest>set xyz normalized orientation vector for microphone [index]</digest>
+      </method>
+      <method name="/microphone/[index]/cardiocity">
+        <arglist>
+          <arg type="number" />
+        </arglist>
+        <description>set cardioicity for microphone [index], value is between 0 (bi-directional) and 1 (omni), 0.5 is cardioid, does not yet support complex indexes like '*', '[a-b]', '{a,b,c}'.</description>
+        <digest>set cardioicity for microphone [index], value is between 0 (bi-directional) and 1 (omni), 0.5 is cardioid</digest>
+      </method>
+      <method name="/source/[index]/xyz">
+        <arglist>
+          <arg type="number ][ number ][ number" />
+        </arglist>
+        <description>set xyz position of source [index], does not yet support complex indexes like '*', '[a-b]', '{a,b,c}'.</description>
+        <digest>set xyz position of source [index]</digest>
+      </method>
+      <method name="/delays/normalization">
+        <arglist>
+          <arg type="int" />
+        </arglist>
+        <description>set the normalization mode 0 is OFF (calculate the propoagation delay), 1 is ON (only relative delays).</description>
+        <digest>set the normalization mode 0 is OFF (calculate the propoagation delay), 1 is ON (only relative delays)</digest>
+      </method>
+      <method name="/gains/normalization">
+        <arglist>
+          <arg type="int" />
+        </arglist>
+        <description>set the normalization mode 0 is OFF (calculate the propoagation attenuation), 1 is ON (only relative gains).</description>
+        <digest>set the normalization mode 0 is OFF (calculate the propoagation attenuation), 1 is ON (only relative gains)</digest>
+      </method>
+    <method name="/status/open">
+      <description>open the status window and bring it to front.</description>
+      <digest>open status window</digest>
+    </method>
+    <method name="/status/close">
+      <description>close the status window.</description>
+      <digest>close status window</digest>
+    </method>
+    <method name="/status/openorclose">
+      <description>open the status window if it was closed; close it if it was opened.</description>
+      <digest>open status window</digest>
+    </method>
+    <method name="/help/open">
+      <description>open the help window and bring it to front.</description>
+      <digest>open help window</digest>
+    </method>
+    <method name="/help/close">
+      <description>close the help window.</description>
+      <digest>close help window</digest>
+    </method>
+    <method name="/help/openorclose">
+      <description>open the help window if it was closed; close it if it was opened.</description>
+      <digest>open help window</digest>
+    </method>
+    <method name="/title">
+      <arglist>
+        <arg type="string" />
+      </arglist>
+      <description>set the status and help windows title (in the window titlebar).</description>
+      <digest>set the status and help windows title (in the window titlebar)</digest>
+    </method>
+    <method name="/initwith">
+      <description>Same as the <m> initwith </m> attribute, can be used to specify the initial state
+        of the object. You should provide a list of comma-separated OSC commands. The list of
+        messages should be quoted (with double quote character &quot;). This is similar to sending
+        the list of commands via <o>loadbang</o> or <o>loadmess</o>.<br /> Have a look at the <i>
+        spat5.tuto-osc-3.maxpat</i> example for further details.<br /> Note that the <m> initwith </m>
+        attribute cannot be set via message, <o>attrui</o> or inspector; it must be typed directly
+        within the object box.</description>
+      <digest>initial state of the object</digest>
+    </method>
+  </methodlist>
+
+  <seealsolist>
+    <seealso name="spat5.virtualspeakers~" />
+    <seealso name="spat5.binaural~" />
+    <seealso name="spat5.hoa.binaural~" />
+    <seealso name="spat5.pan~" />
+    <seealso name="spat5.sofa.loader" />
+    <seealso name="spat5.sofa.infos" />
+    <seealso name="spat5.hrtf.infos" />
+  </seealsolist>
+</c74object>

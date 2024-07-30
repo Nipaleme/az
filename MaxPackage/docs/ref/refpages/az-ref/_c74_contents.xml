@@ -8,4 +8,6 @@
     <refpage name='az.osc.csv2coll.maxref.xml' />
     <refpage name='az.osc.csv2osc.maxref.xml' />
     <refpage name='az.stereo.binaural~.maxref.xml' />
+    <refpage name='az.stereo.ab.maxref.xml' />
+    <refpage name='az.stereo.ab~.maxref.xml' />
 </root>

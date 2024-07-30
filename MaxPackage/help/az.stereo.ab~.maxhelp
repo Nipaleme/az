@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 6,
-			"revision" : 2,
+			"minor" : 5,
+			"revision" : 6,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 0.0, 167.0, 1342.0, 950.0 ],
+		"rect" : [ 156.0, -715.0, 1360.0, 715.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -69,14 +69,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 6,
-							"revision" : 2,
+							"minor" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1342.0, 924.0 ],
+						"rect" : [ 0.0, 26.0, 1360.0, 689.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 11.0,
@@ -133,14 +133,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 6,
-							"revision" : 2,
+							"minor" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 193.0, 1342.0, 924.0 ],
+						"rect" : [ 156.0, -689.0, 1360.0, 689.0 ],
 						"bglocked" : 1,
 						"openinpresentation" : 0,
 						"default_fontsize" : 11.0,
@@ -180,8 +180,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 8,
-											"minor" : 6,
-											"revision" : 2,
+											"minor" : 5,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -306,8 +306,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 8,
-											"minor" : 6,
-											"revision" : 2,
+											"minor" : 5,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -532,14 +532,13 @@
 , 							{
 								"box" : 								{
 									"bubble" : 1,
-									"bubbleside" : 0,
 									"fontname" : "Arial",
 									"fontsize" : 11.0,
 									"id" : "obj-33",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 1080.0, 465.666666666666629, 162.0, 38.0 ],
+									"patching_rect" : [ 1283.0, 377.0, 162.0, 23.0 ],
 									"text" : "Main viewer to see state",
 									"textjustification" : 1
 								}
@@ -548,7 +547,6 @@
 , 							{
 								"box" : 								{
 									"bubble" : 1,
-									"bubbleside" : 2,
 									"fontname" : "Arial",
 									"fontsize" : 11.0,
 									"id" : "obj-32",
@@ -556,7 +554,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 1040.0, 100.0, 231.0, 50.0 ],
+									"patching_rect" : [ 1223.0, 196.0, 231.0, 35.0 ],
 									"text" : "Viewer to control rotation of microphone with option (alt) key + mousewheel",
 									"textjustification" : 1
 								}
@@ -573,8 +571,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 8,
-											"minor" : 6,
-											"revision" : 2,
+											"minor" : 5,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -770,7 +768,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "jit_matrix" ],
-									"patching_rect" : [ 1180.0, 724.257733345031738, 100.0, 100.200400801603195 ],
+									"patching_rect" : [ 913.0, 667.0, 100.0, 100.200400801603195 ],
 									"pic" : "az-Icon.png",
 									"presentation" : 1,
 									"presentation_rect" : [ 815.0, 585.0, 100.0, 100.200400801603195 ]
@@ -792,7 +790,6 @@
 											"parameter_longname" : "mc.live.gain~[1]",
 											"parameter_mmax" : 6.0,
 											"parameter_mmin" : -70.0,
-											"parameter_modmode" : 0,
 											"parameter_shortname" : "gains~",
 											"parameter_type" : 0,
 											"parameter_unitstyle" : 4
@@ -880,7 +877,6 @@
 											"parameter_enum" : [ "off", "on" ],
 											"parameter_longname" : "live.toggle[1]",
 											"parameter_mmax" : 1,
-											"parameter_modmode" : 0,
 											"parameter_shortname" : "live.toggle",
 											"parameter_type" : 2
 										}
@@ -905,7 +901,6 @@
 											"parameter_enum" : [ "off", "on" ],
 											"parameter_longname" : "live.toggle",
 											"parameter_mmax" : 1,
-											"parameter_modmode" : 0,
 											"parameter_shortname" : "live.toggle",
 											"parameter_type" : 2
 										}
