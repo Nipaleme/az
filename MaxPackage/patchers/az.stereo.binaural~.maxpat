@@ -1698,7 +1698,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 680.0, 380.0, 29.0, 22.0 ],
+					"patching_rect" : [ 683.0, 380.0, 29.0, 22.0 ],
 					"text" : "thru",
 					"varname" : "thru4binaural"
 				}
@@ -1871,13 +1871,13 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-2",
-					"linecount" : 4,
+					"linecount" : 5,
 					"maxclass" : "newobj",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 548.0, 195.0, 195.0, 62.0 ],
-					"text" : "az.osc.store @initwith \"/order 6, /hrtf kemar, /norm SN3D, /cutoff 1500.0, /fftsize 1024, /length 1024, /yaw 0, /pitch 0, /roll 0\""
+					"patching_rect" : [ 548.0, 195.0, 196.0, 76.0 ],
+					"text" : "az.osc.store @initwith \"/order 6, /hrtf kemar, /norm SN3D, /cutoff 5000.0, /fftsize 1024, /length 1024, /yaw 0, /pitch 0, /roll 0\" @changesonly 1"
 				}
 
 			}
@@ -1926,7 +1926,7 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-16",
+					"id" : "obj-44",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 2,
@@ -1936,14 +1936,14 @@
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "spat5.hoa.binaural~ @mc 1 @order 6 @dimension 3",
+					"text" : "spat5.hoa.binaural~ @mc 1 @order 7 @dimension 3",
 					"varname" : "binaural"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-17",
+					"id" : "obj-45",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 2,
@@ -1953,14 +1953,14 @@
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "spat5.hoa.rotate~ @dimension 3 @order 6 @mc 1",
+					"text" : "spat5.hoa.rotate~ @dimension 3 @order 7 @mc 1",
 					"varname" : "rotate"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-20",
+					"id" : "obj-46",
 					"linecount" : 4,
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -1971,7 +1971,7 @@
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "spat5.hoa.encoder~ @dimension 3 @order 6 @inputs 2 @mc 1 @initwith \"/source/1/aed -30 0 1, /source/2/aed 30 0 1\"",
+					"text" : "spat5.hoa.encoder~ @dimension 3 @order 7 @inputs 2 @mc 1 @initwith \"/source/1/aed -30 0 1, /source/2/aed 30 0 1\"",
 					"varname" : "encoder"
 				}
 
@@ -2014,21 +2014,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-24", 0 ],
-					"source" : [ "obj-16", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-16", 0 ],
-					"source" : [ "obj-17", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-20", 0 ],
+					"destination" : [ "obj-46", 0 ],
 					"source" : [ "obj-19", 0 ]
 				}
 
@@ -2037,13 +2023,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-26", 0 ],
 					"source" : [ "obj-2", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-17", 0 ],
-					"source" : [ "obj-20", 0 ]
 				}
 
 			}
@@ -2113,7 +2092,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-16", 0 ],
+					"destination" : [ "obj-44", 0 ],
 					"source" : [ "obj-28", 0 ]
 				}
 
@@ -2127,14 +2106,14 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-17", 0 ],
+					"destination" : [ "obj-45", 0 ],
 					"source" : [ "obj-31", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-16", 0 ],
+					"destination" : [ "obj-44", 0 ],
 					"order" : 0,
 					"source" : [ "obj-32", 0 ]
 				}
@@ -2142,7 +2121,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-17", 0 ],
+					"destination" : [ "obj-45", 0 ],
 					"order" : 1,
 					"source" : [ "obj-32", 0 ]
 				}
@@ -2150,7 +2129,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-20", 0 ],
+					"destination" : [ "obj-46", 0 ],
 					"order" : 2,
 					"source" : [ "obj-32", 0 ]
 				}
@@ -2160,6 +2139,27 @@
 				"patchline" : 				{
 					"destination" : [ "obj-5", 0 ],
 					"source" : [ "obj-4", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-24", 0 ],
+					"source" : [ "obj-44", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-44", 0 ],
+					"source" : [ "obj-45", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-45", 0 ],
+					"source" : [ "obj-46", 0 ]
 				}
 
 			}
