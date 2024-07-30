@@ -3,10 +3,9 @@
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
 
 
-<c74object name="az.holo.monitoring" module="az">
+<c74object name="az.holo.monitoring~" module="az">
   <digest>Binaural (6 DoF) monitoring from HOLOPHONIX outputs</digest>
-  <description><o>az.holo.monitoring</o> is a control interface for <o>az.holo.monitoring~</o> to
-    acheive a binaural (6 DoF) monitoring from HOLOPHONIX outputs. Patcher and method is inspired by <o>
+  <description><o>az.holo.monitoring~</o> acheive a binaural (6 DoF) monitoring from HOLOPHONIX outputs. It is designed to be used with it's control interface <o>az.holo.monitoring</o> Patcher and method is inspired by <o>
     spat5.virtualspeakers~</o>.<br /><br /></description>
 
   <!--INLETS-->
@@ -25,10 +24,10 @@
   <outletlist>
     <outlet id="0" type="OUTLET_TYPE">
       <digest>
-        Output OSC
+        Audio Output (0)
       </digest>
       <description>
-        Output OSC
+        Audio Output (0)
       </description>
     </outlet>
   </outletlist>
@@ -59,52 +58,61 @@
       <digest> Init and update <o>az.holo.monitoring~</o></digest>
       <description> Init and update <o>az.holo.monitoring~</o>. </description>
     </method>
-    <method name="/listener/xyz">
+    <method name="/gains">
       <arglist>
-        <arg type="number ][ number ][ number" />
+        <arg type="list" />
       </arglist>
-      <description>set the position of the listener.</description>
-      <digest>set the position of the listener</digest>
+      <description>set list of gains (numbers) for each channel.</description>
+      <digest>set list of gains (numbers) for each channel</digest>
     </method>
-    <method name="/listener/ypr">
+    <method name="/delays">
       <arglist>
-        <arg type="number ][ number ][ number" />
+        <arg type="list" />
       </arglist>
-      <description>set the 3 rotation axis of the listener (yaw, pitch, roll).</description>
-      <digest>set the 3 rotation axis of the listener</digest>
+      <description>set list of delays (numbers) for each channel.</description>
+      <digest>set list of delays (numbers) for each channel</digest>
+    </method>
+    <method name="/hrtf">
+      <arglist>
+        <arg type="string" />
+      </arglist>
+      <description>set the HRTF file to load (sofa).</description>
+      <digest>set the HRTF file to load (sofa)</digest>
+    </method>
+    <method name="/itd/latencymode">
+      <arglist>
+        <arg type="string" />
+      </arglist>
+      <description>set latency mode for the interaural time delay (itd) values are "nolatency" or "fixedlatency".</description>
+      <digest>set latency mode for the interaural time delay (itd) values are "nolatency" or "fixedlatency"</digest>
+    </method>
+    <method name="/interpolation/time">
+      <arglist>
+        <arg type="int" />
+      </arglist>
+      <description>set interpolation time for binaural rendering.</description>
+      <digest>set interpolation time for binaural rendering</digest>
     </method>
     <method name="/speaker/number">
       <arglist>
-        <arg type="number" />
+        <arg type="int" />
       </arglist>
-      <description>set the number of speaker.</description>
-      <digest>set the number of speaker</digest>
+      <description>set the number of speakers.</description>
+      <digest>set the number of speakers</digest>
     </method>
-    <method name="/udpsend">
+    <method name="/speakers/aed">
       <arglist>
-        <arg type="string ][ int" />
+        <arg type="list" />
       </arglist>
-      <description>set IP address (string) and port (int) of the <o>udpsend</o> that will discuss
-        with HOLOPHONIX's OSC Input (default: 4003).</description>
-      <digest>set IP address and port to discuss with HOLOPHONIX's OSC Input</digest>
+      <description>set the list of aed (azim, elev, dist) positions of speakers.</description>
+      <digest>set the list of aed (azim, elev, dist) positions of speakers</digest>
     </method>
-    <method name="/udpreceive">
+    <method name="/dsp/usurp">
       <arglist>
         <arg type="int" />
       </arglist>
-      <description>set the port (int) of the <o>udpreceive</o> to wich HOLOPHONIX External OSC
-        Output will respond (default: 1234) with HOLOPHONIX's OSC Input.</description>
-      <digest>set the OSC port port to wich HOLOPHONIX will respond</digest>
-    </method>
-    <method name="/tracker/udpreceive">
-      <arglist>
-        <arg type="int" />
-      </arglist>
-      <description>set the port (int) of the <o>udpreceive</o> to wich the headphone tracker will
-        send the rotation tracking datas Expect to receive a message /gamerotationvector from the
-        Open Source Android App "Sensor2OSC" the argument is a quaternion (see <o>spat5.quat.toeuler</o>
-        ).</description>
-      <digest>set the OSC port port to wich headtracker will send datas</digest>
+      <description>set the state of the dsp usurp parameter, 0 is OFF 1 is ON (see <o>spat5.dsp.management</o>).</description>
+      <digest>set the state of the dsp usurp parameter, 0 is OFF 1 is ON (see <o>spat5.dsp.management</o>)</digest>
     </method>
     <method name="/status/open">
       <description>open the status window and bring it to front.</description>
