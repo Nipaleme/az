@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 5,
-			"revision" : 5,
+			"minor" : 6,
+			"revision" : 2,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 36.0, 100.0, 752.0, 533.0 ],
+		"rect" : [ 61.0, 522.0, 752.0, 533.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -69,8 +69,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 5,
-							"revision" : 5,
+							"minor" : 6,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -133,14 +133,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 5,
-							"revision" : 5,
+							"minor" : 6,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 36.0, 126.0, 752.0, 507.0 ],
+						"rect" : [ 61.0, 548.0, 752.0, 507.0 ],
 						"bglocked" : 1,
 						"openinpresentation" : 0,
 						"default_fontsize" : 11.0,
@@ -175,7 +175,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 40.0, 360.5, 138.0, 21.0 ],
+									"patching_rect" : [ 40.0, 370.0, 138.0, 21.0 ],
 									"text" : "udpsend 127.0.0.1 4003"
 								}
 
@@ -721,6 +721,14 @@
 					"parameter_longname" : "live.text[6]"
 				}
 ,
+				"obj-1::obj-4::obj-27::obj-2" : 				{
+					"parameter_longname" : "live.text[41]"
+				}
+,
+				"obj-1::obj-4::obj-27::obj-3" : 				{
+					"parameter_longname" : "live.text[40]"
+				}
+,
 				"obj-1::obj-4::obj-51" : 				{
 					"parameter_longname" : "live.text[3]"
 				}
@@ -742,6 +750,20 @@
 				"bootpath" : "~/Documents/Max 8/Packages/az/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "az.osc.createnew2parent.js",
+				"bootpath" : "~/Documents/Max 8/Packages/az/javascript",
+				"patcherrelativepath" : "../javascript",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "az.osc.sendtoparent.js",
+				"bootpath" : "~/Documents/Max 8/Packages/az/javascript",
+				"patcherrelativepath" : "../javascript",
+				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
@@ -825,7 +847,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "spat5.osc.var.mxo",
+				"name" : "spat5.osc.view.mxo",
 				"type" : "iLaX"
 			}
 , 			{
