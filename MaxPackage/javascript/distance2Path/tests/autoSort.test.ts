@@ -7,6 +7,7 @@ import {
   orderPointsByNearestNeighbor,
   rotatePoints,
 } from "../src";
+import { sortByConvexHull, sortByQuickHull } from "../src/functions";
 import * as kdTree from "kd-tree-javascript";
 
 type Point = {
@@ -317,7 +318,7 @@ test("shuffle and sort AvignonPoints array see if same modulo index", () => {
 
     const vertex = giveVertexArray(rotatedPoints);
 
-    // console.log(vertex);
+    console.log(vertex);
 
     expect(rotatedPoints.length).toBe(simplifiedSourcePoints.length);
 
@@ -345,56 +346,96 @@ test("shuffle and sort AvignonPoints array see if same modulo index", () => {
   console.log(end - deb);
 
   console.log("----");
-console.log(
-  giveVertexArray([
-    { x: -6.8, y: -41 },
-    { x: -6.8, y: -36.8 },
-    { x: -6.3, y: -32 },
-    { x: -10.7, y: -26.9 },
-    { x: -10.7, y: -22.8 },
-    { x: -10.7, y: -18.8 },
-    { x: -18.8, y: -10.7 },
-    { x: -22.8, y: -10.7 },
-    { x: -26.8, y: -10.7 },
-    { x: -33.7, y: -4 },
-    { x: -33.7, y: -0 },
-    { x: -33.7, y: 4 },
-    { x: -26.8, y: 10.7 },
-    { x: -22.8, y: 10.7 },
-    { x: -18.8, y: 10.7 },
-    { x: -10.7, y: 18.8 },
-    { x: -10.7, y: 22.8 },
-    { x: -10.7, y: 26.9 },
-    { x: -6.3, y: 32 },
-    { x: -6.8, y: 36.8 },
-    { x: -6.8, y: 40.8 },
-    { x: -2.3, y: 46 },
-    { x: 2.3, y: 46 },
-    { x: 6.8, y: 40.8 },
-    { x: 6.8, y: 36.8 },
-    { x: 6.3, y: 32 },
-    { x: 10.7, y: 26.9 },
-    { x: 10.7, y: 22.8 },
-    { x: 10.7, y: 18.8 },
-    { x: 18.8, y: 10.7 },
-    { x: 22.8, y: 10.7 },
-    { x: 26.8, y: 10.7 },
-    { x: 33.7, y: 4 },
-    { x: 33.7, y: 0 },
-    { x: 33.7, y: -4 },
-    { x: 26.8, y: -10.7 },
-    { x: 22.8, y: -10.7 },
-    { x: 18.8, y: -10.7 },
-    { x: 10.7, y: -18.8 },
-    { x: 10.7, y: -22.8 },
-    { x: 10.7, y: -26.9 },
-    { x: 6.3, y: -32 },
-    { x: 6.8, y: -36.8 },
-    { x: 6.8, y: -41 },
-    { x: 2.3, y: -43.2 },
-    { x: -2.3, y: -43.2 },
-    { x: -6.8, y: -41 },
-  ])
-);
+  console.log(
+    giveVertexArray([
+      { x: -6.8, y: -41 },
+      { x: -6.8, y: -36.8 },
+      { x: -6.3, y: -32 },
+      { x: -10.7, y: -26.9 },
+      { x: -10.7, y: -22.8 },
+      { x: -10.7, y: -18.8 },
+      { x: -18.8, y: -10.7 },
+      { x: -22.8, y: -10.7 },
+      { x: -26.8, y: -10.7 },
+      { x: -33.7, y: -4 },
+      { x: -33.7, y: -0 },
+      { x: -33.7, y: 4 },
+      { x: -26.8, y: 10.7 },
+      { x: -22.8, y: 10.7 },
+      { x: -18.8, y: 10.7 },
+      { x: -10.7, y: 18.8 },
+      { x: -10.7, y: 22.8 },
+      { x: -10.7, y: 26.9 },
+      { x: -6.3, y: 32 },
+      { x: -6.8, y: 36.8 },
+      { x: -6.8, y: 40.8 },
+      { x: -2.3, y: 46 },
+      { x: 2.3, y: 46 },
+      { x: 6.8, y: 40.8 },
+      { x: 6.8, y: 36.8 },
+      { x: 6.3, y: 32 },
+      { x: 10.7, y: 26.9 },
+      { x: 10.7, y: 22.8 },
+      { x: 10.7, y: 18.8 },
+      { x: 18.8, y: 10.7 },
+      { x: 22.8, y: 10.7 },
+      { x: 26.8, y: 10.7 },
+      { x: 33.7, y: 4 },
+      { x: 33.7, y: 0 },
+      { x: 33.7, y: -4 },
+      { x: 26.8, y: -10.7 },
+      { x: 22.8, y: -10.7 },
+      { x: 18.8, y: -10.7 },
+      { x: 10.7, y: -18.8 },
+      { x: 10.7, y: -22.8 },
+      { x: 10.7, y: -26.9 },
+      { x: 6.3, y: -32 },
+      { x: 6.8, y: -36.8 },
+      { x: 6.8, y: -41 },
+      { x: 2.3, y: -43.2 },
+      { x: -2.3, y: -43.2 },
+      { x: -6.8, y: -41 },
+    ])
+  );
 });
 
+test("shuffle and sortBysConvexHull  array see if same modulo index", () => {
+  for (let i = 0; i < 100; i++) {
+    const simplifiedSourcePoints = filterColinearPoints(
+      [...pantheonPoints],
+      pantheonTree
+    );
+    // Shuffle the array indices
+    const shuffledPoints = shuffleArray(pantheonPoints.slice());
+    const shuffledTree = new kdTree.kdTree(
+      [...shuffledPoints],
+      distanceFunSquared,
+      ["x", "y"]
+    );
+    const simplifiedPoints = filterColinearPoints(
+      [...shuffledPoints],
+      shuffledTree
+    );
+
+    // Sort the shuffled array
+    const sortedPoints = sortByConvexHull(simplifiedPoints);
+
+  console.log(giveVertexArray(sortedPoints));
+
+    // Check if every point in the original array matches the corresponding point in the sorted array with an offset
+    const isSortCorrect = isSortedCorrectly(
+      simplifiedSourcePoints,
+      sortedPoints
+    );
+
+    // Check if the sort as been done in the reverse order
+    const reversedSorted = [...sortedPoints].reverse();
+
+    const isRevSortCorrect = isSortedCorrectly(
+      simplifiedSourcePoints,
+      reversedSorted
+    );
+
+    expect(isSortCorrect || isRevSortCorrect).toBe(true);
+  }
+});

@@ -286,7 +286,8 @@ function distance2Line(
   return distance;
 }
 
-function pointIsInPoly(point: Point, polygon: Point[]) { // https://stackoverflow.com/questions/217578/how-can-i-determine-whether-a-2d-point-is-within-a-polygon
+function pointIsInPoly(point: Point, polygon: Point[]) {
+  // https://stackoverflow.com/questions/217578/how-can-i-determine-whether-a-2d-point-is-within-a-polygon
   let isInside = false;
 
   let minX = Number.POSITIVE_INFINITY;
@@ -380,17 +381,15 @@ export function isPointCrossLine(target: Point, points: Point[]) {
         x: points[1].x + (points[0].x - points[1].x) * 1000,
         y: points[1].y + (points[0].y - points[1].y) * 1000,
       };
-      return doIntersect(
-        { x: 0, y: 0 },
-        target,
-        points[1],
-        exctendedLeftPoint
-      );
+      return doIntersect({ x: 0, y: 0 }, target, points[1], exctendedLeftPoint);
     } else if (index === points.length - 2) {
-
       const exctendedRightPoint = {
-        x:  points[points.length - 2].x + (points[points.length - 1].x -  points[points.length - 2].x) * 1000,
-        y:  points[points.length - 2].y + (points[points.length - 1].y -  points[points.length - 2].y) * 1000,
+        x:
+          points[points.length - 2].x +
+          (points[points.length - 1].x - points[points.length - 2].x) * 1000,
+        y:
+          points[points.length - 2].y +
+          (points[points.length - 1].y - points[points.length - 2].y) * 1000,
       };
       return doIntersect(
         { x: 0, y: 0 },
@@ -449,6 +448,8 @@ export function filterColinearPoints(points: Point[], tree) {
       if (!(middlePoint.x === p1.x && middlePoint.y === p1.y)) {
         filteredPoints.push(p1);
       } else {
+        // console.log(p1)
+        filteredPoints.push(p1);
         // filteredPoints.push(p2, p3);
       }
     }
@@ -574,125 +575,138 @@ const dist2Path = async () => {
     console.log(giveVertexArray(rotatedPoints));
     const receiveUdpSocket = oscReceiverFactory();
     const sendUdpSocket = oscSenderFactory();
+    let target = { x: 0, y: 0, z: 0 } as Point;
 
     const receive = (message: THoloPacket) => {
       const { address, args } = message;
-      if (address[address.length - 1] === "xyz" && args.length === 3) {
-        const target = { x: args[0], y: args[1], z: args[2] } as Point;
+      if (address[address.length - 1] === "aed") {
+      } else if (address[address.length - 1] === "xyz" && args.length === 3) {
+        target = { x: Number(args[0]), y: Number(args[1]) };
+      } else if (
+        address.length === 3 &&
+        address[2] === "x" &&
+        args.length === 1
+      ) {
+        target.x = Number(args[0]);
+      } else if (
+        address.length === 3 &&
+        address[2] === "y" &&
+        args.length === 1
+      ) {
+        target.y = Number(args[0]);
+      } else {
+        return;
+      }
+      const index = address[1];
 
-        const index = address[1];
-
-        let sendDefaultValue = false;
-        if (loop === true) {
-          const isInside = pointIsInPoly(target, rotatedPoints);
-          sendDefaultValue = isInside;
-        } else {
-          const indexPointCrossLine = isPointCrossLine(target, rotatedPoints);
-          sendDefaultValue = indexPointCrossLine === -1;
-        }
-        if (sendDefaultValue === true) {
-          sendUdpSocket.send({
-            address: ["track", String(index), "direct", "gain"],
-            args: [0],
-          });
-          sendUdpSocket.send({
-            address: ["track", String(index), "early", "gain"],
-            args: [-8.5],
-          });
-          sendUdpSocket.send({
-            address: ["track", String(index), "reverb", "send"],
-            args: [-18],
-          });
-          return;
-        }
-
-        const nearestPoints: [Point, number][] = simplifiedTree.nearest(
-          target,
-          k
-        );
-        const nearestWithIndex = nearestPoints.map(([point, dist]) => {
-          const index = rotatedPoints.findIndex(({ x, y }) => {
-            return x === point.x && y === point.y;
-          });
-          return { point, dist, index };
-        });
-
-        let result: { [key: string]: number } = {};
-
-        nearestWithIndex.forEach((corner) => {
-          if (corner.index === -1) return;
-          const nextIndex =
-            corner.index === rotatedPoints.length - 1
-              ? loop === false
-                ? -1
-                : 0
-              : corner.index + 1;
-          const previousIndex =
-            corner.index === 0
-              ? loop === false
-                ? -1
-                : rotatedPoints.length - 1
-              : corner.index - 1;
-          const prevCorner: Corner = {
-            point: rotatedPoints[previousIndex],
-            dist: undefined,
-          };
-          const currCorner: Corner = {
-            point: rotatedPoints[corner.index],
-            dist: corner.dist,
-          };
-          const nextCorner: Corner = {
-            point: rotatedPoints[nextIndex],
-            dist: undefined,
-          };
-          if (
-            previousIndex !== -1 &&
-            !result.hasOwnProperty(`${previousIndex + 1}-${corner.index + 1}`)
-          ) {
-            const distWithPrevious = distance2Line(
-              target,
-              prevCorner,
-              currCorner,
-              loop === false && previousIndex === 0 // if open loop, then extend the first segment to a line
-            );
-            result[`${previousIndex + 1}-${corner.index + 1}`] =
-              distWithPrevious;
-          }
-          if (
-            nextIndex !== -1 &&
-            !result.hasOwnProperty(`${corner.index + 1}-${nextIndex + 1}`)
-          ) {
-            const distWithNext = distance2Line(
-              target,
-              currCorner,
-              nextCorner,
-              loop === false && nextIndex === rotatedPoints.length - 1 // if open loop, then extend the last segment to a line
-            );
-            result[`${corner.index + 1}-${nextIndex + 1}`] = distWithNext;
-          }
-        });
-
-        const finalDist = Object.entries(result).sort(
-          ([keyA, a], [keyB, b]) => a - b
-        )[0][1];
-        // console.log(result, finalDist);
-        const directG = -8.69 * Math.log(finalDist) - 0.5;
+      let sendDefaultValue = false;
+      if (loop === true) {
+        const isInside = pointIsInPoly(target, rotatedPoints);
+        sendDefaultValue = isInside;
+      } else {
+        const indexPointCrossLine = isPointCrossLine(target, rotatedPoints);
+        sendDefaultValue = indexPointCrossLine === -1;
+      }
+      if (sendDefaultValue === true) {
         sendUdpSocket.send({
           address: ["track", String(index), "direct", "gain"],
-          args: [Math.min(directG, 0)],
+          args: [0],
         });
-        const earlyG = -8.51 * Math.log(finalDist) - 8.51;
         sendUdpSocket.send({
           address: ["track", String(index), "early", "gain"],
-          args: [Math.min(earlyG, -8.5)],
+          args: [-8.5],
         });
-        const reverbS = -0.13 * finalDist - 18;
         sendUdpSocket.send({
           address: ["track", String(index), "reverb", "send"],
-          args: [Math.min(reverbS, -18)],
+          args: [-18],
         });
-      } else if (address[address.length - 1] === "aed") {
+        return;
       }
+
+      const nearestPoints: [Point, number][] = simplifiedTree.nearest(
+        target,
+        k
+      );
+      const nearestWithIndex = nearestPoints.map(([point, dist]) => {
+        const index = rotatedPoints.findIndex(({ x, y }) => {
+          return x === point.x && y === point.y;
+        });
+        return { point, dist, index };
+      });
+
+      let result: { [key: string]: number } = {};
+
+      nearestWithIndex.forEach((corner) => {
+        if (corner.index === -1) return;
+        const nextIndex =
+          corner.index === rotatedPoints.length - 1
+            ? loop === false
+              ? -1
+              : 0
+            : corner.index + 1;
+        const previousIndex =
+          corner.index === 0
+            ? loop === false
+              ? -1
+              : rotatedPoints.length - 1
+            : corner.index - 1;
+        const prevCorner: Corner = {
+          point: rotatedPoints[previousIndex],
+          dist: undefined,
+        };
+        const currCorner: Corner = {
+          point: rotatedPoints[corner.index],
+          dist: corner.dist,
+        };
+        const nextCorner: Corner = {
+          point: rotatedPoints[nextIndex],
+          dist: undefined,
+        };
+        if (
+          previousIndex !== -1 &&
+          !result.hasOwnProperty(`${previousIndex + 1}-${corner.index + 1}`)
+        ) {
+          const distWithPrevious = distance2Line(
+            target,
+            prevCorner,
+            currCorner,
+            loop === false && previousIndex === 0 // if open loop, then extend the first segment to a line
+          );
+          result[`${previousIndex + 1}-${corner.index + 1}`] = distWithPrevious;
+        }
+        if (
+          nextIndex !== -1 &&
+          !result.hasOwnProperty(`${corner.index + 1}-${nextIndex + 1}`)
+        ) {
+          const distWithNext = distance2Line(
+            target,
+            currCorner,
+            nextCorner,
+            loop === false && nextIndex === rotatedPoints.length - 1 // if open loop, then extend the last segment to a line
+          );
+          result[`${corner.index + 1}-${nextIndex + 1}`] = distWithNext;
+        }
+      });
+
+      const finalDist = Object.entries(result).sort(
+        ([keyA, a], [keyB, b]) => a - b
+      )[0][1];
+      console.log(result, finalDist);
+      const directG = -8.69 * Math.log(finalDist) - 0.5;
+      sendUdpSocket.send({
+        address: ["track", String(index), "direct", "gain"],
+        args: [Math.min(directG, 0)],
+      });
+      const earlyG = -8.51 * Math.log(finalDist) - 8.51;
+      sendUdpSocket.send({
+        address: ["track", String(index), "early", "gain"],
+        args: [Math.min(earlyG, -8.5)],
+      });
+      const reverbS = -0.13 * finalDist - 18;
+      sendUdpSocket.send({
+        address: ["track", String(index), "reverb", "send"],
+        args: [Math.min(reverbS, -18)],
+      });
     };
 
     await receiveUdpSocket.listen(listenPort, "127.0.0.1");
