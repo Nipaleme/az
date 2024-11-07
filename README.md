@@ -34,9 +34,14 @@
   </tr>
 </table>
 
-## Dependencies
+### Dependencies
 
 This toolbox as depencies on the Max packages : [spat5](https://forum.ircam.fr/projects/detail/spat/), [Bach](https://www.bachproject.net/) and [Dada](https://www.bachproject.net/dada/).
+
+## Summary
+
+- [Objects List](#list-of-objects)
+- [Examples](#examples)
 
 ## List of Objects
 
@@ -105,6 +110,8 @@ _Convert .csv file to osc messages_
 <img src="Medias/az.osc.csv2osc.webp" style="max-width: 800px; width: 100%;" />
 
 ## Examples
+
+- [ht.dada.boids.pantheon](#htdadaboidspantheon)
 
 ### **ht.dada.boids.pantheon**
 
