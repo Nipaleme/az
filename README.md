@@ -40,7 +40,19 @@ This toolbox as depencies on the Max packages : [spat5](https://forum.ircam.fr/p
 
 ## List of Objects
 
+- [az.holo.immersive.metrics](#azholoimmersivemetrics)
+- [az.holo.monitoring](#azholomonitoring)
+- [az.stereo.binaural~](#azstereobinaural)
+- [az.stereo.ab~](#azstereoab)
+- [az.holo.rectangle](#azholorectangle)
+- [az.osc.store](#azoscstore)
+- [az.osc.store.vanilla](#azoscstorevanilla)
+- [az.osc.csv2coll](#azosccsv2coll)
+- [az.osc.csv2osc](#azosccsv2osc)
+
 ### **az.holo.immersive.metrics**
+
+_Ideal spherical system generator and algorithmic analysis linked to HOLOPHONIX speaker setups_
 
 <img src="Medias/az.holo.immersive.metrics.webp" style="max-width: 1000px; width: 100%;" />
 
