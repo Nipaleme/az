@@ -11,9 +11,7 @@
   </tr>
   <tr>
   <td colspan="2">
-
     Adrien ZANNI is a sound-engineer, sound scenographer, PhD student with Paris 8 University (EDESTA - MUSIDANCE/CICM Team) and lead developer of HOLOPHONIX.
-
   </td>
   </tr>
   <tr>
