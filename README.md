@@ -34,36 +34,66 @@
   </tr>
 </table>
 
+## Dependencies
+
+This toolbox as depencies on the Max packages : [spat5](https://forum.ircam.fr/projects/detail/spat/), [Bach](https://www.bachproject.net/) and [Dada](https://www.bachproject.net/dada/).
+
 ## List of Objects
-
-### **az.holo.rectangle**
-
-<img src="Medias/az.holo.rectangle.webp" style="max-width: 1000px; width: 100%;" />
-
-### **az.holo.monitoring**
-
-<img src="Medias/az.holo.monitoring.webp" style="max-width: 1000px; width: 100%;" />
 
 ### **az.holo.immersive.metrics**
 
 <img src="Medias/az.holo.immersive.metrics.webp" style="max-width: 1000px; width: 100%;" />
 
+### **az.holo.monitoring**
+
+_Binaural (6 DoF) monitoring from HOLOPHONIX outputs_
+
+<img src="Medias/az.holo.monitoring.webp" style="max-width: 1000px; width: 100%;" />
+
+### **az.stereo.binaural~**
+
+_Binaural (3 DoF) monitoring for stereo input with magLs method_
+
+<img src="Medias/az.stereo.binaural.webp" style="max-width: 1000px; width: 100%;" />
+
+### **az.stereo.ab~**
+
+_Virtual multi-microphonic simulator_
+
+<img src="Medias/az.stereo.ab.webp" style="max-width: 1000px; width: 100%;" />
+
+### **az.holo.rectangle**
+
+_Arrange speakers on a rectangle path with orientation_
+
+<img src="Medias/az.holo.rectangle.webp" style="max-width: 1000px; width: 100%;" />
+
 ### **az.osc.store**
+
+_Create an OSC Store to manage patcher states_
 
 <img src="Medias/az.osc.store.webp" style="max-width: 800px; width: 100%;" />
 
 ### **az.osc.store.vanilla**
 
+_Create an OSC Store to manage patcher states / no external depencies_
+
 <img src="Medias/az.osc.store.vanilla.webp" style="max-width: 800px; width: 100%;" />
 
 ### **az.osc.csv2coll**
+
+_Convert .csv file to coll_
 
 <img src="Medias/az.osc.csv2coll.webp" style="max-width: 800px; width: 100%;" />
 
 ### **az.osc.csv2osc**
 
+_Convert .csv file to osc messages_
+
 <img src="Medias/az.osc.csv2osc.webp" style="max-width: 800px; width: 100%;" />
 
-## Dependencies
+## Examples
 
-This toolbox as depencies on the Max packages : [spat5](https://forum.ircam.fr/projects/detail/spat/), [Bach](https://www.bachproject.net/) and [Dada](https://www.bachproject.net/dada/).
+### **ht.dada.boids.pantheon**
+
+<img src="Medias/ht.dada.boids.Pantheon.webp" style="max-width: 800px; width: 100%;" />
