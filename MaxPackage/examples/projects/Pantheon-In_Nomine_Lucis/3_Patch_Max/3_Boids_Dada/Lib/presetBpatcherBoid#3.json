@@ -1,0 +1,43 @@
+{
+	"pattrstorage" : 	{
+		"name" : "presetBpatcherBoid#3",
+		"slots" : 		{
+			"1" : 			{
+				"id" : 1,
+				"data" : 				{
+					"Align" : [ 0.0 ],
+					"Avoid" : [ 7.0 ],
+					"barrierF" : [ 2.0 ],
+					"barrierPos" : [ 100.0 ],
+					"leftRight" : [ 2.0 ],
+					"maxSpeed" : [ 30.0 ],
+					"speedX" : [ 0.0 ],
+					"speedY" : [ 0.0 ],
+					"topBottom" : [ 2.0 ],
+					"windForce" : [ 0.0 ]
+				}
+
+			}
+,
+			"2" : 			{
+				"id" : 2,
+				"data" : 				{
+					"Align" : [ 86.614173228346374 ],
+					"Avoid" : [ 7.0 ],
+					"barrierF" : [ 2.0 ],
+					"barrierPos" : [ 100.0 ],
+					"leftRight" : [ 2.0 ],
+					"maxSpeed" : [ 30.0 ],
+					"speedX" : [ 0.0 ],
+					"speedY" : [ 0.0 ],
+					"topBottom" : [ 2.0 ],
+					"windForce" : [ 0.0 ]
+				}
+
+			}
+
+		}
+
+	}
+
+}

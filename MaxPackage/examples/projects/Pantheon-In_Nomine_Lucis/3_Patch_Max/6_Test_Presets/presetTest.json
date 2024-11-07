@@ -1,0 +1,49 @@
+{
+	"pattrstorage" : 	{
+		"name" : "presetTest",
+		"slots" : 		{
+			"1" : 			{
+				"id" : 1,
+				"data" : 				{
+					"slider1" : [ 67 ]
+				}
+
+			}
+,
+			"2" : 			{
+				"id" : 2,
+				"data" : 				{
+					"slider1" : [ 51 ]
+				}
+
+			}
+,
+			"3" : 			{
+				"id" : 3,
+				"data" : 				{
+					"slider1" : [ 46 ]
+				}
+
+			}
+,
+			"4" : 			{
+				"id" : 4,
+				"data" : 				{
+					"slider1" : [ 56 ]
+				}
+
+			}
+,
+			"5" : 			{
+				"id" : 5,
+				"data" : 				{
+					"slider1" : [ 42 ]
+				}
+
+			}
+
+		}
+
+	}
+
+}

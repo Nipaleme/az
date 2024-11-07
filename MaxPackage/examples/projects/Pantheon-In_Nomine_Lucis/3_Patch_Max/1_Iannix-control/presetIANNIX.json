@@ -1,0 +1,53 @@
+{
+	"pattrstorage" : 	{
+		"name" : "presetIANNIX",
+		"slots" : 		{
+			"1" : 			{
+				"id" : 1,
+				"data" : 				{
+					"Center1" : [ 0.0 ],
+					"Center2" : [ 0.0 ],
+					"Center3" : [ 0.0 ],
+					"Center4" : [ 0.0 ],
+					"Speed1" : [ 1.0 ],
+					"Speed2" : [ 1.0 ],
+					"Speed3" : [ 1.0 ],
+					"Speed4" : [ 4.0 ],
+					"Width1" : [ 54.0 ],
+					"Width2" : [ 54.0 ],
+					"Width3" : [ 54.0 ],
+					"Width4" : [ 54.0 ],
+					"live.dial" : [ 54.0 ],
+					"live.dial[1]" : [ 0.0 ],
+					"live.text" : [ 0.0 ]
+				}
+
+			}
+,
+			"2" : 			{
+				"id" : 2,
+				"data" : 				{
+					"Center1" : [ 112.0 ],
+					"Center2" : [ 112.0 ],
+					"Center3" : [ 112.0 ],
+					"Center4" : [ 112.0 ],
+					"Speed1" : [ 1.0 ],
+					"Speed2" : [ 1.0 ],
+					"Speed3" : [ 1.0 ],
+					"Speed4" : [ 4.0 ],
+					"Width1" : [ 54.0 ],
+					"Width2" : [ 54.0 ],
+					"Width3" : [ 54.0 ],
+					"Width4" : [ 54.0 ],
+					"live.dial" : [ 54.0 ],
+					"live.dial[1]" : [ 112.0 ],
+					"live.text" : [ 0.0 ]
+				}
+
+			}
+
+		}
+
+	}
+
+}

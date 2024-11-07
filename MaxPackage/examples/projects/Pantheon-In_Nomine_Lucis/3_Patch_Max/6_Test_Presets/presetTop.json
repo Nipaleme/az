@@ -1,0 +1,31 @@
+{
+	"pattrstorage" : 	{
+		"name" : "presetTop",
+		"slots" : 		{
+			"1" : 			{
+				"id" : 1,
+				"data" : 				{
+					"float" : [ 0.0 ],
+					"multiSlider" : [ -1.0, 0.061224490404129, 0.088435374200344, 0.142857149243355, 0.238095238804817, 0.333333343267441, 0.129251703619957, 0.129251703619957 ],
+					"bpatcher_test::presetTest" : [ 1 ],
+					"bpatcher_test[1]::presetTest" : [  ]
+				}
+
+			}
+,
+			"5" : 			{
+				"id" : 5,
+				"data" : 				{
+					"float" : [ 0.0 ],
+					"multiSlider" : [ -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0 ],
+					"bpatcher_test::presetTest" : [ 5 ],
+					"bpatcher_test[1]::presetTest" : [ 5 ]
+				}
+
+			}
+
+		}
+
+	}
+
+}

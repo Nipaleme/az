@@ -1,0 +1,238 @@
+{
+	"patcher" : 	{
+		"fileversion" : 1,
+		"appversion" : 		{
+			"major" : 8,
+			"minor" : 1,
+			"revision" : 11,
+			"architecture" : "x64",
+			"modernui" : 1
+		}
+,
+		"classnamespace" : "dsp.gen",
+		"rect" : [ 34.0, 87.0, 909.0, 958.0 ],
+		"bglocked" : 0,
+		"openinpresentation" : 0,
+		"default_fontsize" : 12.0,
+		"default_fontface" : 0,
+		"default_fontname" : "Arial",
+		"gridonopen" : 1,
+		"gridsize" : [ 15.0, 15.0 ],
+		"gridsnaponopen" : 1,
+		"objectsnaponopen" : 1,
+		"statusbarvisible" : 2,
+		"toolbarvisible" : 1,
+		"lefttoolbarpinned" : 0,
+		"toptoolbarpinned" : 0,
+		"righttoolbarpinned" : 0,
+		"bottomtoolbarpinned" : 0,
+		"toolbars_unpinned_last_save" : 0,
+		"tallnewobj" : 0,
+		"boxanimatetime" : 200,
+		"enablehscroll" : 1,
+		"enablevscroll" : 1,
+		"devicewidth" : 0.0,
+		"description" : "",
+		"digest" : "",
+		"tags" : "",
+		"style" : "",
+		"subpatcher_template" : "",
+		"assistshowspatchername" : 0,
+		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-16",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 618.0, 720.0, 74.0, 20.0 ],
+					"text" : "z coordinate"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-6",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 556.0, 17.0, 70.0, 20.0 ],
+					"text" : "Attractor Z"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-15",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 629.0, 17.0, 28.0, 22.0 ],
+					"text" : "in 3"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-14",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 325.0, 730.0, 74.0, 20.0 ],
+					"text" : "y coordinate"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-13",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 29.0, 726.0, 74.0, 20.0 ],
+					"text" : "x coordinate"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-10",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 629.0, 696.0, 35.0, 22.0 ],
+					"text" : "out 3"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-8",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 252.0, 17.0, 70.0, 20.0 ],
+					"text" : "Attractor Y"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-7",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 67.0, 20.0, 83.0, 20.0 ],
+					"text" : "Attractor X"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-5",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 329.0, 702.0, 35.0, 22.0 ],
+					"text" : "out 2"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"code" : "/*\r\nAttracts a location vector to an input, using a simple physics simulation.\r\nLocation is then converted to parameters for a bank of oscillators\r\n\r\nDillon Bastan 2018\r\n*/\r\n\r\n\r\n\r\n\r\n\r\n/*****  FUNCTIONS  ******/\r\n\r\n//Assign values of one vector to another\r\nvec_dup(y, x) {\r\n\ty.poke( x.peek(0), 0 );\r\n\ty.poke( x.peek(1), 1 );\r\n\ty.poke( x.peek(2), 2 ); //z channel\r\n\treturn 0;\r\n}\r\n\r\n//Add one vector to another\r\nvec_add(y, x) {\r\n\ty.poke( y.peek(0) + x.peek(0), 0 );\r\n\ty.poke( y.peek(1) + x.peek(1), 1 );\r\n\ty.poke( y.peek(2) + x.peek(2), 2 );//z channel\r\n\treturn 0;\r\n}\r\n\r\n//Subtract one vector from another\r\nvec_sub(y, x) {\r\n\ty.poke( y.peek(0) - x.peek(0), 0 );\r\n\ty.poke( y.peek(1) - x.peek(1), 1 );\r\n\ty.poke( y.peek(2) - x.peek(2), 2 );//z channel\r\n\treturn 0;\r\n}\r\n\r\n//divide one vector by a scalar\r\nvec_div(y, x) {;\r\n\ty.poke( y.peek(0) / x, 0 );\r\n\ty.poke( y.peek(1) / x, 1 );\r\n\ty.poke( y.peek(2) / x, 2 );//z channel\r\n\treturn 0;\r\n}\r\n\r\n//multiply one vector by a scalar\r\nvec_mult(y, x) {\r\n\ty.poke( y.peek(0) * x, 0 );\r\n\ty.poke( y.peek(1) * x, 1 );\r\n\ty.poke( y.peek(2) * x, 2 );//z channel\r\n\treturn 0;\r\n}\r\n\r\n//Get the magnitude of a vector\r\nvec_getmag(x) {\r\n\treturn sqrt( pow(x.peek(0),2) + pow(x.peek(1),2) + pow(x.peek(2),2) ); //z channel : + pow(x.peek(2),2)\r\n}\r\n\r\n//Normalize a vector\r\nvec_norm(x) {\r\n\tmag = vec_getmag(x);\r\n\tx.poke( x.peek(0)/mag, 0 );\r\n\tx.poke( x.peek(1)/mag, 1 );\r\n\tx.poke( x.peek(2)/mag, 2 ); //z channel\r\n\treturn 0;\r\n}\r\n\r\n//Limit the magnitude of a vector\r\nvec_limit(x, limit) {\r\n\tmag = vec_getmag(x);\r\n\tmag = (mag>limit)? limit : mag;\r\n\tvec_norm(x);\r\n\tx.poke( x.peek(0)*mag, 0);\r\n\tx.poke( x.peek(1)*mag, 1);\r\n\tx.poke( x.peek(2)*mag, 2); //z channel\r\n\treturn 0;\r\n}\r\n\r\n//Constrain value range of a vector\r\nvec_constrain(x, lo, hi) {\r\n\tx.poke( min( max( x.peek(0), lo), hi), 0);\r\n\tx.poke( min( max( x.peek(1), lo), hi), 1);\r\n\tx.poke( min( max( x.peek(2), lo), hi), 2);  //z channel\r\n\treturn 0;\r\n}\r\n\r\n/**********************/\r\n\r\n\r\n\r\n\r\n/*****  GLOBALS  ******/\r\n\r\n//Params\r\nParam attractionCoef;\r\nParam velocityLimit;\r\nParam frictionCoef;\r\nParam loFreq;\r\nParam hiFreq;\r\n//Buffer\r\nBuffer oscMasses(\"oscMasses\");\r\n//Data\r\nData attractor(3);   //xyz : 3 sinon xy : 2\r\nData location(3);\r\nData velocity(3);\r\nData friction(3);\r\nData vector(3);\r\n//History\r\n//History osc_freq(0);\r\n//History osc_amp(0);\r\n//Vars\r\nupdateInterval = samplerate/1000*30;\t//30 ms\r\ninX = in1;\r\ninY = in2;\r\ninZ = in3;  //z channel\r\n\r\n/**********************/\r\n\r\n\r\n\r\n\r\n/*****   ATTRACTION   ******/\r\n\r\n//Check if next frame to calculate new position, \r\n//so we don't accumulate at sample rate!!!\r\nc = counter(1, 0, updateInterval);\r\nif ( delta(c)<0 ) {\r\n\t//Assign new attraction point\r\n\tattractor.poke(inX, 0);\r\n\tattractor.poke(inY, 1);\r\n\tattractor.poke(inZ, 2);                   //z channel\r\n\t//Get direction from current location\r\n\tvec_sub(attractor, location);            //z channel location?????\r\n\tif ( sqrt(pow(attractor.peek(0),2) + pow(attractor.peek(1),2)) > 0.25 ) {\r\n\t//Normalize and scale\r\n\tvec_norm(attractor);\r\n\tvec_mult(attractor, attractionCoef);\r\n\t//Get friction\r\n\tvec_dup(friction, velocity);             //z channel velocity ??????\r\n\tvec_norm(friction);\r\n\tvec_mult(friction, -frictionCoef);\r\n\t//Sum Force\r\n\tvec_add(attractor, friction);\r\n\t//scale by assigned mass\r\n\tmass = oscMasses.peek( mc_channel-1 );\r\n\tvec_div(attractor, mass);\r\n\t//Velocity\r\n\tvec_add(velocity, attractor);\r\n\t} else {\r\n\tvector.poke(noise(), 0);\r\n\tvector.poke(noise(), 1);\r\n\tvector.poke(noise(), 2); \r\n\t\r\n\tvec_norm(vector);\r\n\tvec_mult(vector, attractionCoef);\r\n\t//Get friction\r\n\tvec_dup(friction, velocity);             //z channel velocity ??????\r\n\tvec_norm(friction);\r\n\tvec_mult(friction, -frictionCoef);\r\n\t//Sum Force\r\n\tvec_add(vector, friction);\r\n\t//scale by assigned mass\r\n\tmass = oscMasses.peek( mc_channel-1 );\r\n\tvec_div(vector, mass);\r\n\t\r\n\tvec_add(velocity, vector);\r\n \t}\r\n\t//Velocity\r\n\tvec_limit(velocity, velocityLimit);\r\n\t//Location (values we will use)\r\n\tvec_add(location, velocity);\r\n\tvec_constrain(location, -100, 100);\r\n\t//Convert X coordinate (-1. to 1.) to Frequency value range\r\n\t//osc_freq = scale( location.peek(0), -1, 1, loFreq, hiFreq );\r\n\t//osc_freq = pow(2, ( osc_freq*127 - 69) / 12) * 440;\t//MTOF\r\n\t//Convert Y corrdinate to Amplitude value (0. to 1.)\r\n\t//osc_amp = (location.peek(1)+1) * 0.5;\r\n}\r\n//Output\r\nout1 = location.peek(0);//For jit.gl display\r\nout2 = location.peek(1);\r\nout3 = location.peek(2);  //z channel",
+					"fontface" : 0,
+					"fontname" : "<Monospaced>",
+					"fontsize" : 12.0,
+					"id" : "obj-3",
+					"maxclass" : "codebox",
+					"numinlets" : 3,
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "" ],
+					"patching_rect" : [ 29.0, 60.0, 619.0, 598.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-1",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 29.0, 17.0, 28.0, 22.0 ],
+					"text" : "in 1"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-2",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 329.0, 17.0, 28.0, 22.0 ],
+					"text" : "in 2"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-4",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 29.0, 702.0, 35.0, 22.0 ],
+					"text" : "out 1"
+				}
+
+			}
+ ],
+		"lines" : [ 			{
+				"patchline" : 				{
+					"destination" : [ "obj-3", 0 ],
+					"source" : [ "obj-1", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-3", 2 ],
+					"source" : [ "obj-15", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-3", 1 ],
+					"source" : [ "obj-2", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-10", 0 ],
+					"source" : [ "obj-3", 2 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-4", 0 ],
+					"source" : [ "obj-3", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 0 ],
+					"source" : [ "obj-3", 1 ]
+				}
+
+			}
+ ],
+		"autosave" : 0
+	}
+
+}

@@ -1,0 +1,953 @@
+// var IpPort = "192.168.0.10";
+var IpPort = "127.0.0.1";
+var IpPort_Thierry = "100.100.100.70:45678"
+
+//Inside-Outside Polygone
+var nvert = 4;
+var vert_G = [
+    {x: 2.300000, y: 46.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 6.800000, y: 40.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 6.800000, y: 36.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 6.300000, y: 32.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 10.700000, y: 26.900000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 10.700000, y: 22.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 10.700000, y: 18.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 6.300000, y: 13.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //8
+    {x: 13.700000, y: 6.250000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //9
+    {x: 18.800000, y: 10.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 22.800000, y: 10.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 26.800000, y: 10.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 33.700000, y: 4.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 33.700000, y: 0.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 33.700000, y: -4.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 26.800000, y: -10.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 22.800000, y: -10.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 18.800000, y: -10.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 13.700000, y: -6.250000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //19
+    {x: 6.300000, y: -13.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //20
+    {x: 10.700000, y: -18.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 10.700000, y: -22.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 10.700000, y: -26.900000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 6.300000, y: -32.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 6.800000, y: -36.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 6.800000, y: -41.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 2.300000, y: -43.200000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -2.300000, y: -43.200000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -6.800000, y: -41.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -6.800000, y: -36.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -6.300000, y: -32.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -10.700000, y: -26.900000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -10.700000, y: -22.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -10.700000, y: -18.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -6.300000, y: -13.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //35
+    {x: -13.700000, y: -6.250000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //36
+    {x: -18.800000, y: -10.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -22.800000, y: -10.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -26.800000, y: -10.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -33.700000, y: -4.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -33.700000, y: -0.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -33.700000, y: 4.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -26.800000, y: 10.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -22.800000, y: 10.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -18.800000, y: 10.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -13.700000, y: 6.250000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //46
+    {x: -6.300000, y: 13.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //47
+    {x: -10.700000, y: 18.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -10.700000, y: 22.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -10.700000, y: 26.900000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -6.300000, y: 32.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -6.800000, y: 36.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -6.800000, y: 40.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -2.300000, y: 46.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 2.300000, y: 46.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+];
+
+var Bypass_slave = 0;
+/*
+var vert_G = [
+    {x: 0, y:0},
+    {x: 10, y:0},
+    {x: 10, y:10},
+    {x: 0, y:10},
+];*/
+var test_G = {x: 0, y: 1, z: 1};
+
+//Variation du random
+var Variation = 40;
+var Variation_liste = [
+    {In: 0, Out: 54}
+];
+var Variation_liste_4_Groupes = [
+    {In: 0, Out: 54},
+    {In: 0, Out: 54},
+    {In: 0, Out: 54},
+    {In: 0, Out: 54},
+    {In: 55, Out: 62},
+];
+
+//INDICES SPEED KNN
+Indices_speed_knn = [
+    {Speed1: 5, Speed2: 5, Speed3: 5, Speed4: 5},
+];
+
+//INIT VAR BEZIER
+
+var points3 = [
+    {x: 0, y: 0, z: 0, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 1, y: 1, z: 1, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+];
+
+//LOG DES POSITIONS DES TRAJECTOIRES KNN
+var Log = [
+    {Id: 1, Out:0},
+    {Id: 2, Out:0},
+    {Id: 3, Out:0},
+    {Id: 4, Out:0},
+    {Id: 5, Out:0},
+    {Id: 6, Out:0},
+    {Id: 7, Out:0},
+    {Id: 8, Out:0},
+    {Id: 9, Out:0},
+    {Id: 10, Out:0},
+    {Id: 11, Out:0},
+    {Id: 12, Out:0},
+    {Id: 13, Out:0},
+    {Id: 14, Out:0},
+    {Id: 15, Out:0},
+    {Id: 16, Out:0},
+    {Id: 17, Out:0},
+    {Id: 18, Out:0},
+    {Id: 19, Out:0},
+    {Id: 20, Out:0},
+    {Id: 21, Out:0},
+    {Id: 22, Out:0},
+    {Id: 23, Out:0},
+    {Id: 24, Out:0},
+];
+
+// POINTS CONTOUR PANTHEON
+// var Knn_Mode = 54;
+var Knn_Mode = 62;
+
+//PANTHEON 62 sources
+
+var points1 = [
+    {x: 2.300000, y: 46.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 6.800000, y: 40.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 6.800000, y: 36.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 6.300000, y: 32.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 10.700000, y: 26.900000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 10.700000, y: 22.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 10.700000, y: 18.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 6.300000, y: 13.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //8
+    {x: 13.700000, y: 6.250000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //9
+    {x: 18.800000, y: 10.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 22.800000, y: 10.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 26.800000, y: 10.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 33.700000, y: 4.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 33.700000, y: 0.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 33.700000, y: -4.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 26.800000, y: -10.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 22.800000, y: -10.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 18.800000, y: -10.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 13.700000, y: -6.250000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //19
+    {x: 6.300000, y: -13.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //20
+    {x: 10.700000, y: -18.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 10.700000, y: -22.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 10.700000, y: -26.900000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 6.300000, y: -32.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 6.800000, y: -36.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 6.800000, y: -41.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 2.300000, y: -43.200000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -2.300000, y: -43.200000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -6.800000, y: -41.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -6.800000, y: -36.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -6.300000, y: -32.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -10.700000, y: -26.900000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -10.700000, y: -22.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -10.700000, y: -18.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -6.300000, y: -13.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //35
+    {x: -13.700000, y: -6.250000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //36
+    {x: -18.800000, y: -10.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -22.800000, y: -10.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -26.800000, y: -10.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -33.700000, y: -4.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -33.700000, y: -0.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -33.700000, y: 4.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -26.800000, y: 10.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -22.800000, y: 10.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -18.800000, y: 10.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -13.700000, y: 6.250000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //46
+    {x: -6.300000, y: 13.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //47
+    {x: -10.700000, y: 18.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -10.700000, y: 22.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -10.700000, y: 26.900000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -6.300000, y: 32.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -6.800000, y: 36.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -6.800000, y: 40.800000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -2.300000, y: 46.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 2.300000, y: 46.000000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 4.01, y: 9.92, z: 37, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 9.85, y: 4.18, z: 37, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 9.88, y: -4.11, z: 37, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 3.92, y: -9.96, z: 37, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -3.92, y: -9.96, z: 37, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -9.88, y: -4.11, z: 37, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -9.85, y: 4.18, z: 37, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -4.01, y: 9.92, z: 37, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+];
+
+//CHEMINES
+var cheminee = [
+    [
+        {x: 9.85, y: 4.18, z: 37, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //56
+        {x: 13.700000, y: 6.250000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //9
+    ],
+    [
+        {x: 9.88, y: -4.11, z: 37, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //57
+        {x: 13.700000, y: -6.250000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //19
+    ],
+    [
+        {x: 3.92, y: -9.96, z: 37, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //58
+        {x: 6.300000, y: -13.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //20
+    ],
+    [
+        {x: -3.92, y: -9.96, z: 37, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //59
+        {x: -6.300000, y: -13.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //35
+    ],
+    [
+        {x: -9.88, y: -4.11, z: 37, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //60
+        {x: -13.700000, y: -6.250000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //36
+    ],
+    [
+        {x: -9.85, y: 4.18, z: 37, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //61
+        {x: -13.700000, y: 6.250000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //46
+    ],
+    [
+        {x: -4.01, y: 9.92, z: 37, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //62
+        {x: -6.300000, y: 13.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //47
+    ],
+    [
+        {x: 4.01, y: 9.92, z: 37, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //55
+        {x: 6.300000, y: 13.700000, z: 0.000000, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0}, //8
+    ],
+];
+//TRAJ 1 source
+var points2 = [
+    {x: 0, y: 0, z: 0, c1x: 0, c1y: 5, c1z: 5, c2x: 5, c2y: 0, c2z: 0},
+    {x: 46.2991, y: 5, z: 0, c1x: 5, c1y: 10, c1z: 0, c2x: -5, c2y: 10, c2z: 0},
+    {x: 57.2991, y: 5, z: 0, c1x: 5, c1y: 10, c1z: 0, c2x: -5, c2y: 10, c2z: 0}
+];
+
+// TRAJECTOIRES TRANSEPTS - COUPOLES
+var Ecart = 7;
+var Elevation_ini = 37;
+var Ini_Pos = 50;
+var Init_Pos_x = [
+	{x: 0, y: Ecart, z: Elevation_ini},
+];
+var Init_Pos_y = [
+	{x: Ecart, y: 0, z: Elevation_ini},
+];
+var Traj_xPos = [
+	{x: Init_Pos_x[0].x, y: Init_Pos_x[0].y, z: Init_Pos_x[0].z, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+	{x: 15, y: 7, z: 0, c1x: 5, c1y: Ecart/8, c1z: 0, c2x: -6.83726, c2y: 0, c2z: 0},
+	{x: 33, y: 3, z: 0.000000, c1x: 0, c1y: -2, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+];
+var Traj_xNeg = [
+    {x: Init_Pos_x[0].x, y: Init_Pos_x[0].y, z: Init_Pos_x[0].z, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -15, y: 7, z: 0, c1x: -5, c1y: Ecart/8, c1z: 0, c2x: 6.83726, c2y: 0, c2z: 0},
+    {x: -33, y: 3, z: 0.000000, c1x: 0, c1y: -2, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+];
+var Traj_yPos = [
+    {x: Init_Pos_y[0].x, y: Init_Pos_y[0].y, z: Init_Pos_y[0].z, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 7, y: 15, z: 0, c1x: Ecart/8, c1y: 5, c1z: 0, c2x: 0, c2y: -6.83726, c2z: 0},
+    {x: 3, y: 40, z: 0.000000, c1x: -2, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+];
+var Traj_yNeg = [
+    {x: Init_Pos_y[0].x, y: Init_Pos_y[0].y, z: Init_Pos_y[0].z, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 7, y: -15, z: 0, c1x: Ecart/8, c1y: -5, c1z: 0, c2x: 0, c2y: 6.83726, c2z: 0},
+    {x: Ecart/2, y: -40, z: 0.000000, c1x: -2, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+];
+        
+var Traj_xPos_TRAV = [
+    {x: Ini_Pos, y: 3, z: 0, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 15, y: 7, z: 0, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 0, y: 7, z: Elevation_ini, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -15, y: 7, z: 0, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -Ini_Pos, y: 3, z: 0, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+];
+var Traj_xNeg_TRAV = [
+    {x: -Ini_Pos, y: 3, z: 0, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: -15, y: 7, z: 0, c1x: 0, c1y: Ecart/8, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 0, y: 7, z: Elevation_ini, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 15, y: 7, z: 0, c1x: 0, c1y: Ecart/8, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: Ini_Pos, y: 3, z: 0.000000, c1x: 0, c1y: -2, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+        ];
+var Traj_yPos_TRAV = [
+    {x: 3, y: Ini_Pos, z: 0, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 7, y: 15, z: 0, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 7, y: 0, z: Elevation_ini, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 7, y: -15, z: 0, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 3, y: -Ini_Pos, z: 0.000000, c1x: 0, c1y: -2, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+];
+var Traj_yNeg_TRAV = [
+    {x: 3, y: -Ini_Pos, z: 0, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 7, y: -15, z: 0, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 7, y: 0, z: Elevation_ini, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 7, y: 15, z: 0, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    {x: 3, y: Ini_Pos, z: 0.000000, c1x: 0, c1y: -2, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+];
+
+function makeWithScript() {
+    //Clears the score
+	run("clear");
+	//Resets rotation
+	run("zoom 348.667");
+	run("rotate 0 0 0");
+	run("center -0.598144 13.2315");
+    
+    run("registerTexture background -41. 51.010358 41. -64.783154 plan.webp");
+    run("registercolor background_texture_tint 255 255 255 150");
+    
+    //CONTOUR PANTHEON
+    run("add curve 500");
+    run("setpos current 0 0 0");
+    run("setcolor 500 119 127 124 255");
+	for(var i = 0 ; i < points1.length ; i++) {
+		run("setpointat current " + i + " " + points1[i].x + " " + points1[i].y + " " + points1[i].z + " " + points1[i].c1x + " " + points1[i].c1y + " " + points1[i].c1z + " " + points1[i].c2x + " " + points1[i].c2y + " " + points1[i].c2z);
+    }
+    
+    //KNN RANDOM
+    Add_multiple_curve(24);
+    random_multiple_track(24, Knn_Mode);
+    Add_multiple_Cursor(24);
+    // CURSOR COLOR
+    for(k = 0 ; k < 6 ; k++){
+        run("setcolor " + (k+2000) + " 255 0 7 255");
+        //run("setlabel " + (k+2000) + " " + (k+1) + "");
+    }
+    for(k = 0 ; k < 6 ; k++){
+        run("setcolor " + (k+2006) + " 255 79 0 255");
+        //run("setlabel " + (k+2006) + " " + (k+7) + "");
+    }
+    for(k = 0 ; k < 6 ; k++){
+        run("setcolor " + (k+2012) + " 255 172 13 255");
+        //run("setlabel " + (k+2012) + " " + (k+13) + "");
+    }
+    for(k = 0 ; k < 6 ; k++){
+        run("setcolor " + (k+2018) + " 255 247 17 255");
+        //run("setlabel " + (k+2018) + " " + (k+19) + "");
+    }
+    // Curves COLOR
+    for(k = 0 ; k < 24 ; k++){
+        run("setcolor " + (k+1000) + " 255 255 255 50")
+    }
+    
+
+    //TRAJECTOIRES TO COUPOLE
+
+    /* AXE +x +xM -x -xM +y +yM -y -yM */
+    for(k = 1 ; k < 9 ; k++){
+        run("add curve " + (10+k) + "");
+        run("setpos " + (10+k) + " 0 0 0");
+        run("setcoloractive " + (10+k) + " 15 205 255 150");
+        run("setcolorinactive " + (10+k) + " 15 205 255 50");
+    }
+	createPointsElev(7, 37, 43);
+	/* cursor */
+    for(k = 1 ; k <9 ; k++) {
+        run("add cursor " + (100+k) + "");
+        run("setcurve " + (100+k) + " " + (10+k) + "");
+        run("setcolor " + (100+k) + " 15 205 255 255");
+        run("setwidth " + (100+k) + " 10");
+	    run("settime " + (100+k) + " ");
+	    run("setspeed " + (100+k) + " auto 13");
+        run("setpattern " + (100+k) + " 3 0 -1 1 0");
+        run("setmessage " + (100+k) + " 40, osc://" + IpPort + ":40003/track/" + (24+k) + "/xyz cursor_xPos cursor_yPos cursor_zPos, osc://127.0.0.1:1234/cursor/" + k + "/xy cursor_xPos cursor_yPos " + k + ", osc://127.0.0.1:5002/source/" + k + "/xy cursor_xPos cursor_yPos");
+        run("setlabel " + (k+100) + " " + (24+k) + "");
+        //TRACKS 25 à 32
+		
+    }
+    
+
+    // TRAVERSEES TRANSEPTS
+    /* AXE +x +xM -x -xM +y +yM -y -yM */
+    for(k = 1 ; k < 9 ; k++){
+        run("add curve " + (20+k) + "");
+        run("setpos " + (20+k) + " 0 0 0");
+        run("setcoloractive " + (20+k) + " 0 9 250 150");
+        run("setcolorinactive " + (20+k) + " 0 9 250 50");
+    }
+    createPointsTrav(55, 0);
+    /* cursor */
+    for(k = 1 ; k <9 ; k++) {
+        run("add cursor " + (200+k) + "");
+        run("setcurve " + (200+k) + " " + (20+k) + "");
+        run("setcolor " + (200+k) + " 0 9 250 255");
+        run("setwidth " + (200+k) + " 10");
+	    run("settime " + (200+k) + " ");
+	    run("setspeed " + (200+k) + " auto 5");
+        run("setpattern " + (200+k) + " 3 0 1 0");
+        run("setmessage " + (200+k) + " 40, osc://" + IpPort + ":40003/track/" + (32+k) + "/xyz cursor_xPos cursor_yPos cursor_zPos, osc://127.0.0.1:1234/cursor/" + (20+k) + "/xy cursor_xPos cursor_yPos " + (32+k) + ", osc://127.0.0.1:5002/source/" + (32+k) + "/xy cursor_xPos cursor_yPos");
+        run("setlabel " + (k+200) + " " + (32+k) + "");
+        //TRACKS 33 à 40
+    }
+
+
+    // COSINUS OBLIQUE 
+    //+X -X +Y -Y
+    for(k = 1 ; k < 5 ; k++){
+        run("add curve " + (30+k) + "");
+        run("setpos " + (30+k) + " 0 0 0");
+        run("setcolor " + (30+k) + " 255 0 241 150");
+    }
+    run("setequation 31 cartesian -80*t+40,cos(param1*20*t*PI)*7,0");
+    run("setequation 32 cartesian 80*t-40,cos(param1*20*t*PI)*7,0");
+    run("setequation 33 cartesian cos(param1*20*t*PI)*7,-80*t+40,0");
+    run("setequation 34 cartesian cos(param1*20*t*PI)*7,80*t-40,0");
+    for(k = 1 ; k < 5 ; k++){
+        run("setequationparam " + (30+k) + " param1 0.05");
+    }
+    //CURSORS Obliques
+    for(k = 1 ; k < 5 ; k++){
+        run("add cursor " + (300+k) + "");
+        run("setcurve " + (300+k) + " " + (30+k) + "");
+        run("setcolor " + (300+k) + " 255 0 241 255");
+        run("setwidth " + (300+k) + " 10");
+        run("settime current 0");
+        run("setspeed " + (300+k) + " auto 5");
+        run("setpattern " + (300+k) + " 3 0 1 0");
+        run("setmessage " + (300+k) + " 40, osc://" + IpPort + ":40003/track/" + (40+k) + "/xyz cursor_xPos cursor_yPos cursor_zPos, osc://127.0.0.1:1234/cursor/" + (40+k) + "/xy cursor_xPos cursor_yPos " + (40+k) + ", osc://127.0.0.1:5002/source/" + (40+k) + "/xy cursor_xPos cursor_yPos");
+        run("setlabel " + (k+300) + " " + (40+k) + ""); //TRACKS 41 à 44
+    }
+    
+    //Cercles Coupole 51 à 52
+    run("add curve 51");
+	run("setpos current 0 0 37");
+    run("setpointsellipse current 7 7");
+    run("setcolor 51 2 150 17 250");
+    run("add curve 52");
+	run("setpos current 0 0 0");
+    run("setpointsellipse current 15 15");
+    run("setcolor 52 2 150 17 250");
+    
+    //Cursors 501 à 502
+    for(k = 1 ; k < 3 ; k++){
+        run("add cursor " + (500+k) + "");
+        run("setcurve " + (500+k) + " " + (50+k) + "");
+        run("setcolor " + (500+k) + " 2 150 17 150");
+        run("setwidth " + (500+k) + " 5");
+        run("setdepth " + (500+k) + " 5");
+        run("settime " + (500+k) + " 0");
+        run("setspeed " + (500+k) + " 5");
+        run("setmessage " + (500+k) + " 40, osc://" + IpPort + ":40003/track/" + (44+k) + "/xyz cursor_xPos cursor_yPos cursor_zPos");
+        run("setlabel " + (k+500) + " " + (44+k) + ""); //TRACK 45 à 46
+    }
+    run("setpattern 501 19 0 1");
+    run("setpattern 502 19 0 -1");
+
+    //spirale aller-retour haut-bas 53
+    run("add curve 53");
+    run("setpos current 0 0 18");
+    run("setcolor 53 205 159 3 50");
+	run("setequation current cartesian cos(param1*20*t*PI)*15,sin(param2*20*t*PI)*15,37*param5*cos(8*param4*t*PI)");
+    //cursor 503
+	run("add cursor 503");
+    run("setcurve 503 53");
+    run("setcolor 503 205 159 3 150");
+    run("setwidth 503 3");
+    run("settime current 0");
+    run("setspeed current 5");
+    run("setpattern current 19 0 1");
+    run("setmessage current 40, osc://" + IpPort + ":40003/track/47/xyz cursor_xPos cursor_yPos cursor_zPos");
+    run("setlabel 503 47");
+    //TRACK 39
+
+
+    //PENDULES +X -X +Y -Y 54 à 57
+    for(k = 1 ; k < 5 ; k++){
+        run("add curve " + (53+k) + "");
+        run("setcolor " + (53+k) + " 3 138 31 150");
+    }
+    run("setpos 54 15 0 0");
+    run("setpos 55 -15 0 0");
+    run("setpos 56 0 15 0");
+    run("setpos 57 0 -15 0");
+    run("setequation 54 cartesian sin(param2*2*t*PI)*20,cos(param1*2*t*PI)*10,0");
+    run("setequation 55 cartesian -sin(param2*2*t*PI)*20,cos(param1*2*t*PI)*10,0");
+    run("setequation 56 cartesian cos(param1*2*t*PI)*10,sin(param2*2*t*PI)*30,0");
+    run("setequation 57 cartesian cos(param1*2*t*PI)*10,-sin(param2*2*t*PI)*30,0");
+    //CURSORS 504 à 507
+    for(k = 1 ; k < 5 ; k++){
+        run("add cursor " + (503+k) + "");
+        run("setcurve " + (503+k) + " " + (53+k) + "");
+        run("setcolor " + (503+k) + " 3 138 31 150");
+        run("setwidth " + (503+k) + " 3");
+	    run("setpos " + (503+k) + " -10 15 0");
+        run("settime " + (503+k) + " 0");
+        run("setspeed " + (503+k) + " auto 5");
+        run("setpattern " + (503+k) + " 19 0 1 -1");
+        run("setmessage " + (503+k) + " 40, osc://" + IpPort + ":40003/track/" + (47+k) + "/xyz cursor_xPos cursor_yPos cursor_zPos");
+        run("setlabel " + (k+503) + " " + (47+k) + ""); //TRACKS 48 à 51
+    }
+
+
+    //SPIRALE / CERCLE BOTTOM TO COUPOLE 58
+    run("add curve 58");
+    run("setpos current 0 0 0");
+    run("setcoloractive current 205 159 3 150");
+    run("setcolorinactive current 205 159 3 150");
+    run("setequation current cartesian sin((param2+param3/2)*4*t*PI)*15,cos((param2+param3/2)*4*t*PI)*15,37*cos(param3*t*PI/1.9+PI)+ 37");
+    //PARAMS
+    run("setequationparam current param5 0.5");
+    run("setequationparam current param1 0.5");
+    run("setequationparam current param2 0.5"); //NOMBRE DE REVOLUTIONS
+    run("setequationparam current param3 1"); //ELEVATION
+    run("setequationparam current param4 0.5");
+    run("setposz current 0");
+    //CURSOR 508
+    run("add cursor 508");
+    run("setcurve current lastCurve");
+    run("setpos current 1.14309 14.9564 0");
+    run("setcoloractive current 205 159 3 150");
+    run("setcolorinactive current 205 159 3 50");
+    run("setwidth current 3");
+    run("settime current 0");
+    run("setspeed current 5");
+    run("setpattern current 15 0 1 -1");
+    run("setmessage current 40, osc://" + IpPort + ":40003/track/52/xyz cursor_xPos cursor_yPos cursor_zPos ,"); //TRACK 44
+    run("setlabel 508 52");
+
+    //CHEMINEES 59 à 66
+    for(k = 0 ; k < 8 ; k++){
+        run("add curve " + (59+k) + "");
+        run("setpos current 0 0 0");
+        run("setcoloractive current 205 159 3 150");
+        run("setcolorinactive current 205 159 3 150");
+        for(var i = 0 ; i < cheminee[k].length ; i++) {
+            run("setpointat " + (59+k) + " " + i + " " + cheminee[k][i].x + " " + cheminee[k][i].y + " " + cheminee[k][i].z + " " + cheminee[k][i].c1x + " " + cheminee[k][i].c1y + " " + cheminee[k][i].c1z + " " + cheminee[k][i].c2x + " " + cheminee[k][i].c2y + " " + cheminee[k][i].c2z);
+        }
+    }
+    //CURSOR 509 à 516
+    for(k = 1 ; k < 9 ; k++){
+        run("add cursor " + (508+k) + "");
+        run("setcurve " + (508+k) + " " + (58+k) + "");
+        run("setcoloractive current 205 159 3 150");
+        run("setcolorinactive current 205 159 3 50");
+        run("setwidth current 3");
+        run("settime current 0");
+        run("setspeed current 5");
+        run("setpattern current 15 0 1 0");
+        run("setmessage current 40, osc://" + IpPort + ":40003/track/" + (52+k) + "/xyz cursor_xPos cursor_yPos cursor_zPos ,");
+        run("setlabel " + (508+k) + " " + (52+k) + ""); //TRACKS 53 à 60
+    }
+    
+    
+    
+
+
+}
+
+function random_multiple_track(Number, Variation) {
+    for(k = 0 ; k < Number ; k++){
+        points2[0] = points1[Math.floor(Math.random() * Variation)];
+        points2[1] = points1[Math.floor(Math.random() * Variation)];
+        for(var i = 0 ; i < points2.length-1 ; i++) {
+            run("setpointat " + (k+1000) + " " + i + " " + points2[i].x + " " + points2[i].y + " " + points2[i].z + " " + points2[i].c1x + " " + points2[i].c1y + " " + points2[i].c1z + " " + points2[i].c2x + " " + points2[i].c2y + " " + points2[i].c2z);
+        }
+    }
+}
+
+
+function random1track(id, min, max, Curve_x, Curve_y, Curve_z, id_cursor) {
+    var point2 = [
+        {x: 0, y: 0, z: 0, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+        {x: 0, y: 0, z: 0, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+        {x: 0, y: 0, z: 0, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+        {x: 0, y: 0, z: 0, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+    ];
+    point2[0] = {x: Curve_x, y: Curve_y, z: Curve_z, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0};
+    var percent_static = Math.random();
+    if(percent_static > 0.1){
+        random_Id = Math.floor(Math.random() * (max - min)) + min;
+        random_Id = modulo(random_Id, Knn_Mode);
+        while(random_Id == Log[(id-1000)]) {
+            random_Id = Math.floor(Math.random() * (max - min)) + min;
+            random_Id = modulo(random_Id, Knn_Mode);
+        }
+        point2[1] = points1[random_Id];
+        Log[(id-1000)] = random_Id;
+    
+        //BEZIER
+        Bezier(point2[0], point2[1]);
+        for(k = 0 ; k < 4 ; k++){
+            run("removePointAt " + id + " " + k + "");
+        };
+        for(var i = 0 ; i < points3.length ; i++) {
+            run("setpointat " + id + " " + i + " " + points3[i].x + " " + points3[i].y + " " + points3[i].z + " " + points3[i].c1x + " " + points3[i].c1y + " " + points3[i].c1z + " " + points3[i].c2x + " " + points3[i].c2y + " " + points3[i].c2z);
+        }
+        var cusortest = ((id_cursor-2000)/6);
+        if(cusortest < 1){
+            run("setspeed " + id_cursor + " " + Indices_speed_knn[0].Speed1 + "");
+        }
+        else if(cusortest < 2){
+            run("setspeed " + id_cursor + " " + Indices_speed_knn[0].Speed2 + "");
+        }
+        else if(cusortest < 3){
+            run("setspeed " + id_cursor + " " + Indices_speed_knn[0].Speed3 + "");            
+        }
+        else if(cusortest < 4){
+            run("setspeed " + id_cursor + " " + Indices_speed_knn[0].Speed4 + "");            
+        }
+    }
+    else if(percent_static < 0.2){
+        point2[1] = {x: point2[0].x, y: point2[0].y, z: Curve_z+10, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0};
+        point2[2] = {x: point2[0].x, y: point2[0].y, z: point2[0].z-1, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0};
+        point2[3] = {x: point2[0].x, y: point2[0].y, z: point2[0].z, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0};
+        for(var i = 0 ; i < point2.length ; i++) {
+            run("setpointat " + id + " " + i + " " + point2[i].x + " " + point2[i].y + " " + point2[i].z + " " + point2[i].c1x + " " + point2[i].c1y + " " + point2[i].c1z + " " + point2[i].c2x + " " + point2[i].c2y + " " + point2[i].c2z);
+        }
+        var Variance_delay = Math.floor( Math.random() * (5) + 7.5 );
+        run("setspeed " + id_cursor + " auto " + Variance_delay + "");
+    }
+    
+    //setTimeout(test(id_cursor), 1000);
+    //run("setspeed " + id_cursor + " 10");
+}
+
+function test(id_cursor) {
+    run("setspeed " + id_cursor + " 10");
+}
+
+
+function Add_multiple_curve(Number) {
+    for(k = 0; k < Number ; k++){
+        run("add curve " + (k+1000) + "");
+        run("setpos current 0 0 0");
+    }
+}
+
+function Add_multiple_Cursor(Number) {
+    for(k = 0; k < Number ; k++){
+        run("add cursor " + (2000+k) + "");
+        run("setwidth " + (2000+k) + " 2")
+        run("setcurve " + (2000+k) + " " + (1000+k) + "");
+        run("settime " + (2000+k) + " 0");
+        run("setspeed " + (2000+k) + " 5");
+        run("setpattern " + (2000+k) + " 3 0 1 -1");
+        run("setmessage " + (2000+k) + " 40, osc://"+ IpPort +":40003/track/" + (k+1) + "/xyz cursor_xPos cursor_yPos cursor_zPos, osc://127.0.0.1:1234/endbang " + (2000+k) + " " + (1000+k) + " {cursor_time_percent >0.9} cursor_xPos cursor_yPos cursor_zPos, osc://" + IpPort_Thierry + "/speedrandom 5");
+    }
+}
+
+function createPointsElev(Ecart, Elevation_ini, Distance) {
+	console("Création de la courbe avec elev=" + Elevation_ini + " : " + Traj_xPos.length);
+    // + X
+    Traj_xPos[0].y = Ecart;
+    Traj_xPos[1].y = Ecart;
+    Traj_xPos[0].z = Elevation_ini;
+    Traj_xPos[2].x = Distance;
+	for(var i = 0 ; i < Traj_xPos.length ; i++){
+		run("setpointat 11 " + i + " " + Traj_xPos[i].x + " " + Traj_xPos[i].y + " " + Traj_xPos[i].z + " " + Traj_xPos[i].c1x + " " + Traj_xPos[i].c1y + " " + Traj_xPos[i].c1z + " " + Traj_xPos[i].c2x + " " + Traj_xPos[i].c2y + " " + Traj_xPos[i].c2z);
+	}
+	for(var i = 0 ; i < Traj_xPos.length ; i++) {
+        run("setpointat 12 " + i + " " + Traj_xPos[i].x + " " + -Traj_xPos[i].y + " " + Traj_xPos[i].z + " " + Traj_xPos[i].c1x + " " + -Traj_xPos[i].c1y + " " + Traj_xPos[i].c1z + " " + Traj_xPos[i].c2x + " " + -Traj_xPos[i].c2y + " " + Traj_xPos[i].c2z);
+	}
+	/* AXE -x */
+    Traj_xNeg[0].y = Ecart;
+    Traj_xNeg[1].y = Ecart;
+    Traj_xNeg[0].z = Elevation_ini;
+    Traj_xNeg[2].x = -Distance;
+    for(var i = 0 ; i < Traj_xNeg.length ; i++) {
+            run("setpointat 13 " + i + " " + Traj_xNeg[i].x + " " + Traj_xNeg[i].y + " " + Traj_xNeg[i].z + " " + Traj_xNeg[i].c1x + " " + Traj_xNeg[i].c1y + " " + Traj_xNeg[i].c1z + " " + Traj_xNeg[i].c2x + " " + Traj_xNeg[i].c2y + " " + Traj_xNeg[i].c2z);
+    }
+    for(var i = 0 ; i < Traj_xNeg.length ; i++) {
+        run("setpointat 14 " + i + " " + Traj_xNeg[i].x + " " + -Traj_xNeg[i].y + " " + Traj_xNeg[i].z + " " + Traj_xNeg[i].c1x + " " + -Traj_xNeg[i].c1y + " " + Traj_xNeg[i].c1z + " " + Traj_xNeg[i].c2x + " " + -Traj_xNeg[i].c2y + " " + Traj_xNeg[i].c2z);
+    }
+    /* AXE +y */
+    Traj_yPos[0].x = Ecart;
+    Traj_yPos[1].x = Ecart;
+    Traj_yPos[0].z = Elevation_ini;
+    Traj_yPos[2].y = Distance*1.15;
+    for(var i = 0 ; i < Traj_yPos.length ; i++) {
+		run("setpointat 15 " + i + " " + Traj_yPos[i].x + " " + Traj_yPos[i].y + " " + Traj_yPos[i].z + " " + Traj_yPos[i].c1x + " " + Traj_yPos[i].c1y + " " + Traj_yPos[i].c1z + " " + Traj_yPos[i].c2x + " " + Traj_yPos[i].c2y + " " + Traj_yPos[i].c2z);
+    }
+    for(var i = 0 ; i < Traj_yPos.length ; i++) {
+        run("setpointat 16 " + i + " " + -Traj_yPos[i].x + " " + Traj_yPos[i].y + " " + Traj_yPos[i].z + " " + -Traj_yPos[i].c1x + " " + Traj_yPos[i].c1y + " " + Traj_yPos[i].c1z + " " + -Traj_yPos[i].c2x + " " + Traj_yPos[i].c2y + " " + Traj_yPos[i].c2z);
+    }
+    /* AXE -y */
+    Traj_yNeg[0].x = Ecart;
+    Traj_yNeg[1].x = Ecart;
+    Traj_yNeg[0].z = Elevation_ini;
+    Traj_yNeg[2].y = -Distance*1.15;
+    for(var i = 0 ; i < Traj_yNeg.length ; i++) {
+		run("setpointat 17 " + i + " " + Traj_yNeg[i].x + " " + Traj_yNeg[i].y + " " + Traj_yNeg[i].z + " " + Traj_yNeg[i].c1x + " " + Traj_yNeg[i].c1y + " " + Traj_yNeg[i].c1z + " " + Traj_yNeg[i].c2x + " " + Traj_yNeg[i].c2y + " " + Traj_yNeg[i].c2z);
+    }
+    for(var i = 0 ; i < Traj_yNeg.length ; i++) {
+        run("setpointat 18 " + i + " " + -Traj_yNeg[i].x + " " + Traj_yNeg[i].y + " " + Traj_yNeg[i].z + " " + -Traj_yNeg[i].c1x + " " + Traj_yNeg[i].c1y + " " + Traj_yNeg[i].c1z + " " + -Traj_yNeg[i].c2x + " " + Traj_yNeg[i].c2y + " " + Traj_yNeg[i].c2z);
+    }
+}
+
+function createPointsTrav(Ini_Pos, Elevation_ini) {
+	console("Création de la courbe avec Ini_Pos=" + Ini_Pos + " : " + Traj_xPos.length);
+    // + X
+    Traj_xPos_TRAV[0].x = Ini_Pos;
+    Traj_xPos_TRAV[4].x = -Ini_Pos;
+    Traj_xPos_TRAV[2].z = Elevation_ini;
+	for(var i = 0 ; i < Traj_xPos_TRAV.length ; i++){
+		run("setpointat 21 " + i + " " + Traj_xPos_TRAV[i].x + " " + Traj_xPos_TRAV[i].y + " " + Traj_xPos_TRAV[i].z + " " + Traj_xPos_TRAV[i].c1x + " " + Traj_xPos_TRAV[i].c1y + " " + Traj_xPos_TRAV[i].c1z + " " + Traj_xPos_TRAV[i].c2x + " " + Traj_xPos_TRAV[i].c2y + " " + Traj_xPos_TRAV[i].c2z);
+    }
+	for(var i = 0 ; i < Traj_xPos_TRAV.length ; i++) {
+        run("setpointat 22 " + i + " " + Traj_xPos_TRAV[i].x + " " + -Traj_xPos_TRAV[i].y + " " + Traj_xPos_TRAV[i].z + " " + Traj_xPos_TRAV[i].c1x + " " + -Traj_xPos_TRAV[i].c1y + " " + Traj_xPos_TRAV[i].c1z + " " + Traj_xPos_TRAV[i].c2x + " " + -Traj_xPos_TRAV[i].c2y + " " + Traj_xPos_TRAV[i].c2z);
+	}
+	// AXE -x 
+    Traj_xNeg_TRAV[0].x = -Ini_Pos;
+    Traj_xNeg_TRAV[4].x = Ini_Pos;
+    Traj_xNeg_TRAV[2].z = Elevation_ini;
+    for(var i = 0 ; i < Traj_xNeg_TRAV.length ; i++) {
+            run("setpointat 23 " + i + " " + Traj_xNeg_TRAV[i].x + " " + Traj_xNeg_TRAV[i].y + " " + Traj_xNeg_TRAV[i].z + " " + Traj_xNeg_TRAV[i].c1x + " " + Traj_xNeg_TRAV[i].c1y + " " + Traj_xNeg_TRAV[i].c1z + " " + Traj_xNeg_TRAV[i].c2x + " " + Traj_xNeg_TRAV[i].c2y + " " + Traj_xNeg_TRAV[i].c2z);
+    }
+    for(var i = 0 ; i < Traj_xNeg_TRAV.length ; i++) {
+        run("setpointat 24 " + i + " " + Traj_xNeg_TRAV[i].x + " " + -Traj_xNeg_TRAV[i].y + " " + Traj_xNeg_TRAV[i].z + " " + Traj_xNeg_TRAV[i].c1x + " " + -Traj_xNeg_TRAV[i].c1y + " " + Traj_xNeg_TRAV[i].c1z + " " + Traj_xNeg_TRAV[i].c2x + " " + -Traj_xNeg_TRAV[i].c2y + " " + Traj_xNeg_TRAV[i].c2z);
+    }
+    // AXE +y 
+    Traj_yPos_TRAV[0].y = Ini_Pos*1.15;
+    Traj_yPos_TRAV[4].y = -Ini_Pos*1.15;
+    Traj_yPos_TRAV[2].z = Elevation_ini;
+    for(var i = 0 ; i < Traj_yPos_TRAV.length ; i++) {
+		run("setpointat 25 " + i + " " + Traj_yPos_TRAV[i].x + " " + Traj_yPos_TRAV[i].y + " " + Traj_yPos_TRAV[i].z + " " + Traj_yPos_TRAV[i].c1x + " " + Traj_yPos_TRAV[i].c1y + " " + Traj_yPos_TRAV[i].c1z + " " + Traj_yPos_TRAV[i].c2x + " " + Traj_yPos_TRAV[i].c2y + " " + Traj_yPos_TRAV[i].c2z);
+    }
+    for(var i = 0 ; i < Traj_yPos_TRAV.length ; i++) {
+        run("setpointat 26 " + i + " " + -Traj_yPos_TRAV[i].x + " " + Traj_yPos_TRAV[i].y + " " + Traj_yPos_TRAV[i].z + " " + -Traj_yPos_TRAV[i].c1x + " " + Traj_yPos_TRAV[i].c1y + " " + Traj_yPos_TRAV[i].c1z + " " + -Traj_yPos_TRAV[i].c2x + " " + Traj_yPos_TRAV[i].c2y + " " + Traj_yPos_TRAV[i].c2z);
+    }
+    // AXE -y 
+    Traj_yNeg_TRAV[0].y = -Ini_Pos*1.15;
+    Traj_yNeg_TRAV[4].y = Ini_Pos*1.15;
+    Traj_yNeg_TRAV[2].z = Elevation_ini;
+    for(var i = 0 ; i < Traj_yNeg_TRAV.length ; i++) {
+		run("setpointat 27 " + i + " " + Traj_yNeg_TRAV[i].x + " " + Traj_yNeg_TRAV[i].y + " " + Traj_yNeg_TRAV[i].z + " " + Traj_yNeg_TRAV[i].c1x + " " + Traj_yNeg_TRAV[i].c1y + " " + Traj_yNeg_TRAV[i].c1z + " " + Traj_yNeg_TRAV[i].c2x + " " + Traj_yNeg_TRAV[i].c2y + " " + Traj_yNeg_TRAV[i].c2z);
+    }
+    for(var i = 0 ; i < Traj_yNeg_TRAV.length ; i++) {
+        run("setpointat 28 " + i + " " + -Traj_yNeg_TRAV[i].x + " " + Traj_yNeg_TRAV[i].y + " " + Traj_yNeg_TRAV[i].z + " " + -Traj_yNeg_TRAV[i].c1x + " " + Traj_yNeg_TRAV[i].c1y + " " + Traj_yNeg_TRAV[i].c1z + " " + -Traj_yNeg_TRAV[i].c2x + " " + Traj_yNeg_TRAV[i].c2y + " " + Traj_yNeg_TRAV[i].c2z);
+    }
+    
+}
+
+function onIncomingMessage(protocol, host, port, destination, values) {
+    if((protocol == "osc") && (destination == "/endbang") && (values.length > 0)) {
+        if(values[2] == 1){
+            if(values[0]<2006){
+                id_groupe = 0;
+            } else if(values[0]<2012){
+                id_groupe = 1;
+            } else if(values[0]<2018){
+                id_groupe = 2;
+            } else if(values[0]<2022){
+                id_groupe = 3;
+            } else {
+                id_groupe = 4;
+            }
+            run("setspeed " + values[0] + " 0")
+            random1track(values[1], Math.floor(Variation_liste_4_Groupes[id_groupe].In), Math.floor(Variation_liste_4_Groupes[id_groupe].Out), values[3], values[4], values[5], values[0]);
+            run("settime " + values[0] + " 0");
+        }
+    }
+	else if(protocol == "direct") {
+        console("Received " + destination);
+    }
+    else if((protocol == "osc") && (destination == "/speedrandom") && (values.length > 0)){
+        Indices_speed_knn = [
+            {Speed1: values[0], Speed2: values[1], Speed3: values[2], Speed4: values[3]}
+        ];
+        for(k = 0; k < 24 ; k++){
+            if(k < 6){
+                run("setspeed " + (2000+k) + " " + Indices_speed_knn[0].Speed1 + "");
+            }
+            else if(k < 12){
+                run("setspeed " + (2000+k) + " " + Indices_speed_knn[0].Speed2 + "");
+            }
+            else if(k < 18) {
+                run("setspeed " + (2000+k) + " " + Indices_speed_knn[0].Speed3 + "");
+            }
+            else {
+                run("setspeed " + (2000+k) + " " + Indices_speed_knn[0].Speed4 + "");
+            }
+        }
+    }
+    else if((protocol == "osc") && (destination == "/variation") && (values.length > 0)){
+        var Indices = [
+            {In1: values[0], Out1: values[1], In2: values[2], Out2: values[3], In3: values[4], Out3: values[5], In4: values[6], Out4: values[7], In5: values[6], Out5: values[7]}
+        ];
+        Variation_liste_4_Groupes = [
+            {In: Indices[0].In1, Out: Indices[0].Out1},
+            {In: Indices[0].In2, Out: Indices[0].Out2},
+            {In: Indices[0].In3, Out: Indices[0].Out3},
+            {In: Indices[0].In4, Out: Indices[0].Out4},
+            {In: Indices[0].In5, Out: Indices[0].Out5},
+        ];
+    }
+    else if((protocol == "osc") && (destination == "/elev") && (values.length > 0)) {
+		createPointsElev(values[0], values[1], values[2]);
+    }
+    else if((protocol == "osc") && (destination == "/ini_pos") && (values.length > 0)) {
+		createPointsTrav(values[0], values[1]);
+    }
+    else if((protocol == "osc") && (destination.startsWith("/cursor/")) && (destination.endsWith("/xy")) && (values.length > 0)){
+        var IDDest = parseFloat(destination.replace("/cursor/", "").replace("/xy", ""));
+        console("—> " + IDDest);
+        //COUPOLE SLAVE GAIN +X -X +Y -Y
+        if(IDDest < 9){
+            test_G = {x: values[0], y: values[1], z: values[2]};
+            show = pointIsInPoly(test_G, vert_G);
+            if(show == true){
+                run("setcolor " + (100+IDDest) + " 0 255 0 255");
+                Bypass_slave = 1;
+            }
+            else if(show == false){
+                run("setcolor " + (100+IDDest) + " 250 0 0 255");
+                Bypass_slave = 0;
+            }
+            run("setmessage " + (100+IDDest) + " 40, osc://" + IpPort + ":40003/track/" + (24+IDDest) + "/xyz cursor_xPos cursor_yPos cursor_zPos, osc://127.0.0.1:1234/cursor/" + IDDest + "/xy cursor_xPos cursor_yPos 1, osc://127.0.0.1:5002/source/" + IDDest + "/xy cursor_xPos cursor_yPos, osc://127.0.0.1:5002/source/" + IDDest + "/toggle " + Bypass_slave +  "");
+        } //TRAVERSEE SLAVE GAIN +X -X +Y -Y
+        else if(IDDest < 17){
+            test_G = {x: values[0], y: values[1], z: values[2]};
+            show = pointIsInPoly(test_G, vert_G);
+            if(show == true){
+                run("setcolor " + (200+IDDest-8) + " 0 255 0 255");
+                Bypass_slave = 1;
+            } 
+            else if(show == false){
+                run("setcolor " + (200+IDDest-8) + " 250 0 0 255");
+                Bypass_slave = 0;
+            }
+            run("setmessage " + (200+IDDest-8) + " 40, osc://" + IpPort + ":40003/track/" + (24+IDDest) + "/xyz cursor_xPos cursor_yPos cursor_zPos, osc://127.0.0.1:1234/cursor/" + IDDest + "/xy cursor_xPos cursor_yPos 1, osc://127.0.0.1:5002/source/" + IDDest + "/xy cursor_xPos cursor_yPos, osc://127.0.0.1:5002/source/" + IDDest + "/toggle " + Bypass_slave +  "");
+        } //SINUS SLAVE GAIN +X -X +Y -Y
+        else {
+            test_G = {x: values[0], y: values[1], z: values[2]};
+            show = pointIsInPoly(test_G, vert_G);
+            if(show == true){
+                run("setcolor " + (300+IDDest-16) + " 0 255 0 255");
+                Bypass_slave = 1;
+            } 
+            else if(show == false){
+                run("setcolor " + (300+IDDest-16) + " 250 0 0 255");
+                Bypass_slave = 0;
+            }
+            run("setmessage " + (300+IDDest-16) + " 40, osc://" + IpPort + ":40003/track/" + (24+IDDest) + "/xyz cursor_xPos cursor_yPos cursor_zPos, osc://127.0.0.1:1234/cursor/" + IDDest + "/xy cursor_xPos cursor_yPos 1, osc://127.0.0.1:5002/source/" + IDDest + "/xy cursor_xPos cursor_yPos, osc://127.0.0.1:5002/source/" + IDDest + "/toggle " + Bypass_slave +  "");
+        }
+        
+    }
+    else {
+        //Logs a message in the console (open "Config" tab from Inspector panel and see "Message log")
+        console("Received on '" + protocol + "' (" + host + ":" + port + ") to '" + destination + "', " + values.length + " values : ");
+        
+        //Browses all the arguments and displays them in log window
+        for(var valueIndex = 0 ; valueIndex < values.length ; valueIndex++)
+            console("- arg " + valueIndex + " = " + values[valueIndex]);
+    }
+}
+
+//Modulo with positive and negative numbers
+function modulo(x, n){
+    return (x % n + n) % n;
+}
+
+//BEZIER KNN RANDOM
+function Bezier(P1, P2){
+    var diff_x = P2.x - P1.x;
+	var diff_y = P2.y - P1.y;
+	//y POS
+	if(P1.y > 0 & P2.y > 0){
+		if(P2.y > P1.y){
+			points3 = [
+				{x: P1.x, y: P1.y, z: P1.z, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+				{x: P2.x, y: P2.y, z: P2.z, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: -diff_y, c2z: 0},
+			];
+		}
+		else {
+			points3 = [
+				{x: P1.x, y: P1.y, z: P1.z, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+				{x: P2.x, y: P2.y, z: P2.z, c1x: 0, c1y: diff_y, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+			];	
+		}
+	}
+	//x POS
+	else if(P1.x > 0 & P2.x > 0){
+		if(P2.x > P1.x){
+		    points3 = [
+				{x: P1.x, y: P1.y, z: P1.z, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+				{x: P2.x, y: P2.y, z: P2.z, c1x: 0, c1y: 0, c1z: 0, c2x: -diff_x, c2y: 0, c2z: 0},
+			];
+		}
+		else {
+			points3 = [
+				{x: P1.x, y: P1.y, z: P1.z, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+				{x: P2.x, y: P2.y, z: P2.z, c1x: diff_x, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+			];	
+		}
+	}
+	//y NEG
+	else if(P1.y < 0 & P2.y < 0){
+		if(P2.y > P1.y){
+			points3 = [
+				{x: P1.x, y: P1.y, z: P1.z, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+				{x: P2.x, y: P2.y, z: P2.z, c1x: 0, c1y: diff_y, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+			];
+		}
+		else {
+			points3 = [
+				{x: P1.x, y: P1.y, z: P1.z, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+				{x: P2.x, y: P2.y, z: P2.z, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: -diff_y, c2z: 0},
+			];	
+		}
+	}
+	//x NEG
+	else if(P1.x < 0 & P2.x < 0){
+		if(P2.x > P1.x){
+			points3 = [
+				{x: P1.x, y: P1.y, z: P1.z, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+				{x: P2.x, y: P2.y, z: P2.z, c1x: diff_x, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+			];
+		}
+		else {
+			points3 = [
+				{x: P1.x, y: P1.y, z: P1.z, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+				{x: P2.x, y: P2.y, z: P2.z, c1x: 0, c1y: 0, c1z: 0, c2x: -diff_x, c2y: 0, c2z: 0},
+			];	
+		}
+	}
+	else {
+		points3 = [
+			{x: P1.x, y: P1.y, z: P1.z, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+			{x: P2.x, y: P2.y, z: P2.z, c1x: 0, c1y: 0, c1z: 0, c2x: 0, c2y: 0, c2z: 0},
+		];
+	}
+}
+
+// Check if point is in the polygone
+function pointIsInPoly(p, polygon) {
+    var isInside = false;
+    var minX = polygon[0].x, maxX = polygon[0].x;
+    var minY = polygon[0].y, maxY = polygon[0].y;
+    for (var n = 1; n < polygon.length; n++) {
+        var q = polygon[n];
+        minX = Math.min(q.x, minX);
+        maxX = Math.max(q.x, maxX);
+        minY = Math.min(q.y, minY);
+        maxY = Math.max(q.y, maxY);
+    }
+
+    if (p.x < minX || p.x > maxX || p.y < minY || p.y > maxY) {
+        return false;   
+    }
+
+    var i = 0, j = polygon.length - 1;
+    for (i, j; i < polygon.length; j = i++) {
+        if ( (polygon[i].y > p.y) != (polygon[j].y > p.y) &&
+                p.x < (polygon[j].x - polygon[i].x) * (p.y - polygon[i].y) / (polygon[j].y - polygon[i].y) + polygon[i].x ) {
+            isInside = !isInside;
+        }
+    }
+
+    return isInside;
+}

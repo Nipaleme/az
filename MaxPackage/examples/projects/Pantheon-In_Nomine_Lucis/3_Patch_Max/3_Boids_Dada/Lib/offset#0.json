@@ -1,0 +1,25 @@
+{
+	"pattrstorage" : 	{
+		"name" : "offset#0",
+		"slots" : 		{
+			"1" : 			{
+				"id" : 1,
+				"data" : 				{
+					"offset" : [ 0, 0 ]
+				}
+
+			}
+,
+			"2" : 			{
+				"id" : 2,
+				"data" : 				{
+					"offset" : [ -66, 1 ]
+				}
+
+			}
+
+		}
+
+	}
+
+}
